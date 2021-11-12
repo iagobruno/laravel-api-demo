@@ -11,8 +11,6 @@ Uma simples API rest para treinar e estudar.
 
 ## Afazeres
 
-- Criar rota para logar e receber token
-
 - Criar rota para criar tweets
 - Criar rota para deletar um tweet
 

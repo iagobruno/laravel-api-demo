@@ -17,7 +17,7 @@ class SignupController extends Controller
         ]);
 
         $user = User::create($data);
-        $token = $user->createToken($request->device_name ?? 'api')->plainTextToken;
+        $token = $user->createApiToken();
 
         return [
             'message' => 'OK',

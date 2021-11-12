@@ -1,9 +1,8 @@
 <?php
 
 use function Pest\Laravel\{postJson};
-
-use App\Models\User;
 use Illuminate\Http\Response as StatusCode;
+use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não conter todos os campos obrigatórios', function () {
     postJson('/api/signup', [])

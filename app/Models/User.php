@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    public function createApiToken()
+    {
+        return $this->createToken(request()->device_name ?? 'api')->plainTextToken;
+    }
 }
