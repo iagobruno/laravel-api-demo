@@ -1,6 +1,6 @@
 # laravel-api-demo
 
-Uma simples API rest para treinar e estudar.
+Uma simples API rest similar ao do Twitter para treinar e estudar.
 
 ## Objetivos
 
@@ -10,8 +10,6 @@ Uma simples API rest para treinar e estudar.
 - [ ] Usar o laravel/sanctum para autenticar as solicitações.
 
 ## Afazeres
-
-- Criar rota para deletar um tweet
 
 - Criar rota para ver um perfil
 - Criar rota para ver tweets de um perfil

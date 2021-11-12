@@ -21,4 +21,5 @@ Route::post('/signin', SigninController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/tweets', [TweetController::class, 'store']);
+    Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy']);
 });
