@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\TweetController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,6 @@ Route::post('/signin', SigninController::class);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/tweets', [TweetController::class, 'store']);
     Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy']);
+
+    Route::get('/me', [UserController::class, 'me']);
 });
