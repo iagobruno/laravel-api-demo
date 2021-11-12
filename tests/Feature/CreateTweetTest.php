@@ -15,7 +15,7 @@ test('Deve retornar um erro se a solicitação não conter todos os campos obrig
     /** @var \App\Models\User */
     $user = User::factory()->create();
 
-    actingAs($user)
+    actingAs($user, 'sanctum')
         ->postJson('/api/tweets', [])
         ->assertJsonValidationErrors([
             'content' => 'validation.required'
@@ -27,7 +27,7 @@ test('Deve retornar um erro se o content for maior que 140 caracteres', function
     /** @var \App\Models\User */
     $user = User::factory()->create();
 
-    actingAs($user)
+    actingAs($user, 'sanctum')
         ->postJson('/api/tweets', [
             'content' => str_repeat('a', 141)
         ])
@@ -43,7 +43,7 @@ test('Deve conseguir criar um novo tweet', function () {
 
     $content = faker()->text(140);
 
-    actingAs($user)
+    actingAs($user, 'sanctum')
         ->postJson('/api/tweets', [
             'content' => $content,
         ])
@@ -60,7 +60,7 @@ test('Deve associar corretamente ao usuário logado', function () {
 
     $content = faker()->text(140);
 
-    actingAs($user)
+    actingAs($user, 'sanctum')
         ->postJson('/api/tweets', [
             'content' => $content,
         ])
