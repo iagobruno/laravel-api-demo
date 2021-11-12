@@ -11,9 +11,6 @@ Uma simples API rest para treinar e estudar.
 
 ## Afazeres
 
-- Configurar o ratelimiter corretamente para evitar abusos.
-
-- Criar rota para se cadastrar
 - Criar rota para logar e receber token
 
 - Criar rota para criar tweets

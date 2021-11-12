@@ -11,7 +11,8 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.6",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -20,6 +21,7 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
         "pestphp/pest": "^1.20",
+        "pestphp/pest-plugin-faker": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.1",
         "phpunit/phpunit": "^9.5.10"
     },
