@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f68e624a02a1dd57396c3713daec3bd6",
+    "content-hash": "80331a26a58642310738f8ed59a33083",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -957,6 +957,52 @@
                 }
             ],
             "time": "2021-10-06T17:43:30+00:00"
+        },
+        {
+            "name": "jamesh/laravel-uuid",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JamesHemery/laravel-uuid.git",
+                "reference": "8ad983c1e334b6acd0fb46ddd95b27ce1563cb42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JamesHemery/laravel-uuid/zipball/8ad983c1e334b6acd0fb46ddd95b27ce1563cb42",
+                "reference": "8ad983c1e334b6acd0fb46ddd95b27ce1563cb42",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^6|^7|^8",
+                "illuminate/support": "^6|^7|^8",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4|^5|^6",
+                "phpunit/phpunit": "^9.1"
+            },
+            "type": "plugin",
+            "autoload": {
+                "psr-4": {
+                    "Jamesh\\Uuid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Hemery",
+                    "email": "hello@james-hemery.pro"
+                }
+            ],
+            "description": "Eloquent UUID Trait for Laravel 6 and above.",
+            "support": {
+                "issues": "https://github.com/JamesHemery/laravel-uuid/issues",
+                "source": "https://github.com/JamesHemery/laravel-uuid/tree/2.0.0"
+            },
+            "time": "2021-04-30T09:32:22+00:00"
         },
         {
             "name": "laravel/framework",
