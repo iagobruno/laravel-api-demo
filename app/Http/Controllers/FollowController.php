@@ -17,7 +17,20 @@ class FollowController extends Controller
         $userToFollow->acceptFollowRequestFrom($loggedUser);
 
         return [
-            'message' => ''
+            'message' => 'Successfully followed!'
+        ];
+    }
+
+    public function unfollow($username)
+    {
+        $userToUnfollow = User::findByUsernameOrFail($username);
+        /** @var \App\Models\User */
+        $loggedUser = auth()->user();
+
+        $loggedUser->unfollow($userToUnfollow);
+
+        return [
+            'message' => 'Successfully unfollowed!'
         ];
     }
 }

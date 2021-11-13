@@ -33,4 +33,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/me', [UserController::class, 'destroyMe']);
 
     Route::post('/users/{username}/follow', [FollowController::class, 'follow']);
+    Route::post('/users/{username}/unfollow', [FollowController::class, 'unfollow']);
 });
