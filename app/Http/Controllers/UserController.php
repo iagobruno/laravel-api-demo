@@ -15,7 +15,16 @@ class UserController extends Controller
 
     public function view($username)
     {
-        return User::findByUsernameOrFail($username);
+        $user = User::findByUsernameOrFail($username);
+        /** @var \App\Models\User */
+        $loggedUser = auth('sanctum')->check() ? auth()->user() : null;
+
+        return [
+            ...$user->toArray(),
+            'viewer_follows' => $loggedUser?->isFollowing($user) ?? false,
+            'followers_count' => $user->getFollowedByCount(),
+            'following_count' => $user->getFollowingCount(),
+        ];
     }
 
     public function updateMe(Request $request)
