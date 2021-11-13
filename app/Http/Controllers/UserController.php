@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function view($username)
     {
-        return User::firstWhere('username', $username);
+        return User::findByUsernameOrFail($username);
     }
 
     public function updateMe(Request $request)
