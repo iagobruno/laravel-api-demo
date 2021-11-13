@@ -3,11 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class TweetController extends Controller
 {
+    public function tweetsFromUser($username)
+    {
+        $page = request('page', 1);
+        $perPage = request('perPage', 10);
+
+        return Tweet::query()
+            ->select(['tweets.id', 'user_id', 'username', 'content', 'tweets.created_at', 'tweets.updated_at'])
+            ->join('users', 'users.id', '=', 'tweets.user_id')
+            ->where('users.username', $username)
+            ->orderBy('tweets.created_at', 'DESC')
+            ->paginate(page: $page, perPage: $perPage);
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([

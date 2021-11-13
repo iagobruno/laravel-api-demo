@@ -20,6 +20,9 @@ use App\Http\Controllers\UserController;
 Route::post('/signup', SignupController::class);
 Route::post('/signin', SigninController::class);
 
+Route::get('/users/{username}', [UserController::class, 'view']);
+Route::get('/users/{username}/tweets', [TweetController::class, 'tweetsFromUser']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/tweets', [TweetController::class, 'store']);
     Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy']);
@@ -27,5 +30,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [UserController::class, 'me']);
     Route::patch('/me', [UserController::class, 'updateMe']);
     Route::delete('/me', [UserController::class, 'destroyMe']);
-    Route::get('/users/{username}', [UserController::class, 'view']);
 });

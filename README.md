@@ -11,7 +11,6 @@ Uma simples API rest similar ao do Twitter para treinar e estudar.
 
 ## Afazeres
 
-- Criar rota para ver tweets de um perfil
 - Criar rota para seguir outro perfil
 - Criar rota para deixar de seguir um perfil
 
