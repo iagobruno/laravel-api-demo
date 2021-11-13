@@ -26,5 +26,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/me', [UserController::class, 'me']);
     Route::patch('/me', [UserController::class, 'updateMe']);
+    Route::delete('/me', [UserController::class, 'destroyMe']);
     Route::get('/users/{username}', [UserController::class, 'view']);
 });

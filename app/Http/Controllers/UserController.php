@@ -37,4 +37,17 @@ class UserController extends Controller
             'message' => 'Successfully updated!'
         ];
     }
+
+    public function destroyMe()
+    {
+        /** @var \App\Models\User */
+        $loggedUser = auth()->user();
+        Gate::authorize('delete', $loggedUser);
+
+        $loggedUser->delete();
+
+        return [
+            'message' => 'Successfully deleted!'
+        ];
+    }
 }
