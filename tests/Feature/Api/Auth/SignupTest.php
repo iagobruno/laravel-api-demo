@@ -15,6 +15,56 @@ test('Deve retornar um erro se a solicitação não conter todos os campos obrig
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 });
 
+test('Deve retornar um erro se tentar usar um username inválido', function () {
+    postJson('/api/signup', [
+        'username' => 'iago br',
+    ])
+        ->assertJsonValidationErrors([
+            'username' => 'validation.regex'
+        ])
+        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+
+    postJson('/api/signup', [
+        'username' => 'iago+bruno',
+    ])
+        ->assertJsonValidationErrors([
+            'username' => 'validation.regex'
+        ])
+        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+
+    postJson('/api/signup', [
+        'username' => 'iago.bruno',
+    ])
+        ->assertJsonValidationErrors([
+            'username' => 'validation.regex'
+        ])
+        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+
+    postJson('/api/signup', [
+        'username' => '@iagobruno',
+    ])
+        ->assertJsonValidationErrors([
+            'username' => 'validation.regex'
+        ])
+        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+
+    postJson('/api/signup', [
+        'username' => 'iago|bruno',
+    ])
+        ->assertJsonValidationErrors([
+            'username' => 'validation.regex'
+        ])
+        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+
+    postJson('/api/signup', [
+        'username' => 'criançafeliz',
+    ])
+        ->assertJsonValidationErrors([
+            'username' => 'validation.regex'
+        ])
+        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+});
+
 test('Deve retornar um erro se o username já estiver em uso', function () {
     User::factory()->create([
         'username' => 'fakeuser'

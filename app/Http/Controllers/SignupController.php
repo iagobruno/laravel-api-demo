@@ -11,7 +11,7 @@ class SignupController extends Controller
     {
         $data = $request->validate([
             'email' => ['required', 'string', 'email', 'unique:users,email'],
-            'username' => ['required', 'string', 'min:4', 'max:16', 'unique:users,username'],
+            'username' => ['required', 'string', 'min:4', 'max:16', 'regex:/^[0-9a-z\-\_]+$/i', 'unique:users,username'],
             'name' => ['required', 'string', 'min:1', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'max:255'],
         ]);
