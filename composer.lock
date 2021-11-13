@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80331a26a58642310738f8ed59a33083",
+    "content-hash": "6370dda14dd246f04536d6970de17a27",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3025,6 +3025,57 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "skybluesofa/laravel-followers",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/skybluesofa/laravel-followers.git",
+                "reference": "f800f44b8eda3285f846903d0a7e6d29eb4b2ef4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/skybluesofa/laravel-followers/zipball/f800f44b8eda3285f846903d0a7e6d29eb4b2ef4",
+                "reference": "f800f44b8eda3285f846903d0a7e6d29eb4b2ef4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "^0.3.2",
+                "fzaninotto/faker": "~1.4",
+                "orchestra/testbench": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Skybluesofa\\Followers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Rogers",
+                    "email": "connect@skybluesofa.com"
+                }
+            ],
+            "description": "This package gives Eloquent models the ability to manage their followers.",
+            "keywords": [
+                "Followers",
+                "eloqent",
+                "friends",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/skybluesofa/laravel-followers/issues",
+                "source": "https://github.com/skybluesofa/laravel-followers/tree/1.2.0"
+            },
+            "time": "2020-03-08T14:47:50+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

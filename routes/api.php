@@ -5,6 +5,7 @@ use App\Http\Controllers\SignupController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [UserController::class, 'me']);
     Route::patch('/me', [UserController::class, 'updateMe']);
     Route::delete('/me', [UserController::class, 'destroyMe']);
+
+    Route::post('/users/{username}/follow', [FollowController::class, 'follow']);
 });

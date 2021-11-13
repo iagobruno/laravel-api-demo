@@ -8,11 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Skybluesofa\Followers\Traits\Followable;
 use Jamesh\Uuid\HasUuid;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use Followable;
     use HasUuid;
 
     /**
@@ -55,5 +57,13 @@ class User extends Authenticatable
     public function createApiToken()
     {
         return $this->createToken(request()->device_name ?? 'api')->plainTextToken;
+    }
+
+    /**
+     * @return \App\Models\User
+     */
+    static function findByUsernameOrFail(string $username)
+    {
+        return User::where('username', $username)->firstOrFail();
     }
 }

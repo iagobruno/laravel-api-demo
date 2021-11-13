@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Skybluesofa\Followers\ServiceProvider::class,
 
         /*
          * Application Service Providers...
