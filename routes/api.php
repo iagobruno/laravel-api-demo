@@ -25,4 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy']);
 
     Route::get('/me', [UserController::class, 'me']);
+    Route::get('/users/{username}', [UserController::class, 'view']);
 });
