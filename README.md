@@ -9,10 +9,6 @@ Uma simples API rest similar ao do Twitter para treinar e estudar.
 - [ ] Testar todas as rotas usando o Pest.
 - [ ] Usar o laravel/sanctum para autenticar as solicitações.
 
-## Afazeres
-
-- Criar rota de feed para buscar tweets das pessoas que você segue
-
 ## Built with
 
 - [Laravel](https://laravel.com/)
@@ -30,10 +26,15 @@ cp .env.example .env # And edit the values
 php artisan key:generate
 ```
 
-Then start docker containers and run the migrations:
+Then start Docker containers:
 
 ```bash
 sail up -d
+```
+
+And run the migrations:
+
+```bash
 sail artisan migrate
 sail artisan db:seed #Optional
 ```
@@ -42,8 +43,10 @@ sail artisan db:seed #Optional
 
 To run tests, run the following command:
 
-> NOTE: Make sure you started the docker container first.
-
 ```bash
-sail test
+sail artisan test
+# sail artisan test --filter GetUserTest
+# sail artisan test --stop-on-failure
 ```
+
+> NOTE: Make sure you started the docker containers first.
