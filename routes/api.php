@@ -25,6 +25,8 @@ Route::get('/users/{username}', [UserController::class, 'view']);
 Route::get('/users/{username}/tweets', [TweetController::class, 'tweetsFromUser']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/feed', [TweetController::class, 'feed']);
+
     Route::post('/tweets', [TweetController::class, 'store']);
     Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy']);
 

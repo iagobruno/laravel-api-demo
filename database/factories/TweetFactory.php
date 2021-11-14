@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TweetFactory extends Factory
@@ -16,5 +17,12 @@ class TweetFactory extends Factory
         return [
             'content' => $this->faker->text(140)
         ];
+    }
+
+    public function fromUser(User $user)
+    {
+        return $this->state(fn (array $attributes) => [
+            'user_id' => $user->id,
+        ]);
     }
 }

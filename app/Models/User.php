@@ -59,6 +59,12 @@ class User extends Authenticatable
         return $this->createToken(request()->device_name ?? 'api')->plainTextToken;
     }
 
+    public function forceFollow(User $userToFollow)
+    {
+        $this->follow($userToFollow);
+        $userToFollow->acceptFollowRequestFrom($this);
+    }
+
     /**
      * @return \App\Models\User
      */

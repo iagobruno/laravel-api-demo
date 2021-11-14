@@ -5,10 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class TweetController extends Controller
 {
+    public function feed()
+    {
+        $page = request('page', 1);
+        $perPage = request('perPage', 10);
+
+        # Get the list of people the logged in user follows
+        $following = DB::table(config('followers.tables.followers'))
+            ->select('recipient_id')
+            ->where('sender_id', auth()->id())
+            ->pluck('recipient_id');
+
+        return Tweet::query()
+            ->whereIn('user_id', $following)
+            ->orWhere('user_id', auth()->id())
+            ->latest()
+            ->with('user')
+            ->paginate(page: $page, perPage: $perPage);
+    }
     public function tweetsFromUser($username)
     {
         $page = request('page', 1);
