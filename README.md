@@ -4,15 +4,16 @@ Uma simples API rest similar ao do Twitter para treinar e estudar.
 
 ## Objetivos
 
-- [ ] Usar todo o meu conhecimento em Laravel nesse projeto.
-- [ ] Usar o Docker desde o início.
-- [ ] Testar todas as rotas usando o Pest.
-- [ ] Usar o laravel/sanctum para autenticar as solicitações.
+- [x] Usar todo o meu conhecimento em Laravel nesse projeto.
+- [x] Testar todas as rotas usando o Pest.
+- [x] Usar o Docker desde o início.
+- [x] Usar o laravel/sanctum para autenticar as solicitações.
 
 ## Built with
 
 - [Laravel](https://laravel.com/)
-- [Docker](https://docker.com/)
+- Postgres
+- Docker
 - [Laravel/sail](https://laravel.com/docs/8.x/sail)
 - [Pest](https://pestphp.com/)
 
