@@ -7,7 +7,7 @@ use App\Models\User;
 
 test('Deve retornar uma resposta paginada', function () {
     $user1 = User::factory()->create();
-    Tweet::factory()->times(3)->create(['user_id' => $user1->id]);
+    Tweet::factory()->times(3)->fromUser($user1)->create();
 
     getJson("/api/users/{$user1->username}/tweets")
         ->assertJsonStructure(['data', 'current_page', 'next_page_url'])
@@ -16,9 +16,9 @@ test('Deve retornar uma resposta paginada', function () {
 
 test('Deve retornar os tweets de um usuário específico', function () {
     $user1 = User::factory()->create();
-    Tweet::factory()->times(3)->create(['user_id' => $user1->id]);
+    Tweet::factory()->times(3)->fromUser($user1)->create();
     $user2 = User::factory()->create();
-    Tweet::factory()->times(4)->create(['user_id' => $user2->id]);
+    Tweet::factory()->times(4)->fromUser($user2)->create();
 
     $response = getJson("/api/users/{$user2->username}/tweets")
         ->assertStatus(StatusCode::HTTP_OK)
@@ -26,15 +26,15 @@ test('Deve retornar os tweets de um usuário específico', function () {
 
     expect($response->data)->toBeArray();
     expect($response->data)->toHaveLength(4);
-    expect($response->data)->each(
-        fn ($tweet) => $tweet->toHaveProperty('user_id', $user2->id)
-    );
+    foreach ($response->data as $tweet) {
+        expect($tweet)->toHaveProperty('user_id', $user2->id);
+    }
 });
 
 test('Deve permitir fazer paginação', function () {
     $user = User::factory()->create();
-    $tweet1 = Tweet::factory()->create(['user_id' => $user->id]);
-    $tweet2 = Tweet::factory()->create(['user_id' => $user->id]);
+    $tweet1 = Tweet::factory()->fromUser($user)->create();
+    $tweet2 = Tweet::factory()->fromUser($user)->create();
 
     $page = 1;
     $response1 = getJson("/api/users/{$user->username}/tweets?page=$page&perPage=1")

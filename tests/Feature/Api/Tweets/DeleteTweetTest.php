@@ -14,7 +14,7 @@ test('Deve retornar um erro se um usuÃ¡rio tentar deletar um tweet de outro usuÃ
     /** @var \App\Models\User */
     $user1 = User::factory()->create();
     $user2 = User::factory()->create();
-    $tweetFromUser2 = Tweet::factory()->create(['user_id' => $user2->id]);
+    $tweetFromUser2 = Tweet::factory()->fromUser($user2)->create();
 
     actingAs($user1, 'sanctum')
         ->deleteJson('/api/tweets/' . $tweetFromUser2->id)
@@ -28,7 +28,7 @@ test('Deve retornar um erro se um usuÃ¡rio tentar deletar um tweet de outro usuÃ
 test('Deve conseguir deletar um tweet', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
-    $tweet = Tweet::factory()->create(['user_id' => $user->id]);
+    $tweet = Tweet::factory()->fromUser($user)->create();
 
     $this->assertDatabaseHas('tweets', ['id' => $tweet->id]);
 
