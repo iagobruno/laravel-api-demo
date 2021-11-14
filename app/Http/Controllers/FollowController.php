@@ -13,8 +13,7 @@ class FollowController extends Controller
         /** @var \App\Models\User */
         $loggedUser = auth()->user();
 
-        $loggedUser->follow($userToFollow);
-        $userToFollow->acceptFollowRequestFrom($loggedUser);
+        $loggedUser->forceFollow($userToFollow);
 
         return [
             'message' => 'Successfully followed!'

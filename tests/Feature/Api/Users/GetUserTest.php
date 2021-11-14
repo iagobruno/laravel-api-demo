@@ -22,8 +22,7 @@ test('Deve informar se o usuário logado segue o usuário solicitado', function 
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $otherUser = User::factory()->create();
-    $user->follow($otherUser);
-    $otherUser->acceptFollowRequestFrom($user);
+    $user->forceFollow($otherUser);
 
     actingAs($user, 'sanctum')
         ->getJson('/api/users/' . $otherUser->username)
@@ -38,10 +37,8 @@ test('Deve informar o número de seguidores', function () {
     $user1 = User::factory()->create();
     $user2 = User::factory()->create();
     $user3 = User::factory()->create();
-    $user2->follow($user1);
-    $user1->acceptFollowRequestFrom($user2);
-    $user3->follow($user1);
-    $user1->acceptFollowRequestFrom($user3);
+    $user2->forceFollow($user1);
+    $user3->forceFollow($user1);
 
     getJson('/api/users/' . $user1->username)
         ->assertJson([
@@ -55,10 +52,8 @@ test('Deve informar o número de pessoas que o usuário segue', function () {
     $user1 = User::factory()->create();
     $user2 = User::factory()->create();
     $user3 = User::factory()->create();
-    $user1->follow($user2);
-    $user2->acceptFollowRequestFrom($user1);
-    $user1->follow($user3);
-    $user3->acceptFollowRequestFrom($user1);
+    $user1->forceFollow($user2);
+    $user1->forceFollow($user3);
 
     getJson('/api/users/' . $user1->username)
         ->assertJson([

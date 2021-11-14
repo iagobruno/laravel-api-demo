@@ -22,8 +22,7 @@ test('Deve conseguir parar de seguir um usuário', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $userToUnfollow = User::factory()->create();
-    $user->follow($userToUnfollow);
-    $userToUnfollow->acceptFollowRequestFrom($user);
+    $user->forceFollow($userToUnfollow);
 
     actingAs($user, 'sanctum')
         ->postJson("/api/users/{$userToUnfollow->username}/unfollow")
