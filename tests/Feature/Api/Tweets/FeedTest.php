@@ -162,10 +162,15 @@ test('Deve cachear a lista de contas que o usuário logado segue', function () {
     Tweet::factory()->fromUser($user2)->create();
     Tweet::factory()->fromUser($user3)->create();
 
-    // Primeira requisição para cachear
+    $cacheKey = $user1->id . '-following-ids';
+    expect(Cache::has($cacheKey))->toBeFalse();
+
+    // Primeira requisição para cachear a lista
     $response1 = actingAs($user1, 'sanctum')
         ->getJson('/api/feed')
         ->assertStatus(StatusCode::HTTP_OK);
+
+    expect(Cache::has($cacheKey))->toBeTrue();
 
     $user1->forceFollow($user3);
 
