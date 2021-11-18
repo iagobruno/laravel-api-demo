@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class FollowController extends Controller
 {
@@ -14,6 +15,8 @@ class FollowController extends Controller
         $loggedUser = auth()->user();
 
         $loggedUser->forceFollow($userToFollow);
+
+        Cache::forget(auth()->id() . '-following-ids');
 
         return [
             'message' => 'Successfully followed!'
@@ -27,6 +30,8 @@ class FollowController extends Controller
         $loggedUser = auth()->user();
 
         $loggedUser->unfollow($userToUnfollow);
+
+        Cache::forget(auth()->id() . '-following-ids');
 
         return [
             'message' => 'Successfully unfollowed!'

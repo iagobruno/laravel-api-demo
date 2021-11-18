@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,11 +16,15 @@ class TweetController extends Controller
         $page = request('page', 1);
         $perPage = request('perPage', 10);
 
-        # Get the list of people the logged in user follows
-        $following = DB::table(config('followers.tables.followers'))
-            ->select('recipient_id')
-            ->where('sender_id', auth()->id())
-            ->pluck('recipient_id');
+        $following = Cache::remember(auth()->id() . '-following-ids', now()->addHours(1), function () {
+            # Get the list of people the logged in user follows
+            return DB::table(config('followers.tables.followers'))
+                ->select('recipient_id')
+                ->where('sender_id', auth()->id())
+                ->get()
+                ->pluck('recipient_id')
+                ->toArray();
+        });
 
         return Tweet::query()
             ->whereIn('user_id', $following)

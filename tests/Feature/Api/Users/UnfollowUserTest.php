@@ -3,6 +3,7 @@
 use function Pest\Laravel\{postJson, actingAs};
 use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     postJson("/api/users/username/unfollow")
@@ -35,4 +36,20 @@ test('Deve conseguir parar de seguir um usuário', function () {
         'sender_id' => $user->id,
         'recipient_id' => $userToUnfollow->id
     ]);
+});
+
+test('Deve invalidar o cache da lista de contas que o usuário logado segue ', function () {
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    $userToFollow = User::factory()->create();
+
+    $cacheKey = $user->id . '-following-ids';
+    Cache::put($cacheKey, [$userToFollow->id]);
+
+    actingAs($user, 'sanctum')
+        ->postJson("/api/users/{$userToFollow->username}/unfollow")
+        ->assertStatus(StatusCode::HTTP_OK);
+
+    expect(Cache::has($cacheKey))->toBeFalse();
+    expect(Cache::get($cacheKey))->toBeNull();
 });
