@@ -24,7 +24,7 @@ class UserController extends Controller
 
         $data = $request->validate([
             'email' => ['sometimes', 'string', 'email', 'unique:users,email'],
-            'username' => ['sometimes', 'string', 'min:4', 'max:16', 'regex:/^[0-9a-z\-\_]+$/i', 'unique:users,username'],
+            'username' => ['sometimes', 'string', 'min:4', 'max:16', 'alpha_dash', 'unique:users,username'],
             'name' => ['sometimes', 'string', 'min:1', 'max:255'],
         ]);
 

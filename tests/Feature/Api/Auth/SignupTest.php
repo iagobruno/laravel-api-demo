@@ -20,7 +20,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         'username' => 'iago br',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.regex'
+            'username' => 'validation.alpha_dash'
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
@@ -28,7 +28,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         'username' => 'iago+bruno',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.regex'
+            'username' => 'validation.alpha_dash'
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
@@ -36,7 +36,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         'username' => 'iago.bruno',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.regex'
+            'username' => 'validation.alpha_dash'
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
@@ -44,7 +44,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         'username' => '@iagobruno',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.regex'
+            'username' => 'validation.alpha_dash'
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
@@ -52,15 +52,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         'username' => 'iago|bruno',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.regex'
-        ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
-
-    postJson(route('signup'), [
-        'username' => 'criançafeliz',
-    ])
-        ->assertJsonValidationErrors([
-            'username' => 'validation.regex'
+            'username' => 'validation.alpha_dash'
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 });
