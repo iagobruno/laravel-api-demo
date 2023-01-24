@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tweet;
-use App\Models\User;
+use App\Models\{Tweet, User};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,21 +14,15 @@ class TweetController extends Controller
         $page = request('page', 1);
         $perPage = request('perPage', 10);
 
-        $following = Cache::remember(auth()->id() . '-following-ids', now()->addHours(1), function () {
-            # Get the list of people the logged in user follows
-            return DB::table(config('followers.tables.followers'))
-                ->select('recipient_id')
-                ->where('sender_id', auth()->id())
-                ->get()
-                ->pluck('recipient_id')
-                ->toArray();
-        });
+        $followingSubQuery = auth()->user()->following()
+            ->select('recipient_id');
 
         return Tweet::query()
-            ->whereIn('user_id', $following)
+            ->whereIn('user_id', $followingSubQuery)
             ->orWhere('user_id', auth()->id())
             ->latest()
             ->with('user')
+            // ->dd() // Debug the final sql query
             ->paginate(page: $page, perPage: $perPage);
     }
 

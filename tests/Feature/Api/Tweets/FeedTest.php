@@ -5,11 +5,6 @@ use Illuminate\Http\Response as StatusCode;
 use App\Models\Tweet;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
-
-beforeEach(function () {
-    Cache::flush();
-});
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     getJson(route('feed'))
@@ -153,36 +148,6 @@ test('Deve retornar os tweets em ordem cronológica', function () {
     }
 });
 
-test('Deve cachear a lista de contas que o usuário logado segue', function () {
-    /** @var \App\Models\User */
-    $user1 = User::factory()->create();
-    $user2 = User::factory()->create();
-    $user3 = User::factory()->create();
-    $user1->forceFollow($user2);
-    Tweet::factory()->fromUser($user2)->create();
-    Tweet::factory()->fromUser($user3)->create();
-
-    $cacheKey = $user1->id . '-following-ids';
-    expect(Cache::has($cacheKey))->toBeFalse();
-
-    // Primeira requisição para cachear a lista
-    $response1 = actingAs($user1, 'sanctum')
-        ->getJson(route('feed'))
-        ->assertStatus(StatusCode::HTTP_OK);
-
-    expect(Cache::has($cacheKey))->toBeTrue();
-
-    $user1->forceFollow($user3);
-
-    // A resposta não deve incluir tweets do $user3 pois o cache ainda não foi invalidado
-    $response2 = actingAs($user1, 'sanctum')
-        ->getJson(route('feed'))
-        ->assertStatus(StatusCode::HTTP_OK)
-        ->getData();
-
-    $hasUser3Tweets = array_some($response2->data, fn ($item) => $item->user_id === $user3->id);
-    expect($hasUser3Tweets)->toBeFalse();
-});
 
 
 
