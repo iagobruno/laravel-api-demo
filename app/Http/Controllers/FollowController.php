@@ -8,13 +8,12 @@ use Illuminate\Support\Facades\Cache;
 
 class FollowController extends Controller
 {
-    public function follow($username)
+    public function follow(User $user)
     {
-        $userToFollow = User::findByUsernameOrFail($username);
         /** @var \App\Models\User */
         $loggedUser = auth()->user();
 
-        $loggedUser->forceFollow($userToFollow);
+        $loggedUser->forceFollow($user);
 
         Cache::forget(auth()->id() . '-following-ids');
 
@@ -23,13 +22,12 @@ class FollowController extends Controller
         ];
     }
 
-    public function unfollow($username)
+    public function unfollow(User $user)
     {
-        $userToUnfollow = User::findByUsernameOrFail($username);
         /** @var \App\Models\User */
         $loggedUser = auth()->user();
 
-        $loggedUser->unfollow($userToUnfollow);
+        $loggedUser->unfollow($user);
 
         Cache::forget(auth()->id() . '-following-ids');
 

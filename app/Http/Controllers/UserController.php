@@ -13,9 +13,8 @@ class UserController extends Controller
         return auth()->user();
     }
 
-    public function view($username)
+    public function view(User $user)
     {
-        $user = User::findByUsernameOrFail($username);
         /** @var \App\Models\User */
         $loggedUser = auth('sanctum')->check() ? auth()->user() : null;
 

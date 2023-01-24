@@ -33,16 +33,15 @@ class TweetController extends Controller
             ->with('user')
             ->paginate(page: $page, perPage: $perPage);
     }
-    public function tweetsFromUser($username)
+
+    public function tweetsFromUser(User $user)
     {
         $page = request('page', 1);
         $perPage = request('perPage', 10);
 
         return Tweet::query()
-            ->select(['tweets.id', 'user_id', 'username', 'content', 'tweets.created_at', 'tweets.updated_at'])
-            ->join('users', 'users.id', '=', 'tweets.user_id')
-            ->where('users.username', $username)
-            ->orderBy('tweets.created_at', 'DESC')
+            ->whereBelongsTo($user)
+            ->latest()
             ->paginate(page: $page, perPage: $perPage);
     }
 

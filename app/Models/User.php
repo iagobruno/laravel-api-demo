@@ -64,12 +64,4 @@ class User extends Authenticatable
         $this->follow($userToFollow);
         $userToFollow->acceptFollowRequestFrom($this);
     }
-
-    /**
-     * @return \App\Models\User
-     */
-    static function findByUsernameOrFail(string $username)
-    {
-        return User::where('username', $username)->firstOrFail();
-    }
 }

@@ -21,8 +21,8 @@ use App\Http\Controllers\FollowController;
 Route::post('/signup', SignupController::class)->name('signup');
 Route::post('/signin', SigninController::class)->name('signin');
 
-Route::get('/users/{username}', [UserController::class, 'view'])->name('user.get');
-Route::get('/users/{username}/tweets', [TweetController::class, 'tweetsFromUser'])->name('tweets.from_user');
+Route::get('/users/{user}', [UserController::class, 'view'])->name('user.get');
+Route::get('/users/{user}/tweets', [TweetController::class, 'tweetsFromUser'])->name('tweets.from_user');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feed', [TweetController::class, 'feed'])->name('feed');
@@ -34,6 +34,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/me', [UserController::class, 'updateMe'])->name('user.update');
     Route::delete('/me', [UserController::class, 'destroyMe'])->name('user.destroy');
 
-    Route::post('/users/{username}/follow', [FollowController::class, 'follow'])->name('user.follow');
-    Route::post('/users/{username}/unfollow', [FollowController::class, 'unfollow'])->name('user.unfollow');
+    Route::post('/users/{user}/follow', [FollowController::class, 'follow'])->name('user.follow');
+    Route::post('/users/{user}/unfollow', [FollowController::class, 'unfollow'])->name('user.unfollow');
 });
