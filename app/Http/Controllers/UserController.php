@@ -15,15 +15,7 @@ class UserController extends Controller
 
     public function view(User $user)
     {
-        /** @var \App\Models\User */
-        $loggedUser = auth()->user();
-
-        return [
-            ...$user->toArray(),
-            'viewer_follows' => $loggedUser?->isFollowing($user) ?? false,
-            'followers_count' => $user->getFollowedByCount(),
-            'following_count' => $user->getFollowingCount(),
-        ];
+        return $user->toArray();
     }
 
     public function updateMe(Request $request)
