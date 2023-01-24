@@ -16,7 +16,7 @@ class UserController extends Controller
     public function view(User $user)
     {
         /** @var \App\Models\User */
-        $loggedUser = auth('sanctum')->check() ? auth()->user() : null;
+        $loggedUser = auth()->user();
 
         return [
             ...$user->toArray(),
@@ -28,9 +28,7 @@ class UserController extends Controller
 
     public function updateMe(Request $request)
     {
-        /** @var \App\Models\User */
-        $loggedUser = auth()->user();
-        Gate::authorize('update', $loggedUser);
+        Gate::authorize('update-me');
 
         $data = $request->validate([
             'email' => ['sometimes', 'string', 'email', 'unique:users,email'],
@@ -38,8 +36,7 @@ class UserController extends Controller
             'name' => ['sometimes', 'string', 'min:1', 'max:255'],
         ]);
 
-        $loggedUser->fill($data);
-        $loggedUser->save();
+        auth()->user()->update($data);
 
         return [
             'message' => 'Successfully updated!'
@@ -48,11 +45,9 @@ class UserController extends Controller
 
     public function destroyMe()
     {
-        /** @var \App\Models\User */
-        $loggedUser = auth()->user();
-        Gate::authorize('delete', $loggedUser);
+        Gate::authorize('delete-me');
 
-        $loggedUser->delete();
+        auth()->user()->delete();
 
         return [
             'message' => 'Successfully deleted!'

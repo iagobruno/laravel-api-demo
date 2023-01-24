@@ -47,6 +47,8 @@ class TweetController extends Controller
 
     public function store(Request $request)
     {
+        Gate::authorize('create', Tweet::class);
+
         $data = $request->validate([
             'content' => ['required', 'string', 'max:140']
         ]);
