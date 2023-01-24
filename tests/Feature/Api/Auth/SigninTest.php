@@ -5,7 +5,7 @@ use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
 test('Deve retornar um erro se não houver um username ou password', function () {
-    postJson('/api/signin', [])
+    postJson(route('signin'), [])
         ->assertJsonValidationErrors([
             'username' => 'validation.required_without',
             'email' => 'validation.required_without',
@@ -15,7 +15,7 @@ test('Deve retornar um erro se não houver um username ou password', function ()
 });
 
 test('Deve retornar um erro 401 se o username não existir', function () {
-    postJson('/api/signin', [
+    postJson(route('signin'), [
         'username' => 'faker1234',
         'password' => '12345678'
     ])
@@ -27,7 +27,7 @@ test('Deve retornar um erro 401 se a senha estiver incorreta', function () {
         'password' => 'another_pass'
     ]);
 
-    postJson('/api/signin', [
+    postJson(route('signin'), [
         'username' => $user->username,
         'password' => '12345678'
     ])
@@ -40,7 +40,7 @@ test('Deve conseguir logar um usuário pelo username', function () {
         'password' => 'strongpass_1234'
     ]);
 
-    postJson('/api/signin', [
+    postJson(route('signin'), [
         'username' => 'randomuser',
         'password' => 'strongpass_1234'
     ])
@@ -54,7 +54,7 @@ test('Deve conseguir logar um usuário pelo email', function () {
         'password' => 'strongpass_1234'
     ]);
 
-    postJson('/api/signin', [
+    postJson(route('signin'), [
         'email' => 'randomuser@gmail.com',
         'password' => 'strongpass_1234'
     ])
@@ -68,7 +68,7 @@ test('Deve retornar um token de api', function () {
         'password' => 'strongpass_1234'
     ]);
 
-    postJson('/api/signin', [
+    postJson(route('signin'), [
         'username' => 'randomuser',
         'password' => 'strongpass_1234'
     ])

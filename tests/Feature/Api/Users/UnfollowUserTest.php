@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    postJson("/api/users/username/unfollow")
+    postJson(route('user.unfollow', ['fakeusername']))
         ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
 });
 
@@ -15,7 +15,7 @@ test('Deve retornar um erro se não conseguir encontrar o usuário pelo username
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->postJson("/api/users/fakeusername/unfollow")
+        ->postJson(route('user.unfollow', ['fakeusername']))
         ->assertStatus(StatusCode::HTTP_NOT_FOUND);
 });
 
@@ -26,7 +26,7 @@ test('Deve conseguir parar de seguir um usuário', function () {
     $user->forceFollow($userToUnfollow);
 
     actingAs($user, 'sanctum')
-        ->postJson("/api/users/{$userToUnfollow->username}/unfollow")
+        ->postJson(route('user.unfollow', [$userToUnfollow->username]))
         ->assertStatus(StatusCode::HTTP_OK);
 
     expect($user->isFollowing($userToUnfollow))->toBeFalse();
@@ -41,13 +41,13 @@ test('Deve conseguir parar de seguir um usuário', function () {
 test('Deve invalidar o cache da lista de contas que o usuário logado segue ', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
-    $userToFollow = User::factory()->create();
+    $userToUnfollow = User::factory()->create();
 
     $cacheKey = $user->id . '-following-ids';
-    Cache::put($cacheKey, [$userToFollow->id]);
+    Cache::put($cacheKey, [$userToUnfollow->id]);
 
     actingAs($user, 'sanctum')
-        ->postJson("/api/users/{$userToFollow->username}/unfollow")
+        ->postJson(route('user.unfollow', [$userToUnfollow->username]))
         ->assertStatus(StatusCode::HTTP_OK);
 
     expect(Cache::has($cacheKey))->toBeFalse();

@@ -6,7 +6,7 @@ use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    patchJson('/api/me')
+    patchJson(route('user.update'))
         ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
 });
 
@@ -15,7 +15,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
     $user2 = User::factory()->create();
 
     actingAs($user2, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => 'iago br',
         ])
         ->assertJsonValidationErrors([
@@ -24,7 +24,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
     actingAs($user2, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => 'iago+bruno',
         ])
         ->assertJsonValidationErrors([
@@ -33,7 +33,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
     actingAs($user2, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => 'iago.bruno',
         ])
         ->assertJsonValidationErrors([
@@ -42,7 +42,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
     actingAs($user2, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => '@iagobruno',
         ])
         ->assertJsonValidationErrors([
@@ -51,7 +51,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
     actingAs($user2, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => 'iago|bruno',
         ])
         ->assertJsonValidationErrors([
@@ -60,7 +60,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
     actingAs($user2, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => 'criançafeliz',
         ])
         ->assertJsonValidationErrors([
@@ -75,7 +75,7 @@ test('Deve retornar um erro se tentar usar um username que já está em uso', fu
     $user2 = User::factory()->create();
 
     actingAs($user2, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => 'thay123',
         ])
         ->assertJsonValidationErrors([
@@ -89,7 +89,7 @@ test('Deve retornar um erro se tentar usar um username mutio curto ou longo', fu
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => 'oi',
         ])
         ->assertJsonValidationErrors([
@@ -98,7 +98,7 @@ test('Deve retornar um erro se tentar usar um username mutio curto ou longo', fu
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
     actingAs($user, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'username' => str_repeat('a', 17),
         ])
         ->assertJsonValidationErrors([
@@ -112,7 +112,7 @@ test('Deve retornar um erro se tentar usar um nome muito longo', function () {
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'name' => str_repeat('a', 256),
         ])
         ->assertJsonValidationErrors([
@@ -126,7 +126,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'email' => 'nonemail',
         ])
         ->assertJsonValidationErrors([
@@ -135,7 +135,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
     actingAs($user, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'email' => 'gmail.com',
         ])
         ->assertJsonValidationErrors([
@@ -144,7 +144,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
     actingAs($user, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'email' => '@gmail.com',
         ])
         ->assertJsonValidationErrors([
@@ -159,7 +159,7 @@ test('Deve retornar um erro se tentar usar um email que já está em uso', funct
     $user2 = User::factory()->create();
 
     actingAs($user2, 'sanctum')
-        ->patchJson('/api/me', [
+        ->patchJson(route('user.update'), [
             'email' => 'vini22@gmail.com',
         ])
         ->assertJsonValidationErrors([
@@ -178,7 +178,7 @@ test('Deve conseguir atualizar as informações do usuário logado', function ()
     ];
 
     actingAs($user, 'sanctum')
-        ->patchJson('/api/me', $newData)
+        ->patchJson(route('user.update'), $newData)
         ->assertStatus(StatusCode::HTTP_OK);
 
     $user->refresh();

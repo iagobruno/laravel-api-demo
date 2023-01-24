@@ -5,7 +5,7 @@ use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não conter todos os campos obrigatórios', function () {
-    postJson('/api/signup', [])
+    postJson(route('signup'), [])
         ->assertJsonValidationErrors([
             'email' => 'validation.required',
             'name' => 'validation.required',
@@ -16,7 +16,7 @@ test('Deve retornar um erro se a solicitação não conter todos os campos obrig
 });
 
 test('Deve retornar um erro se tentar usar um username inválido', function () {
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => 'iago br',
     ])
         ->assertJsonValidationErrors([
@@ -24,7 +24,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => 'iago+bruno',
     ])
         ->assertJsonValidationErrors([
@@ -32,7 +32,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => 'iago.bruno',
     ])
         ->assertJsonValidationErrors([
@@ -40,7 +40,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => '@iagobruno',
     ])
         ->assertJsonValidationErrors([
@@ -48,7 +48,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => 'iago|bruno',
     ])
         ->assertJsonValidationErrors([
@@ -56,7 +56,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => 'criançafeliz',
     ])
         ->assertJsonValidationErrors([
@@ -70,7 +70,7 @@ test('Deve retornar um erro se o username já estiver em uso', function () {
         'username' => 'fakeuser'
     ]);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => 'fakeuser',
     ])
         ->assertJsonValidationErrors([
@@ -80,7 +80,7 @@ test('Deve retornar um erro se o username já estiver em uso', function () {
 });
 
 test('Deve retornar um erro se o username for muito curto ou longo', function () {
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => 'oi',
     ])
         ->assertJsonValidationErrors([
@@ -88,7 +88,7 @@ test('Deve retornar um erro se o username for muito curto ou longo', function ()
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'username' => str_repeat('a', 17),
     ])
         ->assertJsonValidationErrors([
@@ -102,7 +102,7 @@ test('Deve retornar um erro se o email já estiver em uso', function () {
         'email' => 'faker@gmail.com'
     ]);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'email' => 'faker@gmail.com'
     ])
         ->assertJsonValidationErrors([
@@ -112,7 +112,7 @@ test('Deve retornar um erro se o email já estiver em uso', function () {
 });
 
 test('Deve retornar um erro se tentar usar um email inválido', function () {
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'email' => 'gmail.com'
     ])
         ->assertJsonValidationErrors([
@@ -122,7 +122,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
 });
 
 test('Deve retornar um erro se o name for muito longo', function () {
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'name' => str_repeat('a', 300)
     ])
         ->assertJsonValidationErrors([
@@ -132,7 +132,7 @@ test('Deve retornar um erro se o name for muito longo', function () {
 });
 
 test('Deve retornar um erro se o password for muito curto ou longo', function () {
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'password' => '1234'
     ])
         ->assertJsonValidationErrors([
@@ -140,7 +140,7 @@ test('Deve retornar um erro se o password for muito curto ou longo', function ()
         ])
         ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
 
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'password' => str_repeat('a', 300)
     ])
         ->assertJsonValidationErrors([
@@ -150,7 +150,7 @@ test('Deve retornar um erro se o password for muito curto ou longo', function ()
 });
 
 test('Deve conseguir criar um usuário se tiver tudo ok', function () {
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'name' => 'faker',
         'username' => 'faker123',
         'email' => 'faker@gmail.com',
@@ -166,7 +166,7 @@ test('Deve conseguir criar um usuário se tiver tudo ok', function () {
 });
 
 test('Deve fazer hashing da senha do usuário', function () {
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'name' => 'faker',
         'username' => 'faker123',
         'email' => 'faker@gmail.com',
@@ -180,7 +180,7 @@ test('Deve fazer hashing da senha do usuário', function () {
 });
 
 test('Deve retornar um token de api válido', function () {
-    postJson('/api/signup', [
+    postJson(route('signup'), [
         'name' => 'faker',
         'username' => 'faker123',
         'email' => 'faker@gmail.com',

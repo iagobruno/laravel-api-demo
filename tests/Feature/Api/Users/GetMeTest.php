@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Response as StatusCode;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    getJson('/api/me')
+    getJson(route('user.me'))
         ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
 });
 
@@ -15,7 +15,7 @@ test('Deve retornar as informações do usuário logado', function () {
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->getJson('/api/me')
+        ->getJson(route('user.me'))
         ->assertExactJson($user->toArray())
         ->assertStatus(StatusCode::HTTP_OK);
 });

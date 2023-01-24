@@ -18,22 +18,22 @@ use App\Http\Controllers\FollowController;
 |
 */
 
-Route::post('/signup', SignupController::class);
-Route::post('/signin', SigninController::class);
+Route::post('/signup', SignupController::class)->name('signup');
+Route::post('/signin', SigninController::class)->name('signin');
 
-Route::get('/users/{username}', [UserController::class, 'view']);
-Route::get('/users/{username}/tweets', [TweetController::class, 'tweetsFromUser']);
+Route::get('/users/{username}', [UserController::class, 'view'])->name('user.get');
+Route::get('/users/{username}/tweets', [TweetController::class, 'tweetsFromUser'])->name('tweets.from_user');
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/feed', [TweetController::class, 'feed']);
+    Route::get('/feed', [TweetController::class, 'feed'])->name('feed');
 
-    Route::post('/tweets', [TweetController::class, 'store']);
-    Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy']);
+    Route::post('/tweets', [TweetController::class, 'store'])->name('tweet.store');
+    Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->name('tweet.delete');
 
-    Route::get('/me', [UserController::class, 'me']);
-    Route::patch('/me', [UserController::class, 'updateMe']);
-    Route::delete('/me', [UserController::class, 'destroyMe']);
+    Route::get('/me', [UserController::class, 'me'])->name('user.me');
+    Route::patch('/me', [UserController::class, 'updateMe'])->name('user.update');
+    Route::delete('/me', [UserController::class, 'destroyMe'])->name('user.destroy');
 
-    Route::post('/users/{username}/follow', [FollowController::class, 'follow']);
-    Route::post('/users/{username}/unfollow', [FollowController::class, 'unfollow']);
+    Route::post('/users/{username}/follow', [FollowController::class, 'follow'])->name('user.follow');
+    Route::post('/users/{username}/unfollow', [FollowController::class, 'unfollow'])->name('user.unfollow');
 });

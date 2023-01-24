@@ -5,7 +5,7 @@ use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
 test('Deve retornar um erro se o username não existir', function () {
-    getJson('/api/users/fakeusername')
+    getJson(route('user.get', ['fakeusername']))
         ->assertStatus(StatusCode::HTTP_NOT_FOUND);
 });
 
@@ -13,7 +13,7 @@ test('Deve conseguir retornar as informações de um usuário', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
 
-    getJson('/api/users/' . $user->username)
+    getJson(route('user.get', [$user->username]))
         ->assertJson($user->toArray())
         ->assertStatus(StatusCode::HTTP_OK);
 });
@@ -25,7 +25,7 @@ test('Deve informar se o usuário logado segue o usuário solicitado', function 
     $user->forceFollow($otherUser);
 
     actingAs($user, 'sanctum')
-        ->getJson('/api/users/' . $otherUser->username)
+        ->getJson(route('user.get', [$otherUser->username]))
         ->assertJson([
             'viewer_follows' => true
         ])
@@ -40,7 +40,7 @@ test('Deve informar o número de seguidores', function () {
     $user2->forceFollow($user1);
     $user3->forceFollow($user1);
 
-    getJson('/api/users/' . $user1->username)
+    getJson(route('user.get', [$user1->username]))
         ->assertJson([
             'followers_count' => 2
         ])
@@ -55,7 +55,7 @@ test('Deve informar o número de pessoas que o usuário segue', function () {
     $user1->forceFollow($user2);
     $user1->forceFollow($user3);
 
-    getJson('/api/users/' . $user1->username)
+    getJson(route('user.get', [$user1->username]))
         ->assertJson([
             'following_count' => 2
         ])

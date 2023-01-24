@@ -5,7 +5,7 @@ use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    deleteJson('/api/me')
+    deleteJson(route('user.destroy'))
         ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
 });
 
@@ -14,7 +14,7 @@ test('Deve conseguir deletar a conta do usuário logado', function () {
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->deleteJson('/api/me')
+        ->deleteJson(route('user.destroy'))
         ->assertStatus(StatusCode::HTTP_OK);
 
     $this->assertDatabaseMissing('users', [

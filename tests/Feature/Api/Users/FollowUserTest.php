@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    postJson("/api/users/username/follow")
+    postJson(route('user.follow', ['fakeusername']))
         ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
 });
 
@@ -16,7 +16,7 @@ test('Deve retornar um erro se não conseguir encontrar o usuário pelo username
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->postJson("/api/users/fakeusername/follow")
+        ->postJson(route('user.follow', ['fakeusername']))
         ->assertStatus(StatusCode::HTTP_NOT_FOUND);
 });
 
@@ -26,7 +26,7 @@ test('Deve conseguir seguir outro usuário', function () {
     $userToFollow = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->postJson("/api/users/{$userToFollow->username}/follow")
+        ->postJson(route('user.follow', [$userToFollow->username]))
         ->assertStatus(StatusCode::HTTP_OK);
 
     expect($user->isFollowing($userToFollow))->toBeTrue();
@@ -47,7 +47,7 @@ test('Deve invalidar o cache da lista de contas que o usuário logado segue ', f
     Cache::put($cacheKey, [$userToFollow->id]);
 
     actingAs($user, 'sanctum')
-        ->postJson("/api/users/{$userToFollow->username}/follow")
+        ->postJson(route('user.follow', [$userToFollow->username]))
         ->assertStatus(StatusCode::HTTP_OK);
 
     expect(Cache::has($cacheKey))->toBeFalse();

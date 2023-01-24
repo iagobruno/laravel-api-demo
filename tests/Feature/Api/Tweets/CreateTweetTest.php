@@ -7,7 +7,7 @@ use App\Models\Tweet;
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    postJson('/api/tweets', [])
+    postJson(route('tweet.store'), [])
         ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
 });
 
@@ -16,7 +16,7 @@ test('Deve retornar um erro se a solicitação não conter todos os campos obrig
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->postJson('/api/tweets', [])
+        ->postJson(route('tweet.store'), [])
         ->assertJsonValidationErrors([
             'content' => 'validation.required'
         ])
@@ -28,7 +28,7 @@ test('Deve retornar um erro se o content for maior que 140 caracteres', function
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->postJson('/api/tweets', [
+        ->postJson(route('tweet.store'), [
             'content' => str_repeat('a', 141)
         ])
         ->assertJsonValidationErrors([
@@ -44,7 +44,7 @@ test('Deve conseguir criar um novo tweet', function () {
     $content = faker()->text(140);
 
     actingAs($user, 'sanctum')
-        ->postJson('/api/tweets', [
+        ->postJson(route('tweet.store'), [
             'content' => $content,
         ])
         ->assertStatus(StatusCode::HTTP_CREATED);
@@ -61,7 +61,7 @@ test('Deve associar corretamente ao usuário logado', function () {
     $content = faker()->text(140);
 
     actingAs($user, 'sanctum')
-        ->postJson('/api/tweets', [
+        ->postJson(route('tweet.store'), [
             'content' => $content,
         ])
         ->assertStatus(StatusCode::HTTP_CREATED);

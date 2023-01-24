@@ -12,7 +12,7 @@ beforeEach(function () {
 });
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    getJson('/api/feed')
+    getJson(route('feed'))
         ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
 });
 
@@ -25,7 +25,7 @@ test('Deve retornar uma resposta paginada', function () {
     $user1->forceFollow($user3);
 
     actingAs($user1, 'sanctum')
-        ->getJson('/api/feed')
+        ->getJson(route('feed'))
         ->assertJsonStructure(['data', 'current_page', 'next_page_url'])
         ->assertStatus(StatusCode::HTTP_OK);
 });
@@ -43,7 +43,7 @@ test('Deve retornar os tweets das pessoas que o usuário logado segue', function
     Tweet::factory()->times(4)->fromUser($userToNotIncludeInResponse)->create();
 
     $response = actingAs($user1, 'sanctum')
-        ->getJson('/api/feed')
+        ->getJson(route('feed'))
         ->assertStatus(StatusCode::HTTP_OK)
         ->getData();
 
@@ -64,7 +64,7 @@ test('Deve retornar também os tweets do usuário logado', function () {
     Tweet::factory()->times(3)->fromUser($user2)->create();
 
     $response = actingAs($user1, 'sanctum')
-        ->getJson('/api/feed')
+        ->getJson(route('feed'))
         ->assertStatus(StatusCode::HTTP_OK)
         ->getData();
 
@@ -81,7 +81,7 @@ test('Deve retornar as informações do autor de cada tweet', function () {
     Tweet::factory()->times(3)->fromUser($user2)->create();
 
     $response = actingAs($user1, 'sanctum')
-        ->getJson('/api/feed')
+        ->getJson(route('feed'))
         ->assertStatus(StatusCode::HTTP_OK)
         ->getData();
 
@@ -99,7 +99,7 @@ test('Deve permitir fazer paginação', function () {
 
     $page = 1;
     $response1 = actingAs($user, 'sanctum')
-        ->getJson("/api/feed?page=$page&perPage=1")
+        ->getJson(route('feed', ['page' => $page, 'perPage' => 1]))
         ->assertStatus(StatusCode::HTTP_OK)
         ->getData();
 
@@ -109,7 +109,7 @@ test('Deve permitir fazer paginação', function () {
 
     $page = 2;
     $response2 = actingAs($user, 'sanctum')
-        ->getJson("/api/feed?page=$page&perPage=1")
+        ->getJson(route('feed', ['page' => $page, 'perPage' => 1]))
         ->assertStatus(StatusCode::HTTP_OK)
         ->getData();
 
@@ -131,7 +131,7 @@ test('Deve retornar os tweets em ordem cronológica', function () {
     Tweet::factory()->fromUser($user1)->create(['created_at' => now()->subDays(2)]);
 
     $tweets = actingAs($user1, 'sanctum')
-        ->getJson('/api/feed')
+        ->getJson(route('feed'))
         ->assertStatus(StatusCode::HTTP_OK)
         ->getData()
         ->data;
@@ -167,7 +167,7 @@ test('Deve cachear a lista de contas que o usuário logado segue', function () {
 
     // Primeira requisição para cachear a lista
     $response1 = actingAs($user1, 'sanctum')
-        ->getJson('/api/feed')
+        ->getJson(route('feed'))
         ->assertStatus(StatusCode::HTTP_OK);
 
     expect(Cache::has($cacheKey))->toBeTrue();
@@ -176,7 +176,7 @@ test('Deve cachear a lista de contas que o usuário logado segue', function () {
 
     // A resposta não deve incluir tweets do $user3 pois o cache ainda não foi invalidado
     $response2 = actingAs($user1, 'sanctum')
-        ->getJson('/api/feed')
+        ->getJson(route('feed'))
         ->assertStatus(StatusCode::HTTP_OK)
         ->getData();
 

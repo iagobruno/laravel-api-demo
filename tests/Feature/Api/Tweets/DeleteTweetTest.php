@@ -6,7 +6,7 @@ use App\Models\Tweet;
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    deleteJson('/api/tweets/999')
+    deleteJson(route('tweet.delete', ['faketweetid9999']))
         ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
 });
 
@@ -17,7 +17,7 @@ test('Deve retornar um erro se um usuário tentar deletar um tweet de outro usu�
     $tweetFromUser2 = Tweet::factory()->fromUser($user2)->create();
 
     actingAs($user1, 'sanctum')
-        ->deleteJson('/api/tweets/' . $tweetFromUser2->id)
+        ->deleteJson(route('tweet.delete', [$tweetFromUser2->id]))
         ->assertStatus(StatusCode::HTTP_FORBIDDEN);
 
     $this->assertDatabaseHas('tweets', [
@@ -33,7 +33,7 @@ test('Deve conseguir deletar um tweet', function () {
     $this->assertDatabaseHas('tweets', ['id' => $tweet->id]);
 
     actingAs($user, 'sanctum')
-        ->deleteJson('/api/tweets/' . $tweet->id)
+        ->deleteJson(route('tweet.delete', [$tweet->id]))
         ->assertJson([
             'message' => 'Successfully deleted!'
         ])
