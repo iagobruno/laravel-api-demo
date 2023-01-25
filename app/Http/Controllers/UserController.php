@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -15,19 +16,14 @@ class UserController extends Controller
 
     public function view(User $user)
     {
-        return $user->toArray();
+        return $user;
     }
 
-    public function updateMe(Request $request)
+    public function updateMe(UpdateUserRequest $request)
     {
         Gate::authorize('update-me');
 
-        $data = $request->validate([
-            'email' => ['sometimes', 'string', 'email', 'unique:users,email'],
-            'username' => ['sometimes', 'string', 'min:4', 'max:16', 'alpha_dash', 'unique:users,username'],
-            'name' => ['sometimes', 'string', 'min:1', 'max:255'],
-        ]);
-
+        $data = $request->validated();
         auth()->user()->update($data);
 
         return [

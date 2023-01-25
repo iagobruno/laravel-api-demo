@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\SignupRequest;
+use App\Models\User;
 
 class SignupController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(SignupRequest $request)
     {
-        $data = $request->validate([
-            'email' => ['required', 'string', 'email', 'unique:users,email'],
-            'username' => ['required', 'string', 'min:4', 'max:16', 'alpha_dash', 'unique:users,username'],
-            'name' => ['required', 'string', 'min:1', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'max:255'],
-        ]);
-
+        $data = $request->validated();
         $user = User::create($data);
         $token = $user->createApiToken();
 
