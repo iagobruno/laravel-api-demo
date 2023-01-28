@@ -14,6 +14,8 @@ test('Deve retornar as informações do usuário logado', function () {
 
     actingAs($user, 'sanctum')
         ->getJson(route('user.me'))
-        ->assertExactJson($user->toArray())
+        ->assertJson([
+            'data' => $user->toArray(),
+        ])
         ->assertOk();
 });

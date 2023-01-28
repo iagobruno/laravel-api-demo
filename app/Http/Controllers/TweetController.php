@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Tweet, User};
 use Illuminate\Http\Request;
+use App\Http\Resources\TweetResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -17,13 +18,15 @@ class TweetController extends Controller
         $followingSubQuery = auth()->user()->following()
             ->select('recipient_id');
 
-        return Tweet::query()
+        $tweets = Tweet::query()
             ->whereIn('user_id', $followingSubQuery)
             ->orWhere('user_id', auth()->id())
             ->latest()
             ->with('user')
             // ->dd() // Debug the final sql query
             ->paginate(page: $page, perPage: $perPage);
+
+        return TweetResource::collection($tweets);
     }
 
     public function userTweets(User $user)
@@ -31,10 +34,12 @@ class TweetController extends Controller
         $page = request('page', 1);
         $perPage = request('perPage', 10);
 
-        return Tweet::query()
+        $tweets = Tweet::query()
             ->whereBelongsTo($user)
             ->latest()
             ->paginate(page: $page, perPage: $perPage);
+
+        return TweetResource::collection($tweets);
     }
 
     public function store(Request $request)
@@ -49,7 +54,7 @@ class TweetController extends Controller
         $user = auth()->user();
         $tweet = $user->tweets()->create($data);
 
-        return $tweet;
+        return TweetResource::make($tweet);
     }
 
     public function destroy(Tweet $tweet)

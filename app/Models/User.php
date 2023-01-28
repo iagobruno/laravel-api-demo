@@ -36,15 +36,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The accessors to append to the model's array form.
-     */
-    protected $appends = [
-        'viewer_follows',
-        'followers_count',
-        'following_count',
-    ];
-
-    /**
      * The attributes that should be cast.
      */
     protected $casts = [
@@ -72,20 +63,5 @@ class User extends Authenticatable
     {
         $this->follow($userToFollow);
         $userToFollow->acceptFollowRequestFrom($this);
-    }
-
-    public function getViewerFollowsAttribute()
-    {
-        return auth()->user()?->isFollowing($this) ?? false;
-    }
-
-    public function getFollowersCountAttribute()
-    {
-        return $this->getFollowedByCount();
-    }
-
-    public function getFollowingCountAttribute()
-    {
-        return $this->getFollowingCount();
     }
 }

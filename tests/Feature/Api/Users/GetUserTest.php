@@ -13,7 +13,9 @@ test('Deve conseguir retornar as informações de um usuário', function () {
     $user = User::factory()->create();
 
     getJson(route('user.get', [$user->username]))
-        ->assertJson($user->toArray())
+        ->assertJson([
+            'data' => $user->toArray()
+        ])
         ->assertOk();
 });
 
@@ -26,37 +28,39 @@ test('Deve informar se o usuário logado segue o usuário solicitado', function 
     actingAs($user, 'sanctum')
         ->getJson(route('user.get', [$otherUser->username]))
         ->assertJson([
-            'viewer_follows' => true
+            'data' => [
+                'viewer_follows' => true,
+            ]
         ])
         ->assertOk();
 });
 
 test('Deve informar o número de seguidores', function () {
     /** @var \App\Models\User */
-    $user1 = User::factory()->create();
-    $user2 = User::factory()->create();
-    $user3 = User::factory()->create();
-    $user2->forceFollow($user1);
-    $user3->forceFollow($user1);
+    $user = User::factory()->create();
+    $otherUsers = User::factory(2)->create();
+    $otherUsers->each->forceFollow($user);
 
-    getJson(route('user.get', [$user1->username]))
+    getJson(route('user.get', [$user->username]))
         ->assertJson([
-            'followers_count' => 2
+            'data' => [
+                'followers_count' => 2
+            ]
         ])
         ->assertOk();
 });
 
 test('Deve informar o número de pessoas que o usuário segue', function () {
     /** @var \App\Models\User */
-    $user1 = User::factory()->create();
-    $user2 = User::factory()->create();
-    $user3 = User::factory()->create();
-    $user1->forceFollow($user2);
-    $user1->forceFollow($user3);
+    $user = User::factory()->create();
+    $otherUsers = User::factory(3)->create();
+    $otherUsers->each(fn ($otherUser) => $user->forceFollow($otherUser));
 
-    getJson(route('user.get', [$user1->username]))
+    getJson(route('user.get', [$user->username]))
         ->assertJson([
-            'following_count' => 2
+            'data' => [
+                'following_count' => 3
+            ]
         ])
         ->assertOk();
 });

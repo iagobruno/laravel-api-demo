@@ -20,7 +20,7 @@ test('Deve retornar uma resposta paginada', function () {
 
     actingAs($user1, 'sanctum')
         ->getJson(route('feed'))
-        ->assertJsonStructure(['data', 'current_page', 'next_page_url'])
+        ->assertJsonStructure(['data', 'links', 'meta'])
         ->assertOk();
 });
 

@@ -46,6 +46,9 @@ test('Deve conseguir criar um novo tweet', function () {
         ->postJson(route('tweet.store'), [
             'content' => $content,
         ])
+        ->assertJson([
+            'data' => compact('content'),
+        ])
         ->assertCreated();
 
     $this->assertDatabaseHas('tweets', [

@@ -9,7 +9,7 @@ test('Deve retornar uma resposta paginada', function () {
     Tweet::factory()->times(3)->fromUser($user1)->create();
 
     getJson(route('tweets.from_user', [$user1->username]))
-        ->assertJsonStructure(['data', 'current_page', 'next_page_url'])
+        ->assertJsonStructure(['data', 'links', 'meta'])
         ->assertOk();
 });
 
