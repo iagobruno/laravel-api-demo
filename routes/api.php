@@ -22,7 +22,7 @@ Route::post('/signup', SignupController::class)->name('signup');
 Route::post('/signin', SigninController::class)->name('signin');
 
 Route::get('/users/{user}', [UserController::class, 'view'])->name('user.get');
-Route::get('/users/{user}/tweets', [TweetController::class, 'tweetsFromUser'])->name('tweets.from_user');
+Route::get('/users/{user}/tweets', [TweetController::class, 'userTweets'])->name('tweets.from_user');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feed', [TweetController::class, 'feed'])->name('feed');

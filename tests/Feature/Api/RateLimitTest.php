@@ -17,7 +17,7 @@ test('A api deve parar de responder quando atingir o limite de solicitações po
     getJson('/api/users/thay')
         ->assertStatus(StatusCode::HTTP_TOO_MANY_REQUESTS)
         ->assertJsonFragment([
-            "message" => "Too Many Attempts."
+            "message" => "Too many requests per minute."
         ]);
 });
 
@@ -36,6 +36,6 @@ test('A api deve parar de responder quando atingir o limite de solicitações po
         ->getJson('/api/me')
         ->assertStatus(StatusCode::HTTP_TOO_MANY_REQUESTS)
         ->assertJsonFragment([
-            "message" => "Too Many Attempts."
+            "message" => "Too many requests per minute."
         ]);
 });

@@ -26,7 +26,7 @@ class TweetController extends Controller
             ->paginate(page: $page, perPage: $perPage);
     }
 
-    public function tweetsFromUser(User $user)
+    public function userTweets(User $user)
     {
         $page = request('page', 1);
         $perPage = request('perPage', 10);

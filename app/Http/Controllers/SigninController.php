@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response as StatusCode;
+use App\Exceptions\InvalidCredentialsException;
 use Illuminate\Support\Facades\Auth;
 
 class SigninController extends Controller
@@ -17,9 +17,7 @@ class SigninController extends Controller
         ]);
 
         if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Invalid credentials'
-            ], StatusCode::HTTP_UNAUTHORIZED);
+            throw new InvalidCredentialsException;
         }
 
         // Success!
