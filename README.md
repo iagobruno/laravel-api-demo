@@ -2,21 +2,6 @@
 
 Uma simples API rest similar ao do Twitter para treinar e estudar.
 
-## Objetivos
-
-- [x] Usar todo o meu conhecimento em Laravel nesse projeto.
-- [x] Testar todas as rotas usando o Pest.
-- [x] Usar o Docker desde o início.
-- [x] Usar o laravel/sanctum para autenticar as solicitações.
-
-## Built with
-
-- [Laravel](https://laravel.com/)
-- Postgres
-- Docker
-- [Laravel/sail](https://laravel.com/docs/8.x/sail)
-- [Pest](https://pestphp.com/)
-
 ## Getting started
 
 Clone this repo and run commands in the order below:
@@ -24,20 +9,13 @@ Clone this repo and run commands in the order below:
 ```bash
 composer install
 cp .env.example .env # And edit the values
-php artisan key:generate
+touch database/database.sqlite
 ```
 
-Then start Docker containers:
+Then run the migrations:
 
 ```bash
-sail up -d
-```
-
-And run the migrations:
-
-```bash
-sail artisan migrate
-sail artisan db:seed #Optional
+php artisan migrate --seed
 ```
 
 ## Running tests
@@ -45,9 +23,7 @@ sail artisan db:seed #Optional
 To run tests, run the following command:
 
 ```bash
-sail artisan test
-# sail artisan test --filter GetUserTest
-# sail artisan test --stop-on-failure
+php artisan test
+# php artisan test --stop-on-failure
+# php artisan test --filter GetUserTest
 ```
-
-> NOTE: Make sure you started the docker containers first.
