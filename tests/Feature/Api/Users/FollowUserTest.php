@@ -1,13 +1,12 @@
 <?php
 
 use function Pest\Laravel\{postJson, actingAs};
-use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     postJson(route('user.follow', ['fakeusername']))
-        ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
+        ->assertUnauthorized();
 });
 
 test('Deve retornar um erro se não conseguir encontrar o usuário pelo username', function () {
@@ -16,7 +15,7 @@ test('Deve retornar um erro se não conseguir encontrar o usuário pelo username
 
     actingAs($user, 'sanctum')
         ->postJson(route('user.follow', ['fakeusername']))
-        ->assertStatus(StatusCode::HTTP_NOT_FOUND);
+        ->assertNotFound();
 });
 
 test('Deve conseguir seguir outro usuário', function () {
@@ -26,7 +25,7 @@ test('Deve conseguir seguir outro usuário', function () {
 
     actingAs($user, 'sanctum')
         ->postJson(route('user.follow', [$userToFollow->username]))
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 
     expect($user->isFollowing($userToFollow))->toBeTrue();
     expect($userToFollow->isFollowedBy($user))->toBeTrue();

@@ -1,16 +1,15 @@
 <?php
 
 use function Pest\Laravel\{deleteJson, actingAs};
-use Illuminate\Http\Response as StatusCode;
 use App\Models\Tweet;
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     deleteJson(route('tweet.delete', ['faketweetid9999']))
-        ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
+        ->assertUnauthorized();
 });
 
-test('Deve retornar um erro se um usuário tentar deletar um tweet de outro usuário', function () {
+test('Um usuário não pode deletar um tweet de outro usuário', function () {
     /** @var \App\Models\User */
     $user1 = User::factory()->create();
     $user2 = User::factory()->create();
@@ -18,7 +17,7 @@ test('Deve retornar um erro se um usuário tentar deletar um tweet de outro usu�
 
     actingAs($user1, 'sanctum')
         ->deleteJson(route('tweet.delete', [$tweetFromUser2->id]))
-        ->assertStatus(StatusCode::HTTP_FORBIDDEN);
+        ->assertForbidden();
 
     $this->assertDatabaseHas('tweets', [
         'id' => $tweetFromUser2->id
@@ -37,7 +36,7 @@ test('Deve conseguir deletar um tweet', function () {
         ->assertJson([
             'message' => 'Successfully deleted!'
         ])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 
     $this->assertDatabaseMissing('tweets', [
         'id' => $tweet->id

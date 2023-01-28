@@ -1,10 +1,9 @@
 <?php
 
 use function Pest\Laravel\{postJson};
-use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
-test('Deve retornar um erro se a solicitação não conter todos os campos obrigatórios', function () {
+test('Deve conter todos os campos obrigatórios', function () {
     postJson(route('signup'), [])
         ->assertJsonValidationErrors([
             'email' => 'validation.required',
@@ -12,17 +11,17 @@ test('Deve retornar um erro se a solicitação não conter todos os campos obrig
             'username' => 'validation.required',
             'password' => 'validation.required',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
-test('Deve retornar um erro se tentar usar um username inválido', function () {
+test('Deve retornar um erro se o username for inválido', function () {
     postJson(route('signup'), [
         'username' => 'iago br',
     ])
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     postJson(route('signup'), [
         'username' => 'iago+bruno',
@@ -30,7 +29,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     postJson(route('signup'), [
         'username' => 'iago.bruno',
@@ -38,7 +37,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     postJson(route('signup'), [
         'username' => '@iagobruno',
@@ -46,7 +45,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     postJson(route('signup'), [
         'username' => 'iago|bruno',
@@ -54,7 +53,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se o username já estiver em uso', function () {
@@ -68,7 +67,7 @@ test('Deve retornar um erro se o username já estiver em uso', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.unique',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se o username for muito curto ou longo', function () {
@@ -78,7 +77,7 @@ test('Deve retornar um erro se o username for muito curto ou longo', function ()
         ->assertJsonValidationErrors([
             'username' => 'validation.min',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     postJson(route('signup'), [
         'username' => str_repeat('a', 17),
@@ -86,7 +85,7 @@ test('Deve retornar um erro se o username for muito curto ou longo', function ()
         ->assertJsonValidationErrors([
             'username' => 'validation.max',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se o email já estiver em uso', function () {
@@ -100,7 +99,7 @@ test('Deve retornar um erro se o email já estiver em uso', function () {
         ->assertJsonValidationErrors([
             'email' => 'validation.unique',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se tentar usar um email inválido', function () {
@@ -110,7 +109,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
         ->assertJsonValidationErrors([
             'email' => 'validation.email',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se o name for muito longo', function () {
@@ -120,7 +119,7 @@ test('Deve retornar um erro se o name for muito longo', function () {
         ->assertJsonValidationErrors([
             'name' => 'validation.max',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se o password for muito curto ou longo', function () {
@@ -130,7 +129,7 @@ test('Deve retornar um erro se o password for muito curto ou longo', function ()
         ->assertJsonValidationErrors([
             'password' => 'validation.min',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     postJson(route('signup'), [
         'password' => str_repeat('a', 300)
@@ -138,17 +137,17 @@ test('Deve retornar um erro se o password for muito curto ou longo', function ()
         ->assertJsonValidationErrors([
             'password' => 'validation.max',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
-test('Deve conseguir criar um usuário se tiver tudo ok', function () {
+test('Deve conseguir criar um usuário', function () {
     postJson(route('signup'), [
         'name' => 'faker',
         'username' => 'faker123',
         'email' => 'faker@gmail.com',
         'password' => '12345678',
     ])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 
     $this->assertDatabaseHas('users', [
         'name' => 'faker',
@@ -164,7 +163,7 @@ test('Deve fazer hashing da senha do usuário', function () {
         'email' => 'faker@gmail.com',
         'password' => '12345678',
     ])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 
     $user = User::where('username', 'faker123')->firstOrFail();
 
@@ -179,5 +178,5 @@ test('Deve retornar um token de api válido', function () {
         'password' => '12345678',
     ])
         ->assertJsonStructure(['token'])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });

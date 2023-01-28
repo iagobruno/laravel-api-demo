@@ -1,12 +1,11 @@
 <?php
 
 use function Pest\Laravel\{getJson, actingAs};
-use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
 test('Deve retornar um erro se o username não existir', function () {
     getJson(route('user.get', ['fakeusername']))
-        ->assertStatus(StatusCode::HTTP_NOT_FOUND);
+        ->assertNotFound();
 });
 
 test('Deve conseguir retornar as informações de um usuário', function () {
@@ -15,7 +14,7 @@ test('Deve conseguir retornar as informações de um usuário', function () {
 
     getJson(route('user.get', [$user->username]))
         ->assertJson($user->toArray())
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });
 
 test('Deve informar se o usuário logado segue o usuário solicitado', function () {
@@ -29,7 +28,7 @@ test('Deve informar se o usuário logado segue o usuário solicitado', function 
         ->assertJson([
             'viewer_follows' => true
         ])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });
 
 test('Deve informar o número de seguidores', function () {
@@ -44,7 +43,7 @@ test('Deve informar o número de seguidores', function () {
         ->assertJson([
             'followers_count' => 2
         ])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });
 
 test('Deve informar o número de pessoas que o usuário segue', function () {
@@ -59,5 +58,5 @@ test('Deve informar o número de pessoas que o usuário segue', function () {
         ->assertJson([
             'following_count' => 2
         ])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });

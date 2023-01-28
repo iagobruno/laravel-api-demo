@@ -2,12 +2,11 @@
 
 use function Pest\Faker\faker;
 use function Pest\Laravel\{patchJson, actingAs};
-use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     patchJson(route('user.update'))
-        ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
+        ->assertUnauthorized();
 });
 
 test('Deve retornar um erro se tentar usar um username inválido', function () {
@@ -21,7 +20,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     actingAs($user2, 'sanctum')
         ->patchJson(route('user.update'), [
@@ -30,7 +29,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     actingAs($user2, 'sanctum')
         ->patchJson(route('user.update'), [
@@ -39,7 +38,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     actingAs($user2, 'sanctum')
         ->patchJson(route('user.update'), [
@@ -48,7 +47,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     actingAs($user2, 'sanctum')
         ->patchJson(route('user.update'), [
@@ -57,7 +56,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
         ->assertJsonValidationErrors([
             'username' => 'validation.alpha_dash'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se tentar usar um username que já está em uso', function () {
@@ -72,7 +71,7 @@ test('Deve retornar um erro se tentar usar um username que já está em uso', fu
         ->assertJsonValidationErrors([
             'username' => 'validation.unique'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se tentar usar um username mutio curto ou longo', function () {
@@ -86,7 +85,7 @@ test('Deve retornar um erro se tentar usar um username mutio curto ou longo', fu
         ->assertJsonValidationErrors([
             'username' => 'validation.min.string'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     actingAs($user, 'sanctum')
         ->patchJson(route('user.update'), [
@@ -95,7 +94,7 @@ test('Deve retornar um erro se tentar usar um username mutio curto ou longo', fu
         ->assertJsonValidationErrors([
             'username' => 'validation.max.string'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se tentar usar um nome muito longo', function () {
@@ -109,7 +108,7 @@ test('Deve retornar um erro se tentar usar um nome muito longo', function () {
         ->assertJsonValidationErrors([
             'name' => 'validation.max.string'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se tentar usar um email inválido', function () {
@@ -123,7 +122,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
         ->assertJsonValidationErrors([
             'email' => 'validation.email'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     actingAs($user, 'sanctum')
         ->patchJson(route('user.update'), [
@@ -132,7 +131,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
         ->assertJsonValidationErrors([
             'email' => 'validation.email'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 
     actingAs($user, 'sanctum')
         ->patchJson(route('user.update'), [
@@ -141,7 +140,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
         ->assertJsonValidationErrors([
             'email' => 'validation.email'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro se tentar usar um email que já está em uso', function () {
@@ -156,7 +155,7 @@ test('Deve retornar um erro se tentar usar um email que já está em uso', funct
         ->assertJsonValidationErrors([
             'email' => 'validation.unique'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve conseguir atualizar as informações do usuário logado', function () {
@@ -170,7 +169,7 @@ test('Deve conseguir atualizar as informações do usuário logado', function ()
 
     actingAs($user, 'sanctum')
         ->patchJson(route('user.update'), $newData)
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 
     $user->refresh();
     expect($user->toArray())->toMatchArray($newData);

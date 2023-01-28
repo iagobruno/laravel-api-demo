@@ -1,7 +1,6 @@
 <?php
 
 use function Pest\Laravel\{postJson};
-use Illuminate\Http\Response as StatusCode;
 use App\Models\User;
 
 test('Deve retornar um erro se não houver um username ou password', function () {
@@ -11,7 +10,7 @@ test('Deve retornar um erro se não houver um username ou password', function ()
             'email' => 'validation.required_without',
             'password' => 'validation.required',
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve retornar um erro 401 se o username não existir', function () {
@@ -19,7 +18,7 @@ test('Deve retornar um erro 401 se o username não existir', function () {
         'username' => 'faker1234',
         'password' => '12345678'
     ])
-        ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
+        ->assertUnauthorized();
 });
 
 test('Deve retornar um erro 401 se a senha estiver incorreta', function () {
@@ -31,7 +30,7 @@ test('Deve retornar um erro 401 se a senha estiver incorreta', function () {
         'username' => $user->username,
         'password' => '12345678'
     ])
-        ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
+        ->assertUnauthorized();
 });
 
 test('Deve conseguir logar um usuário pelo username', function () {
@@ -45,7 +44,7 @@ test('Deve conseguir logar um usuário pelo username', function () {
         'password' => 'strongpass_1234'
     ])
         ->assertJsonStructure(['user'])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });
 
 test('Deve conseguir logar um usuário pelo email', function () {
@@ -59,7 +58,7 @@ test('Deve conseguir logar um usuário pelo email', function () {
         'password' => 'strongpass_1234'
     ])
         ->assertJsonStructure(['user'])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });
 
 test('Deve retornar um token de api', function () {
@@ -73,5 +72,5 @@ test('Deve retornar um token de api', function () {
         'password' => 'strongpass_1234'
     ])
         ->assertJsonStructure(['token', 'user'])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });

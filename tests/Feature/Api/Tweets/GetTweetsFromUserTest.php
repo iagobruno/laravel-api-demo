@@ -1,7 +1,6 @@
 <?php
 
 use function Pest\Laravel\getJson;
-use Illuminate\Http\Response as StatusCode;
 use App\Models\Tweet;
 use App\Models\User;
 
@@ -11,7 +10,7 @@ test('Deve retornar uma resposta paginada', function () {
 
     getJson(route('tweets.from_user', [$user1->username]))
         ->assertJsonStructure(['data', 'current_page', 'next_page_url'])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });
 
 test('Deve retornar os tweets de um usuário específico', function () {
@@ -21,7 +20,7 @@ test('Deve retornar os tweets de um usuário específico', function () {
     Tweet::factory()->times(4)->fromUser($user2)->create();
 
     $response = getJson(route('tweets.from_user', [$user2->username]))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData();
 
     expect($response->data)->toBeArray();
@@ -38,7 +37,7 @@ test('Deve permitir fazer paginação', function () {
 
     $page = 1;
     $response1 = getJson(route('tweets.from_user', [$user->username, 'page' => $page, 'perPage' => 1]))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData();
 
     expect($response1->data)->toBeArray();
@@ -47,7 +46,7 @@ test('Deve permitir fazer paginação', function () {
 
     $page = 2;
     $response2 = getJson(route('tweets.from_user', [$user->username, 'page' => $page, 'perPage' => 1]))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData();
 
     expect($response2->data)->toBeArray();

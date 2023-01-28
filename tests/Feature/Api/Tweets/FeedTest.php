@@ -1,14 +1,13 @@
 <?php
 
 use function Pest\Laravel\{getJson, actingAs};
-use Illuminate\Http\Response as StatusCode;
 use App\Models\Tweet;
 use App\Models\User;
 use Carbon\Carbon;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     getJson(route('feed'))
-        ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
+        ->assertUnauthorized();
 });
 
 test('Deve retornar uma resposta paginada', function () {
@@ -22,7 +21,7 @@ test('Deve retornar uma resposta paginada', function () {
     actingAs($user1, 'sanctum')
         ->getJson(route('feed'))
         ->assertJsonStructure(['data', 'current_page', 'next_page_url'])
-        ->assertStatus(StatusCode::HTTP_OK);
+        ->assertOk();
 });
 
 test('Deve retornar os tweets das pessoas que o usuário logado segue', function () {
@@ -39,7 +38,7 @@ test('Deve retornar os tweets das pessoas que o usuário logado segue', function
 
     $response = actingAs($user1, 'sanctum')
         ->getJson(route('feed'))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData();
 
     expect($response->data)->toBeArray();
@@ -60,7 +59,7 @@ test('Deve retornar também os tweets do usuário logado', function () {
 
     $response = actingAs($user1, 'sanctum')
         ->getJson(route('feed'))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData();
 
     $hasUser1Tweets = array_some($response->data, fn ($item) => $item->user_id === $user1->id);
@@ -77,7 +76,7 @@ test('Deve retornar as informações do autor de cada tweet', function () {
 
     $response = actingAs($user1, 'sanctum')
         ->getJson(route('feed'))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData();
 
     foreach ($response->data as $tweet) {
@@ -95,7 +94,7 @@ test('Deve permitir fazer paginação', function () {
     $page = 1;
     $response1 = actingAs($user, 'sanctum')
         ->getJson(route('feed', ['page' => $page, 'perPage' => 1]))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData();
 
     expect($response1->data)->toBeArray();
@@ -105,7 +104,7 @@ test('Deve permitir fazer paginação', function () {
     $page = 2;
     $response2 = actingAs($user, 'sanctum')
         ->getJson(route('feed', ['page' => $page, 'perPage' => 1]))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData();
 
     expect($response2->data)->toBeArray();
@@ -127,7 +126,7 @@ test('Deve retornar os tweets em ordem cronológica', function () {
 
     $tweets = actingAs($user1, 'sanctum')
         ->getJson(route('feed'))
-        ->assertStatus(StatusCode::HTTP_OK)
+        ->assertOk()
         ->getData()
         ->data;
 

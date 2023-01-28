@@ -1,17 +1,16 @@
 <?php
 
 use function Pest\Laravel\{postJson, actingAs};
-use Illuminate\Http\Response as StatusCode;
 use function Pest\Faker\faker;
 use App\Models\Tweet;
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     postJson(route('tweet.store'), [])
-        ->assertStatus(StatusCode::HTTP_UNAUTHORIZED);
+        ->assertUnauthorized();
 });
 
-test('Deve retornar um erro se a solicitação não conter todos os campos obrigatórios', function () {
+test('Deve conter todos os campos obrigatórios', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
 
@@ -20,10 +19,10 @@ test('Deve retornar um erro se a solicitação não conter todos os campos obrig
         ->assertJsonValidationErrors([
             'content' => 'validation.required'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
-test('Deve retornar um erro se o content for maior que 140 caracteres', function () {
+test('O campo "content" não pode ter mais que 140 caracteres', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
 
@@ -34,7 +33,7 @@ test('Deve retornar um erro se o content for maior que 140 caracteres', function
         ->assertJsonValidationErrors([
             'content' => 'validation.max.string'
         ])
-        ->assertStatus(StatusCode::HTTP_UNPROCESSABLE_ENTITY);
+        ->assertUnprocessable();
 });
 
 test('Deve conseguir criar um novo tweet', function () {
@@ -47,7 +46,7 @@ test('Deve conseguir criar um novo tweet', function () {
         ->postJson(route('tweet.store'), [
             'content' => $content,
         ])
-        ->assertStatus(StatusCode::HTTP_CREATED);
+        ->assertCreated();
 
     $this->assertDatabaseHas('tweets', [
         'content' => $content,
@@ -64,7 +63,7 @@ test('Deve associar corretamente ao usuário logado', function () {
         ->postJson(route('tweet.store'), [
             'content' => $content,
         ])
-        ->assertStatus(StatusCode::HTTP_CREATED);
+        ->assertCreated();
 
     $tweet = Tweet::where('content', $content)->firstOrFail();
     expect($tweet->user_id)->toBe($user->id);
