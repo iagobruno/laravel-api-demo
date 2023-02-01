@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\RouteNotFoundException;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\SigninController;
@@ -36,4 +37,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/users/{user}/follow', [FollowController::class, 'follow'])->name('user.follow');
     Route::post('/users/{user}/unfollow', [FollowController::class, 'unfollow'])->name('user.unfollow');
+});
+
+Route::fallback(function () {
+    throw new RouteNotFoundException;
 });
