@@ -11,17 +11,13 @@ class FollowController extends Controller
     {
         auth()->user()->forceFollow($user);
 
-        return [
-            'message' => 'Successfully followed!'
-        ];
+        return response()->success('Successfully followed!');
     }
 
     public function unfollow(User $user)
     {
         auth()->user()->unfollow($user);
 
-        return [
-            'message' => 'Successfully unfollowed!'
-        ];
+        return response()->success('Successfully unfollowed!');
     }
 }

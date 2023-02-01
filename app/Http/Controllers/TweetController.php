@@ -63,8 +63,6 @@ class TweetController extends Controller
 
         $tweet->delete();
 
-        return [
-            'message' => 'Successfully deleted!'
-        ];
+        return response()->success('Successfully deleted!');
     }
 }

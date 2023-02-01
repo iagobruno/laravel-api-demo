@@ -27,9 +27,7 @@ class UserController extends Controller
         $data = $request->validated();
         auth()->user()->update($data);
 
-        return [
-            'message' => 'Successfully updated!'
-        ];
+        return response()->success('Successfully updated!');
     }
 
     public function destroyMe()
@@ -38,8 +36,6 @@ class UserController extends Controller
 
         auth()->user()->delete();
 
-        return [
-            'message' => 'Successfully deleted!'
-        ];
+        return response()->success('Successfully deleted!');
     }
 }

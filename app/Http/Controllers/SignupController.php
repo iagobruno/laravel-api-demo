@@ -15,9 +15,8 @@ class SignupController extends Controller
         $user = User::create($data);
         $token = $user->createApiToken();
 
-        return [
-            'message' => 'OK',
+        return response()->success('Account created successfully!', [
             'token' => $token,
-        ];
+        ]);
     }
 }
