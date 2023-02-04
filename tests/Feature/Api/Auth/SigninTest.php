@@ -6,9 +6,9 @@ use App\Models\User;
 test('Deve retornar um erro se não houver um username ou password', function () {
     postJson(route('signin'), [])
         ->assertJsonValidationErrors([
-            'username' => 'validation.required_without',
-            'email' => 'validation.required_without',
-            'password' => 'validation.required',
+            'username' => 'Required when email is not present.',
+            'email' => 'Required when username is not present.',
+            'password' => 'Required field.',
         ])
         ->assertUnprocessable();
 });

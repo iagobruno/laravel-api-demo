@@ -17,7 +17,7 @@ class SigninController extends Controller
         ]);
 
         if (!Auth::attempt($credentials)) {
-            throw new InvalidCredentialsException;
+            throw new InvalidCredentialsException(__('auth.failed'));
         }
 
         // Success!

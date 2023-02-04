@@ -18,7 +18,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
             'username' => 'iago br',
         ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 
@@ -27,7 +27,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
             'username' => 'iago+bruno',
         ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 
@@ -36,7 +36,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
             'username' => 'iago.bruno',
         ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 
@@ -45,7 +45,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
             'username' => '@iagobruno',
         ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 
@@ -54,7 +54,7 @@ test('Deve retornar um erro se tentar usar um username inválido', function () {
             'username' => 'iago|bruno',
         ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 });
@@ -69,7 +69,7 @@ test('Deve retornar um erro se tentar usar um username que já está em uso', fu
             'username' => 'thay123',
         ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.unique'
+            'username' => __('validation.unique')
         ])
         ->assertUnprocessable();
 });
@@ -83,7 +83,7 @@ test('Deve retornar um erro se tentar usar um username mutio curto ou longo', fu
             'username' => 'oi',
         ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.min.string'
+            'username' => __('validation.min.string', ['min' => 4])
         ])
         ->assertUnprocessable();
 
@@ -92,7 +92,7 @@ test('Deve retornar um erro se tentar usar um username mutio curto ou longo', fu
             'username' => str_repeat('a', 17),
         ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.max.string'
+            'username' => __('validation.max.string', ['max' => 16])
         ])
         ->assertUnprocessable();
 });
@@ -106,7 +106,7 @@ test('Deve retornar um erro se tentar usar um nome muito longo', function () {
             'name' => str_repeat('a', 256),
         ])
         ->assertJsonValidationErrors([
-            'name' => 'validation.max.string'
+            'name' => __('validation.max.string', ['max' => 255])
         ])
         ->assertUnprocessable();
 });
@@ -120,7 +120,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
             'email' => 'nonemail',
         ])
         ->assertJsonValidationErrors([
-            'email' => 'validation.email'
+            'email' => __('validation.email')
         ])
         ->assertUnprocessable();
 
@@ -129,7 +129,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
             'email' => 'gmail.com',
         ])
         ->assertJsonValidationErrors([
-            'email' => 'validation.email'
+            'email' => __('validation.email')
         ])
         ->assertUnprocessable();
 
@@ -138,7 +138,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
             'email' => '@gmail.com',
         ])
         ->assertJsonValidationErrors([
-            'email' => 'validation.email'
+            'email' => __('validation.email')
         ])
         ->assertUnprocessable();
 });
@@ -153,7 +153,7 @@ test('Deve retornar um erro se tentar usar um email que já está em uso', funct
             'email' => 'vini22@gmail.com',
         ])
         ->assertJsonValidationErrors([
-            'email' => 'validation.unique'
+            'email' => __('validation.unique')
         ])
         ->assertUnprocessable();
 });

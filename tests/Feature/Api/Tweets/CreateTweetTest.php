@@ -17,7 +17,7 @@ test('Deve conter todos os campos obrigatórios', function () {
     actingAs($user, 'sanctum')
         ->postJson(route('tweet.store'), [])
         ->assertJsonValidationErrors([
-            'content' => 'validation.required'
+            'content' => __('validation.required')
         ])
         ->assertUnprocessable();
 });
@@ -31,7 +31,7 @@ test('O campo "content" não pode ter mais que 140 caracteres', function () {
             'content' => str_repeat('a', 141)
         ])
         ->assertJsonValidationErrors([
-            'content' => 'validation.max.string'
+            'content' => __('validation.max.string', ['max' => 140])
         ])
         ->assertUnprocessable();
 });

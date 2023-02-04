@@ -6,10 +6,10 @@ use App\Models\User;
 test('Deve conter todos os campos obrigatórios', function () {
     postJson(route('signup'), [])
         ->assertJsonValidationErrors([
-            'email' => 'validation.required',
-            'name' => 'validation.required',
-            'username' => 'validation.required',
-            'password' => 'validation.required',
+            'email' => __('validation.required'),
+            'name' => __('validation.required'),
+            'username' => __('validation.required'),
+            'password' => __('validation.required'),
         ])
         ->assertUnprocessable();
 });
@@ -19,7 +19,7 @@ test('Deve retornar um erro se o username for inválido', function () {
         'username' => 'iago br',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 
@@ -27,7 +27,7 @@ test('Deve retornar um erro se o username for inválido', function () {
         'username' => 'iago+bruno',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 
@@ -35,7 +35,7 @@ test('Deve retornar um erro se o username for inválido', function () {
         'username' => 'iago.bruno',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 
@@ -43,7 +43,7 @@ test('Deve retornar um erro se o username for inválido', function () {
         'username' => '@iagobruno',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 
@@ -51,7 +51,7 @@ test('Deve retornar um erro se o username for inválido', function () {
         'username' => 'iago|bruno',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.alpha_dash'
+            'username' => __('validation.alpha_dash')
         ])
         ->assertUnprocessable();
 });
@@ -65,7 +65,7 @@ test('Deve retornar um erro se o username já estiver em uso', function () {
         'username' => 'fakeuser',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.unique',
+            'username' => __('validation.unique'),
         ])
         ->assertUnprocessable();
 });
@@ -75,7 +75,7 @@ test('Deve retornar um erro se o username for muito curto ou longo', function ()
         'username' => 'oi',
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.min',
+            'username' => __('validation.min.string', ['min' => 4]),
         ])
         ->assertUnprocessable();
 
@@ -83,7 +83,7 @@ test('Deve retornar um erro se o username for muito curto ou longo', function ()
         'username' => str_repeat('a', 17),
     ])
         ->assertJsonValidationErrors([
-            'username' => 'validation.max',
+            'username' => __('validation.max.string', ['max' => 16]),
         ])
         ->assertUnprocessable();
 });
@@ -97,7 +97,7 @@ test('Deve retornar um erro se o email já estiver em uso', function () {
         'email' => 'faker@gmail.com'
     ])
         ->assertJsonValidationErrors([
-            'email' => 'validation.unique',
+            'email' => __('validation.unique'),
         ])
         ->assertUnprocessable();
 });
@@ -107,7 +107,7 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
         'email' => 'gmail.com'
     ])
         ->assertJsonValidationErrors([
-            'email' => 'validation.email',
+            'email' => __('validation.email'),
         ])
         ->assertUnprocessable();
 });
@@ -117,7 +117,7 @@ test('Deve retornar um erro se o name for muito longo', function () {
         'name' => str_repeat('a', 300)
     ])
         ->assertJsonValidationErrors([
-            'name' => 'validation.max',
+            'name' => __('validation.max.string', ['max' => 255]),
         ])
         ->assertUnprocessable();
 });
@@ -127,7 +127,7 @@ test('Deve retornar um erro se o password for muito curto ou longo', function ()
         'password' => '1234'
     ])
         ->assertJsonValidationErrors([
-            'password' => 'validation.min',
+            'password' => __('validation.min.string', ['min' => 8]),
         ])
         ->assertUnprocessable();
 
@@ -135,7 +135,7 @@ test('Deve retornar um erro se o password for muito curto ou longo', function ()
         'password' => str_repeat('a', 300)
     ])
         ->assertJsonValidationErrors([
-            'password' => 'validation.max',
+            'password' => __('validation.max.string', ['max' => 255]),
         ])
         ->assertUnprocessable();
 });
