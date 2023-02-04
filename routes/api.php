@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Exceptions\RouteNotFoundException;
-use App\Http\Controllers\SignupController;
-use App\Http\Controllers\SigninController;
+use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\Auth\SigninController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FollowController;
