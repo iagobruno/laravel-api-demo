@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 
 class UserController extends Controller
@@ -22,8 +21,6 @@ class UserController extends Controller
 
     public function updateMe(UpdateUserRequest $request)
     {
-        Gate::authorize('update-me');
-
         $data = $request->validated();
         auth()->user()->update($data);
 
@@ -32,8 +29,6 @@ class UserController extends Controller
 
     public function destroyMe()
     {
-        Gate::authorize('delete-me');
-
         auth()->user()->delete();
 
         return response()->success('Successfully deleted!');
