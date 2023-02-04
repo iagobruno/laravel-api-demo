@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Gate;
 
 class TweetController extends Controller
 {
+    public function show(User $user, Tweet $tweet)
+    {
+        return TweetResource::make($tweet);
+    }
+
     public function feed()
     {
         $page = request('page', 1);
