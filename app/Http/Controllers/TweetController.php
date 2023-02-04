@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Gate;
 
 class TweetController extends Controller
 {
-    public function show(User $user, Tweet $tweet)
+    public function show(Tweet $tweet)
     {
+        $tweet->load('user');
         return TweetResource::make($tweet);
     }
 
