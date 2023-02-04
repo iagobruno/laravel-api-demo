@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\QueryException;
 use Laravel\Sanctum\Exceptions\MissingAbilityException;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Http\JsonResponse;
@@ -67,10 +68,12 @@ class Handler extends ExceptionHandler
 
     protected function convertExceptionToJsonResponse(Throwable $exception): JsonResponse
     {
+        $debugEnabled = config('app.debug');
         $exceptionClass = get_class($exception);
         // dump($exceptionClass);
         $status = match ($exceptionClass) {
             ModelNotFoundException::class => Response::HTTP_NOT_FOUND,
+            QueryException::class => Response::HTTP_INTERNAL_SERVER_ERROR,
             ValidationException::class => Response::HTTP_UNPROCESSABLE_ENTITY,
             AuthenticationException::class => Response::HTTP_UNAUTHORIZED,
             AuthorizationException::class => Response::HTTP_FORBIDDEN,
@@ -89,18 +92,22 @@ class Handler extends ExceptionHandler
             ),
             MissingAbilityException::class => 'The provided API token does not have permission to perform this action.',
             ThrottleRequestsException::class => 'Too many request attempts in too short a time.',
-            default => $exception->getMessage() ?: 'Internal server error.',
+            default => $debugEnabled ? $exception->getMessage() : 'Internal server error.',
         };
 
         $error = compact([
             'message',
             'status'
         ]);
-        if (config('app.debug') === true) {
-            $error['exception'] = get_class($exception);
+        if ($debugEnabled) {
+            $error = array('exception' => $exceptionClass) + $error;
         }
         if ($exception instanceof ValidationException) {
             $error['errors'] = $exception->errors();
+        }
+        if ($exception instanceof QueryException && $debugEnabled) {
+            $error['query'] = $exception->getSql();
+            $error['bindings'] = $exception->getBindings();
         }
         return response()->json($error, $status);
     }
