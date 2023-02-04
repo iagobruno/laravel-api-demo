@@ -1,7 +1,10 @@
 <?php
 
 use function Pest\Laravel\{postJson};
+
+use App\Events\Signin;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 
 test('Deve retornar um erro se não houver um username ou password', function () {
     postJson(route('signin'), [])
@@ -73,4 +76,23 @@ test('Deve retornar um token de api', function () {
     ])
         ->assertJsonStructure(['token', 'user'])
         ->assertOk();
+});
+
+test('Deve disparar um evento', function () {
+    Event::fake(Signin::class);
+
+    $user = User::factory()->create([
+        'username' => 'randomuser',
+        'password' => 'strongpass_1234'
+    ]);
+
+    postJson(route('signin'), [
+        'username' => 'randomuser',
+        'password' => 'strongpass_1234'
+    ])
+        ->assertOk();
+
+    Event::assertDispatched(function (Signin $event) use ($user) {
+        return $event->user->is($user);
+    });
 });

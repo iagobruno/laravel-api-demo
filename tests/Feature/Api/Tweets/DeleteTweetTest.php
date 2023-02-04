@@ -1,8 +1,11 @@
 <?php
 
 use function Pest\Laravel\{deleteJson, actingAs};
+
+use App\Events\TweetDeleted;
 use App\Models\Tweet;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     deleteJson(route('tweet.delete', ['faketweetid9999']))
@@ -41,4 +44,20 @@ test('Deve conseguir deletar um tweet', function () {
     $this->assertDatabaseMissing('tweets', [
         'id' => $tweet->id
     ]);
+});
+
+test('Deve disparar um evento', function () {
+    Event::fake(TweetDeleted::class);
+
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    $tweet = Tweet::factory()->fromUser($user)->create();
+
+    actingAs($user, 'sanctum')
+        ->deleteJson(route('tweet.delete', [$tweet->id]))
+        ->assertOk();
+
+    Event::assertDispatched(function (TweetDeleted $event) use ($tweet) {
+        return $event->tweet->is($tweet);
+    });
 });

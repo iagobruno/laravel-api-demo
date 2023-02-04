@@ -42,6 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The event map for the model.
+     */
+    protected $dispatchesEvents = [
+        'created' => \App\Events\UserCreated::class,
+        'updated' => \App\Events\UserUpdated::class,
+        'deleted' => \App\Events\UserDeleted::class,
+    ];
+
 
     public function tweets()
     {

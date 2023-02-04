@@ -2,8 +2,11 @@
 
 use function Pest\Laravel\{postJson, actingAs};
 use function Pest\Faker\faker;
+
+use App\Events\TweetCreated;
 use App\Models\Tweet;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     postJson(route('tweet.store'), [])
@@ -39,7 +42,6 @@ test('O campo "content" não pode ter mais que 140 caracteres', function () {
 test('Deve conseguir criar um novo tweet', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
-
     $content = faker()->text(140);
 
     actingAs($user, 'sanctum')
@@ -59,7 +61,6 @@ test('Deve conseguir criar um novo tweet', function () {
 test('Deve associar corretamente ao usuário logado', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
-
     $content = faker()->text(140);
 
     actingAs($user, 'sanctum')
@@ -70,4 +71,22 @@ test('Deve associar corretamente ao usuário logado', function () {
 
     $tweet = Tweet::where('content', $content)->firstOrFail();
     expect($tweet->user_id)->toBe($user->id);
+});
+
+test('Deve disparar um evento', function () {
+    Event::fake(TweetCreated::class);
+
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    $content = faker()->text(140);
+
+    actingAs($user, 'sanctum')
+        ->postJson(route('tweet.store'), [
+            'content' => $content,
+        ])
+        ->assertCreated();
+
+    Event::assertDispatched(function (TweetCreated $event) use ($content) {
+        return $event->tweet->content === $content;
+    });
 });

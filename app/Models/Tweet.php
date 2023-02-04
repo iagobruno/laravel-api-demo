@@ -28,6 +28,14 @@ class Tweet extends Model
      */
     protected $casts = [];
 
+    /**
+     * The event map for the model.
+     */
+    protected $dispatchesEvents = [
+        'created' => \App\Events\TweetCreated::class,
+        'deleted' => \App\Events\TweetDeleted::class,
+    ];
+
 
     public function user()
     {

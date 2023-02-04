@@ -2,7 +2,10 @@
 
 use function Pest\Faker\faker;
 use function Pest\Laravel\{patchJson, actingAs};
+
+use App\Events\UserUpdated;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     patchJson(route('user.update'))
@@ -175,4 +178,22 @@ test('Deve conseguir atualizar as informações do usuário logado', function ()
     expect($user->toArray())->toMatchArray($newData);
 
     $this->assertDatabaseHas('users', $newData);
+});
+
+test('Deve disparar um evento', function () {
+    Event::fake(UserUpdated::class);
+
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    $newData = [
+        'username' => 'new_username_123',
+    ];
+
+    actingAs($user, 'sanctum')
+        ->patchJson(route('user.update'), $newData)
+        ->assertOk();
+
+    Event::assertDispatched(function (UserUpdated $event) use ($user, $newData) {
+        return $event->user->is($user) && $event->user->username === $newData['username'];
+    });
 });

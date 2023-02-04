@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Tweet, User};
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTweetRequest;
 use App\Http\Resources\TweetResource;
+use App\Models\{Tweet, User};
 
 class TweetController extends Controller
 {
@@ -45,14 +46,12 @@ class TweetController extends Controller
         return TweetResource::collection($tweets);
     }
 
-    public function store(Request $request)
+    public function store(StoreTweetRequest $request)
     {
-        $data = $request->validate([
-            'content' => ['required', 'string', 'max:140']
-        ]);
-
+        $data = $request->validated();
         /** @var \App\Models\User */
         $user = auth()->user();
+
         $tweet = $user->tweets()->create($data);
 
         return TweetResource::make($tweet);

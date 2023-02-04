@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Exceptions\InvalidCredentialsException;
 use Illuminate\Support\Facades\Auth;
+use App\Events\Signin;
 
 class SigninController extends Controller
 {
@@ -24,7 +25,8 @@ class SigninController extends Controller
         /** @var \App\Models\User */
         $user = Auth::user();
         $token = $user->createApiToken();
+        Signin::dispatch($user);
 
-        return compact(['token', 'user']);
+        return response()->success('Welcome back!', compact(['token', 'user']));
     }
 }

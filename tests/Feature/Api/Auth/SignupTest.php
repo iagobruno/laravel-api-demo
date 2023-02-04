@@ -1,7 +1,10 @@
 <?php
 
 use function Pest\Laravel\{postJson};
+
+use App\Events\UserCreated;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 
 test('Deve conter todos os campos obrigatórios', function () {
     postJson(route('signup'), [])
@@ -179,4 +182,20 @@ test('Deve retornar um token de api válido', function () {
     ])
         ->assertJsonStructure(['token'])
         ->assertOk();
+});
+
+test('Deve disparar um evento', function () {
+    Event::fake(UserCreated::class);
+
+    postJson(route('signup'), [
+        'name' => 'faker',
+        'username' => 'randomuser',
+        'email' => 'random@gmail.com',
+        'password' => '12345678',
+    ])
+        ->assertOk();
+
+    Event::assertDispatched(function (UserCreated $event) {
+        return isset($event->user) && $event->user instanceof User;
+    });
 });
