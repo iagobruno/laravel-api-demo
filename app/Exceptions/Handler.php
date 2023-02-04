@@ -4,12 +4,13 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Laravel\Sanctum\Exceptions\MissingAbilityException;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Throwable;
 
@@ -56,22 +57,38 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        $shouldReturnJson = $request->is('api/*') || $request->expectsJson();
+        if ($shouldReturnJson) {
+            return $this->convertExceptionToJsonResponse($exception);
+        }
+
+        return parent::render($request, $exception);
+    }
+
+    protected function convertExceptionToJsonResponse(Throwable $exception): JsonResponse
+    {
         $exceptionClass = get_class($exception);
         // dump($exceptionClass);
         $status = match ($exceptionClass) {
+            ModelNotFoundException::class => Response::HTTP_NOT_FOUND,
             ValidationException::class => Response::HTTP_UNPROCESSABLE_ENTITY,
             AuthenticationException::class => Response::HTTP_UNAUTHORIZED,
             AuthorizationException::class => Response::HTTP_FORBIDDEN,
-            ModelNotFoundException::class => Response::HTTP_NOT_FOUND,
+            MissingAbilityException::class => Response::HTTP_FORBIDDEN,
             ThrottleRequestsException::class => Response::HTTP_TOO_MANY_REQUESTS,
             default => $exception->getCode() ?: Response::HTTP_INTERNAL_SERVER_ERROR,
         };
         $message = match ($exceptionClass) {
+            ModelNotFoundException::class => class_basename($exception->getModel()) . ' not found.',
             ValidationException::class => 'The given data was invalid.',
-            AuthenticationException::class => 'Unauthenticated.',
-            AuthorizationException::class => 'You cannot perform this action.',
-            ModelNotFoundException::class => 'Resource not found.',
-            ThrottleRequestsException::class => 'Too many requests per minute.',
+            AuthenticationException::class => "You did not provide an API token. You need to provide it in the Authorization header.",
+            AuthorizationException::class => str_replace(
+                'This action is unauthorized.',
+                "You don't have permission to perform this action.",
+                $exception->getMessage()
+            ),
+            MissingAbilityException::class => 'The provided API token does not have permission to perform this action.',
+            ThrottleRequestsException::class => 'Too many request attempts in too short a time.',
             default => $exception->getMessage() ?: 'Internal server error.',
         };
 
@@ -79,6 +96,9 @@ class Handler extends ExceptionHandler
             'message',
             'status'
         ]);
+        if (config('app.debug') === true) {
+            $error['exception'] = get_class($exception);
+        }
         if ($exception instanceof ValidationException) {
             $error['errors'] = $exception->errors();
         }
