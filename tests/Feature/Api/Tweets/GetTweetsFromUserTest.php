@@ -36,7 +36,7 @@ test('Deve permitir fazer paginação', function () {
     $tweet2 = Tweet::factory()->fromUser($user)->create();
 
     $page = 1;
-    $response1 = getJson(route('tweets.from_user', [$user->username, 'page' => $page, 'perPage' => 1]))
+    $response1 = getJson(route('tweets.from_user', [$user->username, 'page' => $page, 'limit' => 1]))
         ->assertOk()
         ->getData();
 
@@ -45,7 +45,7 @@ test('Deve permitir fazer paginação', function () {
     expect($response1->data[0])->toMatchArray($tweet1->toArray());
 
     $page = 2;
-    $response2 = getJson(route('tweets.from_user', [$user->username, 'page' => $page, 'perPage' => 1]))
+    $response2 = getJson(route('tweets.from_user', [$user->username, 'page' => $page, 'limit' => 1]))
         ->assertOk()
         ->getData();
 

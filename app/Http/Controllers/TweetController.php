@@ -14,34 +14,33 @@ class TweetController extends Controller
         return TweetResource::make($tweet);
     }
 
-    public function feed()
+    public function feed(Request $request)
     {
-        $page = request('page', 1);
-        $perPage = request('perPage', 10);
-
         $followingSubQuery = auth()->user()->following()
             ->select('recipient_id');
-
         $tweets = Tweet::query()
             ->whereIn('user_id', $followingSubQuery)
             ->orWhere('user_id', auth()->id())
             ->latest()
             ->with('user')
             // ->dd() // Debug the final sql query
-            ->paginate(page: $page, perPage: $perPage);
+            ->paginate(
+                page: $request->input('page', 1),
+                perPage: $request->input('limit', 10)
+            );
 
         return TweetResource::collection($tweets);
     }
 
-    public function userTweets(User $user)
+    public function userTweets(Request $request, User $user)
     {
-        $page = request('page', 1);
-        $perPage = request('perPage', 10);
-
         $tweets = Tweet::query()
             ->whereBelongsTo($user)
             ->latest()
-            ->paginate(page: $page, perPage: $perPage);
+            ->paginate(
+                page: $request->input('page', 1),
+                perPage: $request->input('limit', 10)
+            );
 
         return TweetResource::collection($tweets);
     }

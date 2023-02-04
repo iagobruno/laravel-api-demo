@@ -93,7 +93,7 @@ test('Deve permitir fazer paginação', function () {
 
     $page = 1;
     $response1 = actingAs($user, 'sanctum')
-        ->getJson(route('feed', ['page' => $page, 'perPage' => 1]))
+        ->getJson(route('feed', ['page' => $page, 'limit' => 1]))
         ->assertOk()
         ->getData();
 
@@ -103,7 +103,7 @@ test('Deve permitir fazer paginação', function () {
 
     $page = 2;
     $response2 = actingAs($user, 'sanctum')
-        ->getJson(route('feed', ['page' => $page, 'perPage' => 1]))
+        ->getJson(route('feed', ['page' => $page, 'limit' => 1]))
         ->assertOk()
         ->getData();
 
