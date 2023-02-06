@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Exceptions\RouteNotFoundException;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\SigninController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FollowController;
-use App\Models\{Tweet};
+use App\Exceptions\RouteNotFoundException;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +29,12 @@ Route::get('/tweets/{tweet}', [TweetController::class, 'show'])->name('tweet.get
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feed', [TweetController::class, 'feed'])->name('feed');
 
-    Route::post('/tweets', [TweetController::class, 'store'])->can('create', Tweet::class)->name('tweet.store');
-    Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->can('delete', 'tweet')->name('tweet.delete');
+    Route::post('/tweets', [TweetController::class, 'store'])->name('tweet.store');
+    Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->name('tweet.delete');
 
     Route::get('/me', [UserController::class, 'me'])->name('user.me');
-    Route::patch('/me', [UserController::class, 'updateMe'])->can('update-me')->name('user.update');
-    Route::delete('/me', [UserController::class, 'destroyMe'])->can('delete-me')->name('user.destroy');
+    Route::patch('/me', [UserController::class, 'updateMe'])->name('user.update');
+    Route::delete('/me', [UserController::class, 'destroyMe'])->name('user.destroy');
 
     Route::post('/users/{user}/follow', [FollowController::class, 'follow'])->name('user.follow');
     Route::post('/users/{user}/unfollow', [FollowController::class, 'unfollow'])->name('user.unfollow');

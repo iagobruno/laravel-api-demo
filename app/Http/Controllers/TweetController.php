@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTweetRequest;
 use App\Http\Resources\TweetResource;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use App\Models\{Tweet, User};
 
 class TweetController extends Controller
@@ -48,6 +50,8 @@ class TweetController extends Controller
 
     public function store(StoreTweetRequest $request)
     {
+        Gate::authorize('create', Tweet::class);
+
         $data = $request->validated();
         /** @var \App\Models\User */
         $user = auth()->user();
@@ -59,6 +63,8 @@ class TweetController extends Controller
 
     public function destroy(Tweet $tweet)
     {
+        Gate::authorize('delete', $tweet);
+
         $tweet->delete();
 
         return response()->success('Successfully deleted!');
