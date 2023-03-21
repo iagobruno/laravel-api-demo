@@ -9,13 +9,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Skybluesofa\Followers\Traits\Followable;
-use Jamesh\Uuid\HasUuid;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class User extends Authenticatable
 {
+    use HasUuids;
     use HasApiTokens, HasFactory, Notifiable;
     use Followable;
-    use HasUuid;
 
     /**
      * The attributes that are mass assignable.

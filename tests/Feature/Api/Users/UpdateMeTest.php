@@ -1,6 +1,6 @@
 <?php
 
-use function Pest\Faker\faker;
+use function Pest\Faker\fake;
 use function Pest\Laravel\{patchJson, actingAs};
 
 use App\Events\UserUpdated;
@@ -166,8 +166,8 @@ test('Deve conseguir atualizar as informações do usuário logado', function ()
     $user = User::factory()->create();
     $newData = [
         'username' => 'new_username_123',
-        'name' => faker()->name(),
-        'email' => faker()->email(),
+        'name' => fake()->name(),
+        'email' => fake()->email(),
     ];
 
     actingAs($user, 'sanctum')

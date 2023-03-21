@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Jamesh\Uuid\HasUuid;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Tweet extends Model
 {
+    use HasUuids;
     use HasFactory;
-    use HasUuid;
 
     /**
      * The attributes that are mass assignable.

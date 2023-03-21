@@ -1,7 +1,7 @@
 <?php
 
 use function Pest\Laravel\{postJson, actingAs};
-use function Pest\Faker\faker;
+use function Pest\Faker\fake;
 
 use App\Events\TweetCreated;
 use App\Models\Tweet;
@@ -42,7 +42,7 @@ test('O campo "content" não pode ter mais que 140 caracteres', function () {
 test('Deve conseguir criar um novo tweet', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
-    $content = faker()->text(140);
+    $content = fake()->text(140);
 
     actingAs($user, 'sanctum')
         ->postJson(route('tweet.store'), [
@@ -61,7 +61,7 @@ test('Deve conseguir criar um novo tweet', function () {
 test('Deve associar corretamente ao usuário logado', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
-    $content = faker()->text(140);
+    $content = fake()->text(140);
 
     actingAs($user, 'sanctum')
         ->postJson(route('tweet.store'), [
@@ -78,7 +78,7 @@ test('Deve disparar um evento', function () {
 
     /** @var \App\Models\User */
     $user = User::factory()->create();
-    $content = faker()->text(140);
+    $content = fake()->text(140);
 
     actingAs($user, 'sanctum')
         ->postJson(route('tweet.store'), [
