@@ -37,7 +37,7 @@ test('Deve conseguir deletar um tweet', function () {
     actingAs($user, 'sanctum')
         ->deleteJson(route('tweet.delete', [$tweet->id]))
         ->assertJson([
-            'message' => 'Successfully deleted!'
+            'success' => 'Successfully deleted!'
         ])
         ->assertOk();
 

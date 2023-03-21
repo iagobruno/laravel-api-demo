@@ -7,10 +7,13 @@ use App\Http\Requests\StoreTweetRequest;
 use App\Http\Resources\TweetResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use F9Web\ApiResponseHelpers;
 use App\Models\{Tweet, User};
 
 class TweetController extends Controller
 {
+    use ApiResponseHelpers;
+
     public function show(Tweet $tweet)
     {
         $tweet->load('user');
@@ -67,6 +70,6 @@ class TweetController extends Controller
 
         $tweet->delete();
 
-        return response()->success('Successfully deleted!');
+        return $this->respondOK('Successfully deleted!');
     }
 }

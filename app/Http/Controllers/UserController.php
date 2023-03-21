@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Gate;
+use F9Web\ApiResponseHelpers;
 use App\Models\User;
 
 class UserController extends Controller
 {
+    use ApiResponseHelpers;
+
     public function me()
     {
         return UserResource::make(auth()->user());
@@ -27,7 +30,7 @@ class UserController extends Controller
         $data = $request->validated();
         auth()->user()->update($data);
 
-        return response()->success('Successfully updated!');
+        return $this->respondOk('Successfully updated!');
     }
 
     public function destroyMe()
@@ -36,6 +39,6 @@ class UserController extends Controller
 
         auth()->user()->delete();
 
-        return response()->success('Successfully deleted!');
+        return $this->respondOk('Successfully deleted!');
     }
 }
