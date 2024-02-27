@@ -19,7 +19,7 @@ class UserController extends Controller
         return UserResource::make(auth()->user());
     }
 
-    public function view(User $user)
+    public function show(User $user)
     {
         return UserResource::make($user);
     }
@@ -36,7 +36,7 @@ class UserController extends Controller
         return TweetResource::collection($tweets);
     }
 
-    public function updateMe(UpdateUserRequest $request)
+    public function update(UpdateUserRequest $request)
     {
         Gate::authorize('update', $user = auth()->user());
 
@@ -45,7 +45,7 @@ class UserController extends Controller
         return $this->respondOk('Successfully updated!');
     }
 
-    public function destroyMe()
+    public function destroy()
     {
         Gate::authorize('delete', $user = auth()->user());
 

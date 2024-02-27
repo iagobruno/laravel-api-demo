@@ -15,19 +15,16 @@ class TweetController extends Controller
 {
     use ApiResponseHelpers;
 
-    public function show(Tweet $tweet)
+    public function show(User $user, Tweet $tweet)
     {
-        $tweet->load('user');
-        return TweetResource::make($tweet);
+        return TweetResource::make($tweet->load('user'));
     }
 
     public function feed(PaginatedRequest $request)
     {
-        $followingSubQuery = auth()->user()->following()
-            ->select('recipient_id');
         $tweets = Tweet::query()
-            ->whereIn('user_id', $followingSubQuery)
-            ->orWhere('user_id', auth()->id())
+            ->whereIn('user_id', auth()->user()->following()->select('recipient_id'))
+            ->orWhereBelongsTo(auth()->user())
             ->latest()
             ->with('user')
             // ->dd() // Debug the final sql query
@@ -43,11 +40,7 @@ class TweetController extends Controller
     {
         Gate::authorize('create', Tweet::class);
 
-        $data = $request->validated();
-        /** @var \App\Models\User */
-        $user = auth()->user();
-
-        $tweet = $user->tweets()->create($data);
+        $tweet = auth()->user()->tweets()->create($request->validated());
 
         return TweetResource::make($tweet);
     }

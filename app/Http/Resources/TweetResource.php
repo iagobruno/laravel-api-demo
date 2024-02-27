@@ -17,7 +17,7 @@ class TweetResource extends JsonResource
         return $this->resource->attributesToArray() + [
             'user' => UserResource::make($this->whenLoaded('user')),
             $this->mergeWhen($this->relationLoaded('user'), [
-                'user_url' => route('user.get', $this->user->username),
+                'user_url' => route('user.show', $this->user->username),
             ]),
         ];
     }

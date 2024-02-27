@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Event;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    deleteJson(route('user.destroy'))
+    deleteJson(route('me.destroy'))
         ->assertUnauthorized();
 });
 
@@ -17,7 +17,7 @@ test('Deve conseguir deletar a conta do usuário logado', function () {
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->deleteJson(route('user.destroy'))
+        ->deleteJson(route('me.destroy'))
         ->assertOk();
 
     $this->assertDatabaseMissing('users', [
@@ -32,7 +32,7 @@ test('Deve disparar um evento', function () {
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->deleteJson(route('user.destroy'))
+        ->deleteJson(route('me.destroy'))
         ->assertOk();
 
     Event::assertDispatched(function (UserDeleted $event) use ($user) {

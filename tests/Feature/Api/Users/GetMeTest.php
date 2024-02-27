@@ -4,7 +4,7 @@ use function Pest\Laravel\{getJson, actingAs};
 use App\Models\User;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    getJson(route('user.me'))
+    getJson(route('me.show'))
         ->assertUnauthorized();
 });
 
@@ -13,7 +13,7 @@ test('Deve retornar as informações do usuário logado', function () {
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->getJson(route('user.me'))
+        ->getJson(route('me.show'))
         ->assertJson([
             'data' => $user->toArray(),
         ])

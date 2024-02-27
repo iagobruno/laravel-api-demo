@@ -29,18 +29,18 @@ test('A api deve parar de responder quando atingir o limite de solicitações po
 
     $i = 0;
     while ($i < 60) {
-        actingAs($user)->getJson('/api/me')->assertOk();
+        actingAs($user)->getJson(route('me.show'))->assertOk();
         $i++;
     }
 
     # After 60 requests, this should fail
-    actingAs($user)->getJson('/api/me')
+    actingAs($user)->getJson(route('me.show'))
         ->assertStatus(StatusCode::HTTP_TOO_MANY_REQUESTS)
         ->assertJsonFragment([
             "message" => "Too many request attempts in too short a time."
         ]);
     // This must be successful
-    actingAs($otherUser)->getJson('/api/me')
+    actingAs($otherUser)->getJson(route('me.show'))
         ->assertOk()
         ->assertJsonMissing([
             "message" => "Too many request attempts in too short a time."

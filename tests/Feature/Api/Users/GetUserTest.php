@@ -4,7 +4,7 @@ use function Pest\Laravel\{getJson, actingAs};
 use App\Models\User;
 
 test('Deve retornar um erro se o username não existir', function () {
-    getJson(route('user.get', ['fakeusername']))
+    getJson(route('user.show', ['fakeusername']))
         ->assertNotFound();
 });
 
@@ -12,7 +12,7 @@ test('Deve conseguir retornar as informações de um usuário', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
 
-    getJson(route('user.get', [$user->username]))
+    getJson(route('user.show', [$user->username]))
         ->assertJson([
             'data' => $user->toArray()
         ])
@@ -26,7 +26,7 @@ test('Deve informar se o usuário logado segue o usuário solicitado', function 
     $user->forceFollow($otherUser);
 
     actingAs($user, 'sanctum')
-        ->getJson(route('user.get', [$otherUser->username]))
+        ->getJson(route('user.show', [$otherUser->username]))
         ->assertJson([
             'data' => [
                 'viewer_follows' => true,
@@ -41,7 +41,7 @@ test('Deve informar o número de seguidores', function () {
     $otherUsers = User::factory(2)->create();
     $otherUsers->each->forceFollow($user);
 
-    getJson(route('user.get', [$user->username]))
+    getJson(route('user.show', [$user->username]))
         ->assertJson([
             'data' => [
                 'followers_count' => 2
@@ -56,7 +56,7 @@ test('Deve informar o número de pessoas que o usuário segue', function () {
     $otherUsers = User::factory(3)->create();
     $otherUsers->each(fn ($otherUser) => $user->forceFollow($otherUser));
 
-    getJson(route('user.get', [$user->username]))
+    getJson(route('user.show', [$user->username]))
         ->assertJson([
             'data' => [
                 'following_count' => 3

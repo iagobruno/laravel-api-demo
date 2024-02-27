@@ -18,7 +18,7 @@ class UserResource extends JsonResource
             'viewer_follows' => auth()->user()?->isFollowing($this->resource) ?? false,
             'followers_count' => $this->getFollowedByCount(),
             'following_count' => $this->getFollowingCount(),
-            'tweets_url' => route('user.tweets', $this->username),
+            'tweets_url' => route('user.tweets', $this->resource->username),
         ];
     }
 }

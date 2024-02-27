@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Event;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    deleteJson(route('tweet.delete', ['faketweetid9999']))
+    deleteJson(route('tweet.destroy', ['faketweetid9999']))
         ->assertUnauthorized();
 });
 
@@ -19,7 +19,7 @@ test('Um usuário não pode deletar um tweet de outro usuário', function () {
     $tweetFromUser2 = Tweet::factory()->fromUser($user2)->create();
 
     actingAs($user1, 'sanctum')
-        ->deleteJson(route('tweet.delete', [$tweetFromUser2->id]))
+        ->deleteJson(route('tweet.destroy', [$tweetFromUser2->id]))
         ->assertForbidden();
 
     $this->assertDatabaseHas('tweets', [
@@ -35,7 +35,7 @@ test('Deve conseguir deletar um tweet', function () {
     $this->assertDatabaseHas('tweets', ['id' => $tweet->id]);
 
     actingAs($user, 'sanctum')
-        ->deleteJson(route('tweet.delete', [$tweet->id]))
+        ->deleteJson(route('tweet.destroy', [$tweet->id]))
         ->assertJson([
             'success' => 'Successfully deleted!'
         ])
@@ -54,7 +54,7 @@ test('Deve disparar um evento', function () {
     $tweet = Tweet::factory()->fromUser($user)->create();
 
     actingAs($user, 'sanctum')
-        ->deleteJson(route('tweet.delete', [$tweet->id]))
+        ->deleteJson(route('tweet.destroy', [$tweet->id]))
         ->assertOk();
 
     Event::assertDispatched(function (TweetDeleted $event) use ($tweet) {
