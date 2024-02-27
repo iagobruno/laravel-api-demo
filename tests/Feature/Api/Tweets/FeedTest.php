@@ -112,6 +112,23 @@ test('Deve permitir fazer paginação', function () {
     expect($response2->data[0])->toMatchArray($tweet2->toArray());
 });
 
+test('Não deve permitir que o usuário obtenha mais que 50 tweets por paginação', function () {
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    Tweet::factory(60)->fromUser($user)->create();
+
+    actingAs($user, 'sanctum')
+        ->getJson(route('feed', ['page' => 1, 'limit' => 50]))
+        ->assertOk();
+
+    actingAs($user, 'sanctum')
+        ->getJson(route('feed', ['page' => 1, 'limit' => 51]))
+        ->assertJsonValidationErrors([
+            'limit' => __('validation.max.numeric', ['max' => 50])
+        ])
+        ->assertUnprocessable();
+});
+
 test('Deve retornar os tweets em ordem cronológica', function () {
     /** @var \App\Models\User */
     $user1 = User::factory()->create();

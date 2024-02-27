@@ -38,19 +38,18 @@ class UserController extends Controller
 
     public function updateMe(UpdateUserRequest $request)
     {
-        Gate::authorize('update-me');
+        Gate::authorize('update', $user = auth()->user());
 
-        $data = $request->validated();
-        auth()->user()->update($data);
+        $user->update($request->validated());
 
         return $this->respondOk('Successfully updated!');
     }
 
     public function destroyMe()
     {
-        Gate::authorize('delete-me');
+        Gate::authorize('delete', $user = auth()->user());
 
-        auth()->user()->delete();
+        $user->delete();
 
         return $this->respondOk('Successfully deleted!');
     }

@@ -14,13 +14,9 @@ class SignupController extends Controller
 
     public function __invoke(SignupRequest $request)
     {
-        $data = $request->validated();
-
-        $user = User::create($data);
+        $user = User::create($request->validated());
         $token = $user->createApiToken();
 
-        return $this->respondWithSuccess([
-            'token' => $token,
-        ]);
+        return $this->respondWithSuccess(compact('token'));
     }
 }
