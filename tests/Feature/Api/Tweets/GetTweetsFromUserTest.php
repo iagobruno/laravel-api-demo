@@ -8,7 +8,7 @@ test('Deve retornar uma resposta paginada', function () {
     $user1 = User::factory()->create();
     Tweet::factory()->times(3)->fromUser($user1)->create();
 
-    getJson(route('tweets.from_user', [$user1->username]))
+    getJson(route('user.tweets', [$user1->username]))
         ->assertJsonStructure(['data', 'links', 'meta'])
         ->assertOk();
 });
@@ -19,7 +19,7 @@ test('Deve retornar os tweets de um usuário específico', function () {
     $user2 = User::factory()->create();
     Tweet::factory()->times(4)->fromUser($user2)->create();
 
-    $response = getJson(route('tweets.from_user', [$user2->username]))
+    $response = getJson(route('user.tweets', [$user2->username]))
         ->assertOk()
         ->getData();
 
@@ -36,7 +36,7 @@ test('Deve permitir fazer paginação', function () {
     $tweet2 = Tweet::factory()->fromUser($user)->create();
 
     $page = 1;
-    $response1 = getJson(route('tweets.from_user', [$user->username, 'page' => $page, 'limit' => 1]))
+    $response1 = getJson(route('user.tweets', [$user->username, 'page' => $page, 'limit' => 1]))
         ->assertOk()
         ->getData();
 
@@ -45,7 +45,7 @@ test('Deve permitir fazer paginação', function () {
     expect($response1->data[0])->toMatchArray($tweet1->toArray());
 
     $page = 2;
-    $response2 = getJson(route('tweets.from_user', [$user->username, 'page' => $page, 'limit' => 1]))
+    $response2 = getJson(route('user.tweets', [$user->username, 'page' => $page, 'limit' => 1]))
         ->assertOk()
         ->getData();
 

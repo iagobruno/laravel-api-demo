@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Requests\PaginatedRequest;
+use App\Http\Resources\{UserResource, TweetResource};
 use Illuminate\Support\Facades\Gate;
 use F9Web\ApiResponseHelpers;
-use App\Models\User;
+use App\Models\{Tweet, User};
 
 class UserController extends Controller
 {
@@ -21,6 +22,18 @@ class UserController extends Controller
     public function view(User $user)
     {
         return UserResource::make($user);
+    }
+
+    public function tweets(PaginatedRequest $request, User $user)
+    {
+        $tweets = Tweet::whereBelongsTo($user)
+            ->latest()
+            ->paginate(
+                page: $request->input('page', 1),
+                perPage: $request->input('limit', 10)
+            );
+
+        return TweetResource::collection($tweets);
     }
 
     public function updateMe(UpdateUserRequest $request)

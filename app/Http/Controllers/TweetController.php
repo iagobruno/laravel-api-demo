@@ -38,19 +38,6 @@ class TweetController extends Controller
         return TweetResource::collection($tweets);
     }
 
-    public function userTweets(Request $request, User $user)
-    {
-        $tweets = Tweet::query()
-            ->whereBelongsTo($user)
-            ->latest()
-            ->paginate(
-                page: $request->input('page', 1),
-                perPage: $request->input('limit', 10)
-            );
-
-        return TweetResource::collection($tweets);
-    }
-
     public function store(StoreTweetRequest $request)
     {
         Gate::authorize('create', Tweet::class);
