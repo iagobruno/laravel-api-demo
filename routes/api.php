@@ -24,7 +24,7 @@ Route::post('/signin', SigninController::class)->name('signin');
 
 Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
 Route::get('/users/{user}/tweets', [UserController::class, 'tweets'])->name('user.tweets');
-Route::get('/users/{user}/tweets/{tweet}', [TweetController::class, 'show'])->name('tweet.show')->scopeBindings();
+Route::get('/tweets/{tweet}', [TweetController::class, 'show'])->name('tweet.show');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/feed', [TweetController::class, 'feed'])->name('feed');

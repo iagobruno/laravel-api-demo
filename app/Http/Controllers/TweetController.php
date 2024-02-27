@@ -15,7 +15,7 @@ class TweetController extends Controller
 {
     use ApiResponseHelpers;
 
-    public function show(User $user, Tweet $tweet)
+    public function show(Tweet $tweet)
     {
         return TweetResource::make($tweet->load('user'));
     }
