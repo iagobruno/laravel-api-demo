@@ -19,7 +19,7 @@ class FollowController extends Controller
      *
      * Makes the logged in user follow another user.
      *
-     * @urlParam user_username string The username of the user to follow.
+     * @urlParam user_username string required The username of the user to follow. Example: thay_26
      */
     public function follow(User $user)
     {
@@ -34,7 +34,7 @@ class FollowController extends Controller
      *
      * Makes the logged in user unfollow a user.
      *
-     * @urlParam user_username string The username of the user to unfollow.
+     * @urlParam user_username string required The username of the user to unfollow. Example: thay_26
      */
     public function unfollow(User $user)
     {

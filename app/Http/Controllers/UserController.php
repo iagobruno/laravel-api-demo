@@ -12,6 +12,8 @@ use App\Models\{Tweet, User};
 
 /**
   * @group Users
+  *
+  * APIs for managing users.
   */
 class UserController extends Controller
 {
@@ -23,16 +25,8 @@ class UserController extends Controller
      * Returns the currently logged-in user's data.
      *
      * @authenticated
-     * @response {
-     *    "id": 4,
-     *    "name": "Jessica Jones",
-     *    "username": "jessica_jones",
-     *    "email": "jessica@gmail.com",
-     *    "viewer_follows": true,
-     *    "followers_count": 10,
-     *    "following_count": 100,
-     *    "tweets_url": "..."
-     * }
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
      */
     public function me()
     {
@@ -44,17 +38,10 @@ class UserController extends Controller
      *
      * Returns the user data.
      *
-     * @urlParam user_username string required The username of the user.
-     * @response {
-     *    "id": 4,
-     *    "name": "Jessica Jones",
-     *    "username": "jessica_jones",
-     *    "email": "jessica@gmail.com",
-     *    "viewer_follows": true,
-     *    "followers_count": 10,
-     *    "following_count": 100,
-     *    "tweets_url": "..."
-     * }
+     * @urlParam user_username string required The username of the user. Example: thay_26
+     *
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
      */
     public function show(User $user)
     {
@@ -63,23 +50,14 @@ class UserController extends Controller
 
     /**
      * Get a user's tweets
+     * @group Tweets
      *
-     * @urlParam user_username string required The username of the user.
-     * @bodyParam page integer The page number of the results to fetch.
-     * @bodyParam limit integer The number of results per page to be returned. Max 50 and the default is 10.
-     * @response {
-     *   "data": [
-     *     { ... },
-     *     { ... },
-     *   ],
-     *   "meta": {
-     *     "current_page": 1,
-     *     "total": 100,
-     *     "per_page": 10,
-     *     ...
-     *   },
-     *   "links": {...},
-     * }
+     * @urlParam user_username string required The username of the user. Example: thay_26
+     * @responseField meta object Contains information about the paginator's state.
+     * @responseField links object Contains links to navigate.
+     *
+     * @apiResourceCollection App\Http\Resources\TweetResource
+     * @apiResourceModel App\Models\Tweet paginate=2 with=user
      */
     public function tweets(PaginatedRequest $request, User $user)
     {

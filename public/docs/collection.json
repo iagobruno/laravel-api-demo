@@ -10,15 +10,71 @@
     ],
     "info": {
         "name": "API documentation",
-        "_postman_id": "3959997a-2d3b-4751-8b2b-70acaabf1ca3",
+        "_postman_id": "7695de61-c13f-4b1f-95d8-fba02dc7cd1d",
         "description": "Saiba como come\u00e7ar a usar rapidamente a nossa API REST.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
             "name": "Tweets",
-            "description": "",
+            "description": "\nAPIs for managing tweets.",
             "item": [
+                {
+                    "name": "Get a user's tweets",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user_username\/tweets",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page number of the results to fetch.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10",
+                                    "description": "The number of results per page to be returned. Max 50 and the default is 10.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/users\/:user_username\/tweets?page=1&limit=10",
+                            "variable": [
+                                {
+                                    "id": "user_username",
+                                    "key": "user_username",
+                                    "value": "thay_26",
+                                    "description": "The username of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":\"9b719956-0fe9-477a-8908-1691cab6ecac\",\"user_id\":\"9b719956-0a19-4f02-8aca-82380c03ede6\",\"content\":\"Facilis optio quaerat ratione quaerat. Sed delectus quo alias soluta. Corrupti odit vitae voluptates voluptas.\",\"created_at\":\"2024-02-28T12:07:41.000000Z\",\"updated_at\":\"2024-02-28T12:07:41.000000Z\",\"user\":{\"id\":\"9b719956-0a19-4f02-8aca-82380c03ede6\",\"name\":\"Prof. Trevor Zulauf I\",\"username\":\"qward\",\"email\":\"heller.lina@example.net\",\"email_verified_at\":\"2024-02-28T12:07:41.000000Z\",\"created_at\":\"2024-02-28T12:07:41.000000Z\",\"updated_at\":\"2024-02-28T12:07:41.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/qward\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/qward\"},{\"id\":\"9b719956-5efd-43cf-bfc0-9c52df6ecb69\",\"user_id\":\"9b719956-5557-4208-84a3-6c0415d82f04\",\"content\":\"Praesentium quidem qui ut qui ut eaque. Aliquid esse qui mollitia optio illo exercitationem. Et eligendi ab voluptatem laudantium.\",\"created_at\":\"2024-02-28T12:07:41.000000Z\",\"updated_at\":\"2024-02-28T12:07:41.000000Z\",\"user\":{\"id\":\"9b719956-5557-4208-84a3-6c0415d82f04\",\"name\":\"Ms. Bette Osinski PhD\",\"username\":\"ndietrich\",\"email\":\"swaniawski.muriel@example.net\",\"email_verified_at\":\"2024-02-28T12:07:41.000000Z\",\"created_at\":\"2024-02-28T12:07:41.000000Z\",\"updated_at\":\"2024-02-28T12:07:41.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/ndietrich\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/ndietrich\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"\\\/\",\"per_page\":2,\"to\":2,\"total\":2}}",
+                            "name": ""
+                        }
+                    ]
+                },
                 {
                     "name": "Get a tweet",
                     "request": {
@@ -31,13 +87,17 @@
                                 {
                                     "id": "tweet_id",
                                     "key": "tweet_id",
-                                    "value": "qui",
+                                    "value": "",
                                     "description": "The ID of the tweet."
                                 }
                             ]
                         },
                         "method": "GET",
                         "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
@@ -51,30 +111,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "59"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 404,
-                            "body": "{\"exception\":\"Illuminate\\\\Database\\\\Eloquent\\\\ModelNotFoundException\",\"message\":\"Tweet not found.\",\"status\":404}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":\"9b719956-c08a-4f11-bf1a-394fb2ce0a1e\",\"user_id\":\"9b719956-bd03-4b6c-97cb-d3c3c1d62fd3\",\"content\":\"Repellat nulla vel et similique perferendis exercitationem. Sint eum quo repellat provident suscipit. Quod ab est accusantium doloremque.\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"user\":{\"id\":\"9b719956-bd03-4b6c-97cb-d3c3c1d62fd3\",\"name\":\"Prof. Adrain Mills Sr.\",\"username\":\"lskiles\",\"email\":\"stark.otto@example.com\",\"email_verified_at\":\"2024-02-28T12:07:41.000000Z\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/lskiles\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/lskiles\"}}",
                             "name": ""
                         }
                     ]
@@ -85,8 +124,21 @@
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/feed",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/feed"
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page number of the results to fetch.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10",
+                                    "description": "The number of results per page to be returned. Max 50 and the default is 10.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/feed?page=1&limit=10"
                         },
                         "method": "GET",
                         "header": [
@@ -99,17 +151,14 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"page\":12,\"limit\":18}"
-                        },
+                        "body": null,
                         "description": "Get the latest tweets from profiles the user follows."
                     },
                     "response": [
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n  \"data\": [\n    { ... },\n    { ... },\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"total\": 100,\n    \"per_page\": 10,\n    ...\n  },\n  \"links\": {...},\n}",
+                            "body": "{\"data\":[{\"id\":\"9b719957-152c-46e0-b7f9-a36bc523cd37\",\"user_id\":\"9b719957-11e9-4032-9713-58e3b57bbf0f\",\"content\":\"Nam inventore nemo delectus praesentium qui a. Molestiae quo accusantium officia magnam et id. Numquam quis omnis perferendis.\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"user\":{\"id\":\"9b719957-11e9-4032-9713-58e3b57bbf0f\",\"name\":\"Zion Kreiger\",\"username\":\"rippin.holly\",\"email\":\"regan15@example.net\",\"email_verified_at\":\"2024-02-28T12:07:42.000000Z\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/rippin.holly\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/rippin.holly\"},{\"id\":\"9b719957-4855-4368-a8c2-c1f8b4181df7\",\"user_id\":\"9b719957-45e9-405a-aff9-690b325b7e57\",\"content\":\"Consequatur quasi sint quaerat nihil. Eos ipsam est reprehenderit neque. Sint ut quaerat vel ut.\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"user\":{\"id\":\"9b719957-45e9-405a-aff9-690b325b7e57\",\"name\":\"Mara Walter IV\",\"username\":\"elizabeth26\",\"email\":\"gemard@example.org\",\"email_verified_at\":\"2024-02-28T12:07:42.000000Z\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/elizabeth26\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/elizabeth26\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"\\\/\",\"per_page\":2,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -136,7 +185,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"content\":\"sit\"}"
+                            "raw": "{\"content\":\"Lorem ipsum dolor sit...\"}"
                         },
                         "description": "Post a new tweet to the logged in user's account."
                     },
@@ -144,7 +193,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n  id: 10022,\n  content: \"lorem ipsum dolor\",\n  created_at: \"\",\n  updated_at: \"\",\n}",
+                            "body": "{\"data\":{\"id\":\"9b719957-9896-4ca3-bd49-013d61b3b3c5\",\"user_id\":\"9b719957-94f7-4792-8e51-e63200502718\",\"content\":\"Alias qui ea id. Qui repellendus sunt et omnis molestiae. Facere dolore et facilis.\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"user\":{\"id\":\"9b719957-94f7-4792-8e51-e63200502718\",\"name\":\"Dr. Bo Labadie\",\"username\":\"sandra.collins\",\"email\":\"claudine.west@example.net\",\"email_verified_at\":\"2024-02-28T12:07:42.000000Z\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/sandra.collins\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/sandra.collins\"}}",
                             "name": ""
                         }
                     ]
@@ -161,13 +210,17 @@
                                 {
                                     "id": "tweet_id",
                                     "key": "tweet_id",
-                                    "value": "et",
+                                    "value": "",
                                     "description": "The ID of the tweet."
                                 }
                             ]
                         },
                         "method": "DELETE",
                         "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
@@ -182,7 +235,7 @@
         },
         {
             "name": "Users",
-            "description": "",
+            "description": "\nAPIs for managing users.",
             "item": [
                 {
                     "name": "Get a user",
@@ -196,46 +249,7 @@
                                 {
                                     "id": "user_username",
                                     "key": "user_username",
-                                    "value": "atque",
-                                    "description": "The username of the user."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Returns the user data.",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n   \"id\": 4,\n   \"name\": \"Jessica Jones\",\n   \"username\": \"jessica_jones\",\n   \"email\": \"jessica@gmail.com\",\n   \"viewer_follows\": true,\n   \"followers_count\": 10,\n   \"following_count\": 100,\n   \"tweets_url\": \"...\"\n}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Get a user's tweets",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/users\/:user_username\/tweets",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:user_username\/tweets",
-                            "variable": [
-                                {
-                                    "id": "user_username",
-                                    "key": "user_username",
-                                    "value": "non",
+                                    "value": "thay_26",
                                     "description": "The username of the user."
                                 }
                             ]
@@ -251,11 +265,8 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"page\":13,\"limit\":17}"
-                        },
-                        "description": "",
+                        "body": null,
+                        "description": "Returns the user data.",
                         "auth": {
                             "type": "noauth"
                         }
@@ -264,7 +275,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n  \"data\": [\n    { ... },\n    { ... },\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"total\": 100,\n    \"per_page\": 10,\n    ...\n  },\n  \"links\": {...},\n}",
+                            "body": "{\"data\":{\"id\":\"9b719955-8da0-4058-bf59-41d370ca942b\",\"name\":\"Janie Dare\",\"username\":\"bjast\",\"email\":\"emmanuelle.pollich@example.com\",\"email_verified_at\":\"2024-02-28T12:07:41.000000Z\",\"created_at\":\"2024-02-28T12:07:41.000000Z\",\"updated_at\":\"2024-02-28T12:07:41.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/bjast\\\/tweets\"}}",
                             "name": ""
                         }
                     ]
@@ -281,6 +292,10 @@
                         "method": "GET",
                         "header": [
                             {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
                                 "key": "Accept",
                                 "value": "application\/json"
                             }
@@ -292,7 +307,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n   \"id\": 4,\n   \"name\": \"Jessica Jones\",\n   \"username\": \"jessica_jones\",\n   \"email\": \"jessica@gmail.com\",\n   \"viewer_follows\": true,\n   \"followers_count\": 10,\n   \"following_count\": 100,\n   \"tweets_url\": \"...\"\n}",
+                            "body": "{\"data\":{\"id\":\"9b719957-df4e-4f9e-9e64-6771cb02e061\",\"name\":\"Nolan Schuppe\",\"username\":\"thaddeus45\",\"email\":\"pink.gottlieb@example.com\",\"email_verified_at\":\"2024-02-28T12:07:42.000000Z\",\"created_at\":\"2024-02-28T12:07:42.000000Z\",\"updated_at\":\"2024-02-28T12:07:42.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/thaddeus45\\\/tweets\"}}",
                             "name": ""
                         }
                     ]
@@ -319,7 +334,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"quitzon.elinore@example.com\",\"username\":\"hsj\",\"name\":\"lbyvetb\"}"
+                            "raw": "{\"email\":\"phowell@example.com\",\"username\":\"njrktwzmxv\",\"name\":\"bimeethplajen\"}"
                         },
                         "description": "Updates the currently logged-in user's data."
                     },
@@ -336,6 +351,10 @@
                         },
                         "method": "DELETE",
                         "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
@@ -358,13 +377,17 @@
                                 {
                                     "id": "user_username",
                                     "key": "user_username",
-                                    "value": "non",
+                                    "value": "thay_26",
                                     "description": "The username of the user to follow."
                                 }
                             ]
                         },
                         "method": "POST",
                         "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
@@ -390,13 +413,17 @@
                                 {
                                     "id": "user_username",
                                     "key": "user_username",
-                                    "value": "tenetur",
+                                    "value": "thay_26",
                                     "description": "The username of the user to unfollow."
                                 }
                             ]
                         },
                         "method": "POST",
                         "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
                             {
                                 "key": "Accept",
                                 "value": "application\/json"

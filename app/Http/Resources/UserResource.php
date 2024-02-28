@@ -9,6 +9,11 @@ class UserResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
+     * @responseField viewer_follows boolean Indicates if the logged-in user follows the requested user.
+     * @responseField followers_count integer Number of followers.
+     * @responseField following_count integer Number of accounts the user follows.
+     * @responseField tweets_url string URI to fetch user's tweets.
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */

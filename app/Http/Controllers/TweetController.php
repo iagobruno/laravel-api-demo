@@ -13,6 +13,8 @@ use App\Models\{Tweet, User};
 
 /**
   * @group Tweets
+  *
+  * APIs for managing tweets.
   */
 class TweetController extends Controller
 {
@@ -22,6 +24,12 @@ class TweetController extends Controller
      * Get a tweet
      *
      * Get a specific tweet by id.
+     *
+     * @urlParam tweet_id string required The ID of the tweet. No-example
+     * @responseField user object Contains the infos of the tweet author.
+     *
+     * @apiResource App\Http\Resources\TweetResource
+     * @apiResourceModel App\Models\Tweet with=user
      */
     public function show(Tweet $tweet)
     {
@@ -34,21 +42,11 @@ class TweetController extends Controller
      * Get the latest tweets from profiles the user follows.
      *
      * @authenticated
-     * @bodyParam page integer The page number of the results to fetch.
-     * @bodyParam limit integer The number of results per page to be returned. Max 50 and the default is 10.
-     * @response {
-     *   "data": [
-     *     { ... },
-     *     { ... },
-     *   ],
-     *   "meta": {
-     *     "current_page": 1,
-     *     "total": 100,
-     *     "per_page": 10,
-     *     ...
-     *   },
-     *   "links": {...},
-     * }
+     * @responseField meta object Contains information about the paginator's state.
+     * @responseField links object Contains links to navigate.
+     *
+     * @apiResourceCollection App\Http\Resources\TweetResource
+     * @apiResourceModel App\Models\Tweet paginate=2 with=user
      */
     public function feed(PaginatedRequest $request)
     {
@@ -72,13 +70,10 @@ class TweetController extends Controller
      * Post a new tweet to the logged in user's account.
      *
      * @authenticated
-     * @bodyParam content string The tweet content.
-     * @response {
-     *   id: 10022,
-     *   content: "lorem ipsum dolor",
-     *   created_at: "",
-     *   updated_at: "",
-     * }
+     * @bodyParam content string required The tweet content. Max 140 caracteres. Example: Lorem ipsum dolor sit...
+     *
+     * @apiResource App\Http\Resources\TweetResource
+     * @apiResourceModel App\Models\Tweet with=user
     */
     public function store(StoreTweetRequest $request)
     {
@@ -93,6 +88,7 @@ class TweetController extends Controller
      * Delete a tweet
      *
      * @authenticated
+     * @urlParam tweet_id string required The ID of the tweet. No-example
     */
     public function destroy(Tweet $tweet)
     {

@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Query parameters
+ * @queryParam page integer The page number of the results to fetch. Example: 1
+ * @queryParam limit integer The number of results per page to be returned. Max 50 and the default is 10. Example: 10
+ */
 class PaginatedRequest extends FormRequest
 {
     /**

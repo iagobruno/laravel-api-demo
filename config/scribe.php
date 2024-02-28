@@ -189,7 +189,7 @@ return [
         // With API resources and transformers, Scribe tries to generate example models to use in your API responses.
         // By default, Scribe will try the model's factory, and if that fails, try fetching the first from the database.
         // You can reorder or remove strategies here.
-        'models_source' => ['factoryCreate', 'factoryMake', 'databaseFirst'],
+        'models_source' => ['factoryCreate', 'databaseFirst', 'factoryMake'],
     ],
 
     // The strategies Scribe will use to extract information about your routes at each stage.
@@ -211,15 +211,15 @@ return [
             Strategies\QueryParameters\GetFromQueryParamTag::class,
         ],
         'headers' => [
-            // Strategies\Headers\GetFromHeaderAttribute::class,
-            // Strategies\Headers\GetFromHeaderTag::class,
-            // [
-            //     'override',
-            //     [
-            //         // 'Content-Type' => 'application/json',
-            //         // 'Accept' => 'application/json',
-            //     ]
-            // ]
+            Strategies\Headers\GetFromHeaderAttribute::class,
+            Strategies\Headers\GetFromHeaderTag::class,
+            [
+                'override',
+                [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ]
+            ]
         ],
         'bodyParameters' => [
             Strategies\BodyParameters\GetFromFormRequest::class,
