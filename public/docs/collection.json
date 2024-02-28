@@ -1,0 +1,425 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:8000\/api"
+        }
+    ],
+    "info": {
+        "name": "API documentation",
+        "_postman_id": "3959997a-2d3b-4751-8b2b-70acaabf1ca3",
+        "description": "Saiba como come\u00e7ar a usar rapidamente a nossa API REST.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Tweets",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get a tweet",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tweets\/:tweet_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tweets\/:tweet_id",
+                            "variable": [
+                                {
+                                    "id": "tweet_id",
+                                    "key": "tweet_id",
+                                    "value": "qui",
+                                    "description": "The ID of the tweet."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get a specific tweet by id.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"exception\":\"Illuminate\\\\Database\\\\Eloquent\\\\ModelNotFoundException\",\"message\":\"Tweet not found.\",\"status\":404}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get user feed",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/feed",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/feed"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"page\":12,\"limit\":18}"
+                        },
+                        "description": "Get the latest tweets from profiles the user follows."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"data\": [\n    { ... },\n    { ... },\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"total\": 100,\n    \"per_page\": 10,\n    ...\n  },\n  \"links\": {...},\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a tweet",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tweets",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tweets"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"content\":\"sit\"}"
+                        },
+                        "description": "Post a new tweet to the logged in user's account."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  id: 10022,\n  content: \"lorem ipsum dolor\",\n  created_at: \"\",\n  updated_at: \"\",\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete a tweet",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tweets\/:tweet_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tweets\/:tweet_id",
+                            "variable": [
+                                {
+                                    "id": "tweet_id",
+                                    "key": "tweet_id",
+                                    "value": "et",
+                                    "description": "The ID of the tweet."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Users",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user_username",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user_username",
+                            "variable": [
+                                {
+                                    "id": "user_username",
+                                    "key": "user_username",
+                                    "value": "atque",
+                                    "description": "The username of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns the user data.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n   \"id\": 4,\n   \"name\": \"Jessica Jones\",\n   \"username\": \"jessica_jones\",\n   \"email\": \"jessica@gmail.com\",\n   \"viewer_follows\": true,\n   \"followers_count\": 10,\n   \"following_count\": 100,\n   \"tweets_url\": \"...\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get a user's tweets",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user_username\/tweets",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user_username\/tweets",
+                            "variable": [
+                                {
+                                    "id": "user_username",
+                                    "key": "user_username",
+                                    "value": "non",
+                                    "description": "The username of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"page\":13,\"limit\":17}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"data\": [\n    { ... },\n    { ... },\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"total\": 100,\n    \"per_page\": 10,\n    ...\n  },\n  \"links\": {...},\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get the logged in user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/me"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns the currently logged-in user's data."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n   \"id\": 4,\n   \"name\": \"Jessica Jones\",\n   \"username\": \"jessica_jones\",\n   \"email\": \"jessica@gmail.com\",\n   \"viewer_follows\": true,\n   \"followers_count\": 10,\n   \"following_count\": 100,\n   \"tweets_url\": \"...\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update user data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/me"
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"quitzon.elinore@example.com\",\"username\":\"hsj\",\"name\":\"lbyvetb\"}"
+                        },
+                        "description": "Updates the currently logged-in user's data."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete user account",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/me"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Delete the currently logged-in user account."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Follow another user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user_username\/follow",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user_username\/follow",
+                            "variable": [
+                                {
+                                    "id": "user_username",
+                                    "key": "user_username",
+                                    "value": "non",
+                                    "description": "The username of the user to follow."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Makes the logged in user follow another user.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Unfollow a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:user_username\/unfollow",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:user_username\/unfollow",
+                            "variable": [
+                                {
+                                    "id": "user_username",
+                                    "key": "user_username",
+                                    "value": "tenetur",
+                                    "description": "The username of the user to unfollow."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Makes the logged in user unfollow a user.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "key",
+                "type": "string"
+            }
+        ]
+    }
+}

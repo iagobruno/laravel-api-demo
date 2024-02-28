@@ -36,10 +36,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::bind('user', function ($username) {
-            return User::whereUsername($username)->firstOrFail();
-        });
-
         $this->configureRateLimiting();
 
         $this->routes(function () {

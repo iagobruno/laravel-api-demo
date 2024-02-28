@@ -10,13 +10,18 @@ Clone this repo and run commands in the order below:
 composer install
 cp .env.example .env # And edit the values
 touch database/database.sqlite
-```
-
-Then run the migrations:
-
-```bash
 php artisan migrate --seed
 ```
+
+Then start the server:
+
+```bash
+php artisan serve
+```
+
+## API Documentation
+
+Once the server is running, you can read the API documentation in [/docs](http://localhost:8000/docs).
 
 ## Running tests
 

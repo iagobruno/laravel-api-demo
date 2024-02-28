@@ -15,8 +15,8 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'email' => ['sometimes', 'string', 'email', 'unique:users,email'],
-            'username' => ['sometimes', 'string', 'min:4', 'max:16', 'alpha_dash', 'unique:users,username'],
-            'name' => ['sometimes', 'string', 'min:1', 'max:255'],
+            'username' => ['sometimes', 'string', 'min:4', 'max:20', 'alpha_dash', 'unique:users,username'],
+            'name' => ['sometimes', 'string', 'min:1', 'max:50'],
         ];
     }
 }

@@ -42,6 +42,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/users/{user}/unfollow', [FollowController::class, 'unfollow'])->name('user.unfollow');
 });
 
+/**
+ * @hideFromAPIDocumentation
+ */
 Route::fallback(function () {
     throw new RouteNotFoundException;
 });

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use F9Web\ApiResponseHelpers;
 use App\Events\Signin;
 
+/**
+ * @hideFromAPIDocumentation
+ */
 class SigninController extends Controller
 {
     use ApiResponseHelpers;

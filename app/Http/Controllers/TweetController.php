@@ -11,15 +11,45 @@ use Illuminate\Support\Facades\Gate;
 use F9Web\ApiResponseHelpers;
 use App\Models\{Tweet, User};
 
+/**
+  * @group Tweets
+  */
 class TweetController extends Controller
 {
     use ApiResponseHelpers;
 
+    /**
+     * Get a tweet
+     *
+     * Get a specific tweet by id.
+     */
     public function show(Tweet $tweet)
     {
         return TweetResource::make($tweet->load('user'));
     }
 
+    /**
+     * Get user feed
+     *
+     * Get the latest tweets from profiles the user follows.
+     *
+     * @authenticated
+     * @bodyParam page integer The page number of the results to fetch.
+     * @bodyParam limit integer The number of results per page to be returned. Max 50 and the default is 10.
+     * @response {
+     *   "data": [
+     *     { ... },
+     *     { ... },
+     *   ],
+     *   "meta": {
+     *     "current_page": 1,
+     *     "total": 100,
+     *     "per_page": 10,
+     *     ...
+     *   },
+     *   "links": {...},
+     * }
+     */
     public function feed(PaginatedRequest $request)
     {
         $tweets = Tweet::query()
@@ -36,6 +66,20 @@ class TweetController extends Controller
         return TweetResource::collection($tweets);
     }
 
+    /**
+     * Create a tweet
+     *
+     * Post a new tweet to the logged in user's account.
+     *
+     * @authenticated
+     * @bodyParam content string The tweet content.
+     * @response {
+     *   id: 10022,
+     *   content: "lorem ipsum dolor",
+     *   created_at: "",
+     *   updated_at: "",
+     * }
+    */
     public function store(StoreTweetRequest $request)
     {
         Gate::authorize('create', Tweet::class);
@@ -45,6 +89,11 @@ class TweetController extends Controller
         return TweetResource::make($tweet);
     }
 
+    /**
+     * Delete a tweet
+     *
+     * @authenticated
+    */
     public function destroy(Tweet $tweet)
     {
         Gate::authorize('delete', $tweet);

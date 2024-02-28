@@ -22,8 +22,8 @@ class PaginatedRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'page' => ['sometimes', 'numeric'],
-            'limit' => ['sometimes', 'numeric', 'max:50'],
+            'page' => ['sometimes', 'integer'],
+            'limit' => ['sometimes', 'integer', 'max:50'],
         ];
     }
 }

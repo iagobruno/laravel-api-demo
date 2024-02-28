@@ -1,0 +1,364 @@
+openapi: 3.0.3
+info:
+  title: 'API documentation'
+  description: 'Saiba como começar a usar rapidamente a nossa API REST.'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000/api'
+paths:
+  '/api/tweets/{tweet_id}':
+    get:
+      summary: 'Get a tweet'
+      operationId: getATweet
+      description: 'Get a specific tweet by id.'
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  exception: Illuminate\Database\Eloquent\ModelNotFoundException
+                  message: 'Tweet not found.'
+                  status: 404
+                properties:
+                  exception:
+                    type: string
+                    example: Illuminate\Database\Eloquent\ModelNotFoundException
+                  message:
+                    type: string
+                    example: 'Tweet not found.'
+                  status:
+                    type: integer
+                    example: 404
+      tags:
+        - Tweets
+      security: []
+    delete:
+      summary: 'Delete a tweet'
+      operationId: deleteATweet
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Tweets
+    parameters:
+      -
+        in: path
+        name: tweet_id
+        description: 'The ID of the tweet.'
+        example: qui
+        required: true
+        schema:
+          type: string
+  /api/feed:
+    get:
+      summary: 'Get user feed'
+      operationId: getUserFeed
+      description: 'Get the latest tweets from profiles the user follows.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": [\n    { ... },\n    { ... },\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"total\": 100,\n    \"per_page\": 10,\n    ...\n  },\n  \"links\": {...},\n}"
+      tags:
+        - Tweets
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: 'The page number of the results to fetch.'
+                  example: 12
+                limit:
+                  type: integer
+                  description: 'The number of results per page to be returned. Max 50 and the default is 10.'
+                  example: 18
+  /api/tweets:
+    post:
+      summary: 'Create a tweet'
+      operationId: createATweet
+      description: "Post a new tweet to the logged in user's account."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  id: 10022,\n  content: \"lorem ipsum dolor\",\n  created_at: \"\",\n  updated_at: \"\",\n}"
+      tags:
+        - Tweets
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: 'The tweet content.'
+                  example: sit
+  '/api/users/{user_username}':
+    get:
+      summary: 'Get a user'
+      operationId: getAUser
+      description: 'Returns the user data.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 4
+                  name: 'Jessica Jones'
+                  username: jessica_jones
+                  email: jessica@gmail.com
+                  viewer_follows: true
+                  followers_count: 10
+                  following_count: 100
+                  tweets_url: ...
+                properties:
+                  id:
+                    type: integer
+                    example: 4
+                  name:
+                    type: string
+                    example: 'Jessica Jones'
+                  username:
+                    type: string
+                    example: jessica_jones
+                  email:
+                    type: string
+                    example: jessica@gmail.com
+                  viewer_follows:
+                    type: boolean
+                    example: true
+                  followers_count:
+                    type: integer
+                    example: 10
+                  following_count:
+                    type: integer
+                    example: 100
+                  tweets_url:
+                    type: string
+                    example: ...
+      tags:
+        - Users
+      security: []
+    parameters:
+      -
+        in: path
+        name: user_username
+        description: 'The username of the user.'
+        example: atque
+        required: true
+        schema:
+          type: string
+  '/api/users/{user_username}/tweets':
+    get:
+      summary: "Get a user's tweets"
+      operationId: getAUsersTweets
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  \"data\": [\n    { ... },\n    { ... },\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"total\": 100,\n    \"per_page\": 10,\n    ...\n  },\n  \"links\": {...},\n}"
+      tags:
+        - Users
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: 'The page number of the results to fetch.'
+                  example: 13
+                limit:
+                  type: integer
+                  description: 'The number of results per page to be returned. Max 50 and the default is 10.'
+                  example: 17
+      security: []
+    parameters:
+      -
+        in: path
+        name: user_username
+        description: 'The username of the user.'
+        example: non
+        required: true
+        schema:
+          type: string
+  /api/me:
+    get:
+      summary: 'Get the logged in user'
+      operationId: getTheLoggedInUser
+      description: "Returns the currently logged-in user's data."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 4
+                  name: 'Jessica Jones'
+                  username: jessica_jones
+                  email: jessica@gmail.com
+                  viewer_follows: true
+                  followers_count: 10
+                  following_count: 100
+                  tweets_url: ...
+                properties:
+                  id:
+                    type: integer
+                    example: 4
+                  name:
+                    type: string
+                    example: 'Jessica Jones'
+                  username:
+                    type: string
+                    example: jessica_jones
+                  email:
+                    type: string
+                    example: jessica@gmail.com
+                  viewer_follows:
+                    type: boolean
+                    example: true
+                  followers_count:
+                    type: integer
+                    example: 10
+                  following_count:
+                    type: integer
+                    example: 100
+                  tweets_url:
+                    type: string
+                    example: ...
+      tags:
+        - Users
+    patch:
+      summary: 'Update user data'
+      operationId: updateUserData
+      description: "Updates the currently logged-in user's data."
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: quitzon.elinore@example.com
+                username:
+                  type: string
+                  description: 'Must contain only letters, numbers, dashes and underscores. Must be at least 4 characters. Must not be greater than 20 characters.'
+                  example: hsj
+                name:
+                  type: string
+                  description: 'Must be at least 1 character. Must not be greater than 50 characters.'
+                  example: lbyvetb
+    delete:
+      summary: 'Delete user account'
+      operationId: deleteUserAccount
+      description: 'Delete the currently logged-in user account.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+  '/api/users/{user_username}/follow':
+    post:
+      summary: 'Follow another user'
+      operationId: followAnotherUser
+      description: 'Makes the logged in user follow another user.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+      security: []
+    parameters:
+      -
+        in: path
+        name: user_username
+        description: 'Optional parameter. The username of the user to follow.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: non
+  '/api/users/{user_username}/unfollow':
+    post:
+      summary: 'Unfollow a user'
+      operationId: unfollowAUser
+      description: 'Makes the logged in user unfollow a user.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Users
+      security: []
+    parameters:
+      -
+        in: path
+        name: user_username
+        description: 'Optional parameter. The username of the user to unfollow.'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: tenetur
+tags:
+  -
+    name: Tweets
+    description: ''
+  -
+    name: Users
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your settings and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

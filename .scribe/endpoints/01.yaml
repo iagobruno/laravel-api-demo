@@ -1,0 +1,221 @@
+name: Tweets
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: 'api/tweets/{tweet_id}'
+    metadata:
+      groupName: Tweets
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a tweet'
+      description: 'Get a specific tweet by id.'
+      authenticated: false
+      custom: []
+    headers: []
+    urlParameters:
+      tweet_id:
+        name: tweet_id
+        description: 'The ID of the tweet.'
+        required: true
+        example: qui
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      tweet_id: qui
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"exception":"Illuminate\\Database\\Eloquent\\ModelNotFoundException","message":"Tweet not found.","status":404}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/feed
+    metadata:
+      groupName: Tweets
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get user feed'
+      description: 'Get the latest tweets from profiles the user follows.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      page:
+        name: page
+        description: 'The page number of the results to fetch.'
+        required: false
+        example: 12
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      limit:
+        name: limit
+        description: 'The number of results per page to be returned. Max 50 and the default is 10.'
+        required: false
+        example: 18
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      page: 12
+      limit: 18
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "data": [
+              { ... },
+              { ... },
+            ],
+            "meta": {
+              "current_page": 1,
+              "total": 100,
+              "per_page": 10,
+              ...
+            },
+            "links": {...},
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer ec6Dh1dZkPbgaE56fa843Vv'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/tweets
+    metadata:
+      groupName: Tweets
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a tweet'
+      description: "Post a new tweet to the logged in user's account."
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      content:
+        name: content
+        description: 'The tweet content.'
+        required: false
+        example: sit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      content: sit
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            id: 10022,
+            content: "lorem ipsum dolor",
+            created_at: "",
+            updated_at: "",
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 5fEV366Zve4cdahkabPg8D1'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/tweets/{tweet_id}'
+    metadata:
+      groupName: Tweets
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a tweet'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+    urlParameters:
+      tweet_id:
+        name: tweet_id
+        description: 'The ID of the tweet.'
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      tweet_id: et
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 8dkhZaf46e5gcV6Pa3DEbv1'
+    controller: null
+    method: null
+    route: null
+    custom: []

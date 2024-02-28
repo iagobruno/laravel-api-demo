@@ -73,4 +73,12 @@ class User extends Authenticatable
         $this->follow($userToFollow);
         $userToFollow->acceptFollowRequestFrom($this);
     }
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'username';
+    }
 }

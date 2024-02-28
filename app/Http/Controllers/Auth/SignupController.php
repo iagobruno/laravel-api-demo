@@ -8,6 +8,9 @@ use App\Http\Requests\SignupRequest;
 use F9Web\ApiResponseHelpers;
 use App\Models\User;
 
+/**
+ * @hideFromAPIDocumentation
+ */
 class SignupController extends Controller
 {
     use ApiResponseHelpers;

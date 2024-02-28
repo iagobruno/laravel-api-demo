@@ -92,10 +92,10 @@ test('Deve retornar um erro se tentar usar um username mutio curto ou longo', fu
 
     actingAs($user, 'sanctum')
         ->patchJson(route('me.update'), [
-            'username' => str_repeat('a', 17),
+            'username' => str_repeat('a', 21),
         ])
         ->assertJsonValidationErrors([
-            'username' => __('validation.max.string', ['max' => 16])
+            'username' => __('validation.max.string', ['max' => 20])
         ])
         ->assertUnprocessable();
 });
@@ -106,10 +106,10 @@ test('Deve retornar um erro se tentar usar um nome muito longo', function () {
 
     actingAs($user, 'sanctum')
         ->patchJson(route('me.update'), [
-            'name' => str_repeat('a', 256),
+            'name' => str_repeat('a', 51),
         ])
         ->assertJsonValidationErrors([
-            'name' => __('validation.max.string', ['max' => 255])
+            'name' => __('validation.max.string', ['max' => 50])
         ])
         ->assertUnprocessable();
 });

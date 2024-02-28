@@ -83,10 +83,10 @@ test('Deve retornar um erro se o username for muito curto ou longo', function ()
         ->assertUnprocessable();
 
     postJson(route('signup'), [
-        'username' => str_repeat('a', 17),
+        'username' => str_repeat('a', 21),
     ])
         ->assertJsonValidationErrors([
-            'username' => __('validation.max.string', ['max' => 16]),
+            'username' => __('validation.max.string', ['max' => 20]),
         ])
         ->assertUnprocessable();
 });
@@ -117,10 +117,10 @@ test('Deve retornar um erro se tentar usar um email inválido', function () {
 
 test('Deve retornar um erro se o name for muito longo', function () {
     postJson(route('signup'), [
-        'name' => str_repeat('a', 300)
+        'name' => str_repeat('a', 60)
     ])
         ->assertJsonValidationErrors([
-            'name' => __('validation.max.string', ['max' => 255]),
+            'name' => __('validation.max.string', ['max' => 50]),
         ])
         ->assertUnprocessable();
 });
