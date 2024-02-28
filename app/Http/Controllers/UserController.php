@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\PaginatedRequest;
-use App\Http\Resources\{UserResource, TweetResource};
+use App\Http\Resources\{TweetCollection, UserResource, TweetResource};
 use Illuminate\Support\Facades\Gate;
 use F9Web\ApiResponseHelpers;
 use App\Models\{Tweet, User};
@@ -53,22 +53,21 @@ class UserController extends Controller
      * @group Tweets
      *
      * @urlParam user_username string required The username of the user. Example: thay_26
-     * @responseField meta object Contains information about the paginator's state.
-     * @responseField links object Contains links to navigate.
      *
-     * @apiResourceCollection App\Http\Resources\TweetResource
+     * @apiResourceCollection App\Http\Resources\TweetCollection
      * @apiResourceModel App\Models\Tweet paginate=2 with=user
      */
     public function tweets(PaginatedRequest $request, User $user)
     {
         $tweets = Tweet::whereBelongsTo($user)
+            ->with('user')
             ->latest()
             ->paginate(
                 page: $request->input('page', 1),
                 perPage: $request->input('limit', 10)
             );
 
-        return TweetResource::collection($tweets);
+        return TweetCollection::make($tweets);
     }
 
     /**

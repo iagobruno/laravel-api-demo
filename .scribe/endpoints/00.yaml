@@ -41,7 +41,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":"9b719955-8da0-4058-bf59-41d370ca942b","name":"Janie Dare","username":"bjast","email":"emmanuelle.pollich@example.com","email_verified_at":"2024-02-28T12:07:41.000000Z","created_at":"2024-02-28T12:07:41.000000Z","updated_at":"2024-02-28T12:07:41.000000Z","viewer_follows":false,"followers_count":0,"following_count":0,"tweets_url":"http:\/\/localhost:8000\/api\/api\/users\/bjast\/tweets"}}'
+        content: '{"data":{"id":"9b71ad8d-02c0-4fd4-8757-07f7cf9e9efb","name":"Josie Grant","username":"samantha92","email":"jasper46@example.com","email_verified_at":"2024-02-28T13:04:12.000000Z","created_at":"2024-02-28T13:04:13.000000Z","updated_at":"2024-02-28T13:04:13.000000Z","viewer_follows":false,"followers_count":0,"following_count":0,"tweets_url":"http:\/\/localhost:8000\/api\/api\/users\/samantha92\/tweets"}}'
         headers: []
         description: ''
         custom: []
@@ -116,7 +116,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":"9b719957-df4e-4f9e-9e64-6771cb02e061","name":"Nolan Schuppe","username":"thaddeus45","email":"pink.gottlieb@example.com","email_verified_at":"2024-02-28T12:07:42.000000Z","created_at":"2024-02-28T12:07:42.000000Z","updated_at":"2024-02-28T12:07:42.000000Z","viewer_follows":false,"followers_count":0,"following_count":0,"tweets_url":"http:\/\/localhost:8000\/api\/api\/users\/thaddeus45\/tweets"}}'
+        content: '{"data":{"id":"9b71ad8f-127d-4287-97d5-48bd3084673e","name":"Dr. Era O''Hara","username":"berry83","email":"gwendolyn75@example.com","email_verified_at":"2024-02-28T13:04:14.000000Z","created_at":"2024-02-28T13:04:14.000000Z","updated_at":"2024-02-28T13:04:14.000000Z","viewer_follows":false,"followers_count":0,"following_count":0,"tweets_url":"http:\/\/localhost:8000\/api\/api\/users\/berry83\/tweets"}}'
         headers: []
         description: ''
         custom: []
@@ -160,7 +160,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer chvD5bekf6P4Va68gd1ZaE3'
+      - 'Bearer b4Z5gV6aaDd1E8cfvhPk63e'
     controller: null
     method: null
     route: null
@@ -193,7 +193,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: false
-        example: phowell@example.com
+        example: pgutkowski@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -202,7 +202,7 @@ endpoints:
         name: username
         description: 'Must contain only letters, numbers, dashes and underscores. Must be at least 4 characters. Must not be greater than 20 characters.'
         required: false
-        example: njrktwzmxv
+        example: nhvcvpanxvmumre
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -211,22 +211,22 @@ endpoints:
         name: name
         description: 'Must be at least 1 character. Must not be greater than 50 characters.'
         required: false
-        example: bimeethplajen
+        example: womcwmsguujqhuibwjmwtoxd
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: phowell@example.com
-      username: njrktwzmxv
-      name: bimeethplajen
+      email: pgutkowski@example.com
+      username: nhvcvpanxvmumre
+      name: womcwmsguujqhuibwjmwtoxd
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 3Z6khga5d1bPcf6ED4Vae8v'
+      - 'Bearer ak14dVfce6gEh6P583ZDvab'
     controller: null
     method: null
     route: null
@@ -262,7 +262,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer PV365edc46kgaa1hbDEvfZ8'
+      - 'Bearer a8a4dcePDkZEgh5bf6Vv361'
     controller: null
     method: null
     route: null
