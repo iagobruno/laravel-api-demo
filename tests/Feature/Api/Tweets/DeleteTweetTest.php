@@ -6,6 +6,7 @@ use App\Events\TweetDeleted;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
+use Laravel\Sanctum\Sanctum;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     deleteJson(route('tweet.destroy', ['faketweetid9999']))
@@ -27,15 +28,28 @@ test('Um usuário não pode deletar um tweet de outro usuário', function () {
     ]);
 });
 
+test('O token de acesso deve ter a permissão "tweet:write"', function () {
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    $tweet = Tweet::factory()->fromUser($user)->create();
+    Sanctum::actingAs($user);
+
+    deleteJson(route('tweet.destroy', [$tweet->id]))
+        ->assertJson([
+            'message' => 'You don\'t have permission to perform this action.'
+        ])
+        ->assertForbidden();
+});
+
 test('Deve conseguir deletar um tweet', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $tweet = Tweet::factory()->fromUser($user)->create();
+    Sanctum::actingAs($user, ['tweet:write']);
 
     $this->assertDatabaseHas('tweets', ['id' => $tweet->id]);
 
-    actingAs($user, 'sanctum')
-        ->deleteJson(route('tweet.destroy', [$tweet->id]))
+    deleteJson(route('tweet.destroy', [$tweet->id]))
         ->assertJson([
             'success' => 'Successfully deleted!'
         ])
@@ -47,14 +61,13 @@ test('Deve conseguir deletar um tweet', function () {
 });
 
 test('Deve disparar um evento', function () {
-    Event::fake(TweetDeleted::class);
-
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $tweet = Tweet::factory()->fromUser($user)->create();
+    Event::fake(TweetDeleted::class);
+    Sanctum::actingAs($user, ['tweet:write']);
 
-    actingAs($user, 'sanctum')
-        ->deleteJson(route('tweet.destroy', [$tweet->id]))
+    deleteJson(route('tweet.destroy', [$tweet->id]))
         ->assertOk();
 
     Event::assertDispatched(function (TweetDeleted $event) use ($tweet) {

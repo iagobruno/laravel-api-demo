@@ -401,10 +401,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-users-GETapi-me">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Get the logged in user">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Get the authenticated user">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#users-GETapi-me">
-                                                    Get the logged in user
+                                                    Get the authenticated user
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -413,10 +413,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-users-PATCHapi-me">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Update user data">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Update the authenticated user">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#users-PATCHapi-me">
-                                                    Update user data
+                                                    Update the authenticated user
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -425,10 +425,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-users-DELETEapi-me">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Delete user account">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Delete the authenticated user">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#users-DELETEapi-me">
-                                                    Delete user account
+                                                    Delete the authenticated user
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -464,7 +464,7 @@
 
         </div>
         <div class="sl-flex sl-items-center sl-px-4 sl-py-3 sl-border-t">
-            Last updated: February 28, 2024
+            Last updated: February 29, 2024
         </div>
 
         <div class="sl-flex sl-items-center sl-px-4 sl-py-3 sl-border-t">
@@ -511,7 +511,7 @@
         Tweets
     </h1>
 
-    <p>APIs for managing tweets.</p>
+    <p>Returns a paginated response.</p>
 
                                 <div class="sl-stack sl-stack--vertical sl-stack--8 HttpOperation sl-flex sl-flex-col sl-items-stretch sl-w-full">
     <div class="sl-stack sl-stack--vertical sl-stack--5 sl-flex sl-flex-col sl-items-stretch">
@@ -655,7 +655,7 @@
     <div class="sl-stack sl-stack--vertical sl-stack--1 sl-flex sl-flex-1 sl-flex-col sl-items-stretch sl-max-w-full sl-ml-2 ">
         <div class="sl-flex sl-items-center sl-max-w-full">
                                         <div class="sl-flex sl-items-baseline sl-text-base">
-                    <div class="sl-font-mono sl-font-semibold sl-mr-2">limit</div>
+                    <div class="sl-font-mono sl-font-semibold sl-mr-2">per_page</div>
                                             <span class="sl-truncate sl-text-muted">integer</span>
                                     </div>
                                     </div>
@@ -841,12 +841,12 @@
                                                                             </div>
                                 </div>
                                                                                             <label aria-hidden="true"
-                                       for="queryparam-GETapi-users--user_username--tweets-limit">limit</label>
+                                       for="queryparam-GETapi-users--user_username--tweets-per_page">per_page</label>
                                 <span class="sl-mx-3">:</span>
                                 <div class="sl-flex sl-flex-1">
                                     <div class="sl-input sl-flex-1 sl-relative">
-                                                                                    <input aria-label="limit" name="limit"
-                                                   id="queryparam-GETapi-users--user_username--tweets-limit"
+                                                                                    <input aria-label="per_page" name="per_page"
+                                                   id="queryparam-GETapi-users--user_username--tweets-per_page"
                                                    placeholder="The number of results per page to be returned. Max 50 and the default is 10."
                                                    value="10" data-component="query"
                                                    class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border"
@@ -944,7 +944,7 @@ You can check the Dev Tools console for debugging information.</p>
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/api/users/thay_26/tweets?page=1&amp;limit=10" \
+    --get "http://localhost:8000/api/api/users/thay_26/tweets?page=1&amp;per_page=10" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
                                     </div>
@@ -959,7 +959,7 @@ You can check the Dev Tools console for debugging information.</p>
 
 const params = {
     "page": "1",
-    "limit": "10",
+    "per_page": "10",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1013,46 +1013,46 @@ fetch(url, {
                                                        class="language-json sl-overflow-x-auto sl-overflow-y-auto">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: &quot;9b71ad8d-54a8-4d64-bd24-5bb23152b056&quot;,
-            &quot;user_id&quot;: &quot;9b71ad8d-5265-4ba6-91ea-36b659ada10c&quot;,
-            &quot;content&quot;: &quot;Cupiditate aliquid impedit nam numquam quia architecto laborum aliquam. Recusandae qui provident laborum. Non id repellendus totam.&quot;,
-            &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+            &quot;id&quot;: &quot;9b72f853-71ae-4a7d-8141-c652e7f479cd&quot;,
+            &quot;user_id&quot;: &quot;9b72f853-6f70-4734-a7ef-c22e42cbe428&quot;,
+            &quot;content&quot;: &quot;Cupiditate modi nesciunt voluptatum in. Quo odit non ea sit. Sint qui ut eius et consequuntur.&quot;,
+            &quot;created_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
             &quot;user&quot;: {
-                &quot;id&quot;: &quot;9b71ad8d-5265-4ba6-91ea-36b659ada10c&quot;,
-                &quot;name&quot;: &quot;Weldon Swift&quot;,
-                &quot;username&quot;: &quot;xwintheiser&quot;,
-                &quot;email&quot;: &quot;mayert.corrine@example.org&quot;,
-                &quot;email_verified_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-                &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+                &quot;id&quot;: &quot;9b72f853-6f70-4734-a7ef-c22e42cbe428&quot;,
+                &quot;name&quot;: &quot;Ewell Erdman I&quot;,
+                &quot;username&quot;: &quot;horacio.bernhard&quot;,
+                &quot;email&quot;: &quot;ward83@example.org&quot;,
+                &quot;email_verified_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
                 &quot;viewer_follows&quot;: false,
                 &quot;followers_count&quot;: 0,
                 &quot;following_count&quot;: 0,
-                &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/xwintheiser/tweets&quot;
+                &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/horacio.bernhard/tweets&quot;
             },
-            &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/xwintheiser&quot;
+            &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/horacio.bernhard&quot;
         },
         {
-            &quot;id&quot;: &quot;9b71ad8d-9fff-4785-b6f9-3a8c427d8290&quot;,
-            &quot;user_id&quot;: &quot;9b71ad8d-948c-4980-b25c-190d61305e97&quot;,
-            &quot;content&quot;: &quot;Ab officiis voluptatem est deserunt. Libero qui quaerat soluta deserunt consequatur. Deleniti voluptatem voluptas minus qui sed.&quot;,
-            &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+            &quot;id&quot;: &quot;9b72f853-adee-4903-8e84-125fc58cf605&quot;,
+            &quot;user_id&quot;: &quot;9b72f853-ab96-44b0-b638-e6ceba5aaf00&quot;,
+            &quot;content&quot;: &quot;Qui est cumque dolorem dolore. Sit aut sint eligendi iusto. Inventore provident velit qui ut corporis porro dolor.&quot;,
+            &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
             &quot;user&quot;: {
-                &quot;id&quot;: &quot;9b71ad8d-948c-4980-b25c-190d61305e97&quot;,
-                &quot;name&quot;: &quot;Mrs. Ericka Langworth&quot;,
-                &quot;username&quot;: &quot;akuhlman&quot;,
-                &quot;email&quot;: &quot;celia35@example.net&quot;,
-                &quot;email_verified_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-                &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+                &quot;id&quot;: &quot;9b72f853-ab96-44b0-b638-e6ceba5aaf00&quot;,
+                &quot;name&quot;: &quot;Matteo Dietrich&quot;,
+                &quot;username&quot;: &quot;reta.adams&quot;,
+                &quot;email&quot;: &quot;marlene99@example.org&quot;,
+                &quot;email_verified_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
                 &quot;viewer_follows&quot;: false,
                 &quot;followers_count&quot;: 0,
                 &quot;following_count&quot;: 0,
-                &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/akuhlman/tweets&quot;
+                &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/reta.adams/tweets&quot;
             },
-            &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/akuhlman&quot;
+            &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/reta.adams&quot;
         }
     ],
     &quot;links&quot;: {
@@ -1465,25 +1465,25 @@ fetch(url, {
                                             <pre><code style="max-height: 300px;"
                                                        class="language-json sl-overflow-x-auto sl-overflow-y-auto">{
     &quot;data&quot;: {
-        &quot;id&quot;: &quot;9b71ad8e-02de-4c6e-abef-1068b80d8c7a&quot;,
-        &quot;user_id&quot;: &quot;9b71ad8d-fef5-4a54-ae4c-b92e84c713c1&quot;,
-        &quot;content&quot;: &quot;Est et quam quia beatae. Rem atque modi dolor aut eius cum modi autem. Doloribus architecto veritatis temporibus et non totam rerum.&quot;,
-        &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+        &quot;id&quot;: &quot;9b72f854-0122-40db-89c9-531ffd6af473&quot;,
+        &quot;user_id&quot;: &quot;9b72f853-fe11-4ee7-95a2-2e81378fda10&quot;,
+        &quot;content&quot;: &quot;Sunt molestiae mollitia beatae illum. Neque non et non quis iste qui. Maxime quidem sint et sapiente delectus saepe quia.&quot;,
+        &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
         &quot;user&quot;: {
-            &quot;id&quot;: &quot;9b71ad8d-fef5-4a54-ae4c-b92e84c713c1&quot;,
-            &quot;name&quot;: &quot;Lela Yost&quot;,
-            &quot;username&quot;: &quot;micaela.gislason&quot;,
-            &quot;email&quot;: &quot;ugerlach@example.org&quot;,
-            &quot;email_verified_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-            &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+            &quot;id&quot;: &quot;9b72f853-fe11-4ee7-95a2-2e81378fda10&quot;,
+            &quot;name&quot;: &quot;Elyssa Legros&quot;,
+            &quot;username&quot;: &quot;brent58&quot;,
+            &quot;email&quot;: &quot;murazik.mario@example.com&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+            &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
             &quot;viewer_follows&quot;: false,
             &quot;followers_count&quot;: 0,
             &quot;following_count&quot;: 0,
-            &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/micaela.gislason/tweets&quot;
+            &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/brent58/tweets&quot;
         },
-        &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/micaela.gislason&quot;
+        &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/brent58&quot;
     }
 }</code></pre>
                                                                             </div>
@@ -1527,6 +1527,8 @@ fetch(url, {
         </div>
 
         <p>Get the latest tweets from profiles the user follows.</p>
+<p>Returns a paginated response.</p>
+<p>The token does not require any permissions.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -1627,7 +1629,7 @@ fetch(url, {
     <div class="sl-stack sl-stack--vertical sl-stack--1 sl-flex sl-flex-1 sl-flex-col sl-items-stretch sl-max-w-full sl-ml-2 ">
         <div class="sl-flex sl-items-center sl-max-w-full">
                                         <div class="sl-flex sl-items-baseline sl-text-base">
-                    <div class="sl-font-mono sl-font-semibold sl-mr-2">limit</div>
+                    <div class="sl-font-mono sl-font-semibold sl-mr-2">per_page</div>
                                             <span class="sl-truncate sl-text-muted">integer</span>
                                     </div>
                                     </div>
@@ -1816,12 +1818,12 @@ fetch(url, {
                                                                             </div>
                                 </div>
                                                                                             <label aria-hidden="true"
-                                       for="queryparam-GETapi-feed-limit">limit</label>
+                                       for="queryparam-GETapi-feed-per_page">per_page</label>
                                 <span class="sl-mx-3">:</span>
                                 <div class="sl-flex sl-flex-1">
                                     <div class="sl-input sl-flex-1 sl-relative">
-                                                                                    <input aria-label="limit" name="limit"
-                                                   id="queryparam-GETapi-feed-limit"
+                                                                                    <input aria-label="per_page" name="per_page"
+                                                   id="queryparam-GETapi-feed-per_page"
                                                    placeholder="The number of results per page to be returned. Max 50 and the default is 10."
                                                    value="10" data-component="query"
                                                    class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border"
@@ -1919,7 +1921,7 @@ You can check the Dev Tools console for debugging information.</p>
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/api/feed?page=1&amp;limit=10" \
+    --get "http://localhost:8000/api/api/feed?page=1&amp;per_page=10" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -1935,7 +1937,7 @@ You can check the Dev Tools console for debugging information.</p>
 
 const params = {
     "page": "1",
-    "limit": "10",
+    "per_page": "10",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1990,46 +1992,46 @@ fetch(url, {
                                                        class="language-json sl-overflow-x-auto sl-overflow-y-auto">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: &quot;9b71ad8e-4a26-4f7c-8fb2-7eec0db079d3&quot;,
-            &quot;user_id&quot;: &quot;9b71ad8e-47c3-4152-b12f-f41028658def&quot;,
-            &quot;content&quot;: &quot;Error quaerat debitis quia dicta consequuntur aut provident. Expedita quia voluptatem eum in quisquam praesentium et nobis.&quot;,
-            &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+            &quot;id&quot;: &quot;9b72f854-5201-4268-8500-0ea035fd725b&quot;,
+            &quot;user_id&quot;: &quot;9b72f854-4d9f-4852-b32e-14163b52e15f&quot;,
+            &quot;content&quot;: &quot;Quo ut veniam sed facere. Saepe provident sit aut porro perferendis. Possimus corporis ut nihil qui ipsa rerum eveniet perspiciatis.&quot;,
+            &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
             &quot;user&quot;: {
-                &quot;id&quot;: &quot;9b71ad8e-47c3-4152-b12f-f41028658def&quot;,
-                &quot;name&quot;: &quot;Sandy Dietrich&quot;,
-                &quot;username&quot;: &quot;maximilian41&quot;,
-                &quot;email&quot;: &quot;eortiz@example.com&quot;,
-                &quot;email_verified_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-                &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+                &quot;id&quot;: &quot;9b72f854-4d9f-4852-b32e-14163b52e15f&quot;,
+                &quot;name&quot;: &quot;Jewel Hackett DDS&quot;,
+                &quot;username&quot;: &quot;gladyce.leannon&quot;,
+                &quot;email&quot;: &quot;qbogan@example.com&quot;,
+                &quot;email_verified_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
                 &quot;viewer_follows&quot;: false,
                 &quot;followers_count&quot;: 0,
                 &quot;following_count&quot;: 0,
-                &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/maximilian41/tweets&quot;
+                &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/gladyce.leannon/tweets&quot;
             },
-            &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/maximilian41&quot;
+            &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/gladyce.leannon&quot;
         },
         {
-            &quot;id&quot;: &quot;9b71ad8e-8e52-4fa3-90d0-0ce444cf19d2&quot;,
-            &quot;user_id&quot;: &quot;9b71ad8e-8c20-4496-a4e2-0b4c0db11197&quot;,
-            &quot;content&quot;: &quot;Sed libero modi dignissimos reiciendis. Repudiandae voluptas necessitatibus aliquam et voluptatem expedita. Nisi et est ut repellat fugiat.&quot;,
-            &quot;created_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
+            &quot;id&quot;: &quot;9b72f854-8cb1-4d08-82c1-3584b1990f2e&quot;,
+            &quot;user_id&quot;: &quot;9b72f854-8768-419a-8c17-2231fd2c3394&quot;,
+            &quot;content&quot;: &quot;Totam repudiandae neque dolorem tempore eveniet. Nostrum qui et et ullam cupiditate ut eum. Molestias modi atque enim aliquam autem velit.&quot;,
+            &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
             &quot;user&quot;: {
-                &quot;id&quot;: &quot;9b71ad8e-8c20-4496-a4e2-0b4c0db11197&quot;,
-                &quot;name&quot;: &quot;Dorcas Keeling&quot;,
-                &quot;username&quot;: &quot;wunsch.chelsea&quot;,
-                &quot;email&quot;: &quot;jordan19@example.org&quot;,
-                &quot;email_verified_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-                &quot;created_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
+                &quot;id&quot;: &quot;9b72f854-8768-419a-8c17-2231fd2c3394&quot;,
+                &quot;name&quot;: &quot;Arlo Hilpert DVM&quot;,
+                &quot;username&quot;: &quot;xavier.kuvalis&quot;,
+                &quot;email&quot;: &quot;nader.devan@example.net&quot;,
+                &quot;email_verified_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
                 &quot;viewer_follows&quot;: false,
                 &quot;followers_count&quot;: 0,
                 &quot;following_count&quot;: 0,
-                &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/wunsch.chelsea/tweets&quot;
+                &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/xavier.kuvalis/tweets&quot;
             },
-            &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/wunsch.chelsea&quot;
+            &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/xavier.kuvalis&quot;
         }
     ],
     &quot;links&quot;: {
@@ -2106,6 +2108,7 @@ fetch(url, {
         </div>
 
         <p>Post a new tweet to the logged in user's account.</p>
+<p>The token must have the following permission: <code>tweet:write</code>.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -2493,25 +2496,25 @@ fetch(url, {
                                             <pre><code style="max-height: 300px;"
                                                        class="language-json sl-overflow-x-auto sl-overflow-y-auto">{
     &quot;data&quot;: {
-        &quot;id&quot;: &quot;9b71ad8e-d6ab-48a5-8310-47fe4d7d3eb3&quot;,
-        &quot;user_id&quot;: &quot;9b71ad8e-d420-47d0-b156-a168113cac3d&quot;,
-        &quot;content&quot;: &quot;Voluptatem cum quaerat reiciendis ut occaecati. Cum doloremque quia iure iusto quia et rem. Eum commodi omnis iusto sed.&quot;,
-        &quot;created_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
+        &quot;id&quot;: &quot;9b72f854-d91d-4215-984e-9e2d6aba063a&quot;,
+        &quot;user_id&quot;: &quot;9b72f854-d6ac-47b6-83cc-56155a55cf89&quot;,
+        &quot;content&quot;: &quot;Consequatur ut cum laboriosam laudantium consequatur alias rem. At delectus non nobis in sint.&quot;,
+        &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
         &quot;user&quot;: {
-            &quot;id&quot;: &quot;9b71ad8e-d420-47d0-b156-a168113cac3d&quot;,
-            &quot;name&quot;: &quot;Miss Verlie Hansen&quot;,
-            &quot;username&quot;: &quot;ocrona&quot;,
-            &quot;email&quot;: &quot;yasmin.ondricka@example.com&quot;,
-            &quot;email_verified_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
-            &quot;created_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
+            &quot;id&quot;: &quot;9b72f854-d6ac-47b6-83cc-56155a55cf89&quot;,
+            &quot;name&quot;: &quot;Brannon Stamm&quot;,
+            &quot;username&quot;: &quot;wthompson&quot;,
+            &quot;email&quot;: &quot;jennyfer.west@example.net&quot;,
+            &quot;email_verified_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+            &quot;created_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
             &quot;viewer_follows&quot;: false,
             &quot;followers_count&quot;: 0,
             &quot;following_count&quot;: 0,
-            &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/ocrona/tweets&quot;
+            &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/wthompson/tweets&quot;
         },
-        &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/ocrona&quot;
+        &quot;user_url&quot;: &quot;http://localhost:8000/api/api/users/wthompson&quot;
     }
 }</code></pre>
                                                                             </div>
@@ -2554,7 +2557,7 @@ fetch(url, {
                                     </div>
         </div>
 
-        
+        <p>The token must have the following permission: <code>tweet:write</code>.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -2934,7 +2937,7 @@ fetch(url, {
                                     </div>
         </div>
 
-        <p>Returns the user data.</p>
+        <p>Provides publicly available information about some user.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -3334,17 +3337,17 @@ fetch(url, {
                                             <pre><code style="max-height: 300px;"
                                                        class="language-json sl-overflow-x-auto sl-overflow-y-auto">{
     &quot;data&quot;: {
-        &quot;id&quot;: &quot;9b71ad8d-02c0-4fd4-8757-07f7cf9e9efb&quot;,
-        &quot;name&quot;: &quot;Josie Grant&quot;,
-        &quot;username&quot;: &quot;samantha92&quot;,
-        &quot;email&quot;: &quot;jasper46@example.com&quot;,
-        &quot;email_verified_at&quot;: &quot;2024-02-28T13:04:12.000000Z&quot;,
-        &quot;created_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-02-28T13:04:13.000000Z&quot;,
+        &quot;id&quot;: &quot;9b72f853-0a88-4958-acf6-51004618b98f&quot;,
+        &quot;name&quot;: &quot;Patience Runte&quot;,
+        &quot;username&quot;: &quot;adeline.stamm&quot;,
+        &quot;email&quot;: &quot;jlang@example.com&quot;,
+        &quot;email_verified_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-29T04:29:07.000000Z&quot;,
         &quot;viewer_follows&quot;: false,
         &quot;followers_count&quot;: 0,
         &quot;following_count&quot;: 0,
-        &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/samantha92/tweets&quot;
+        &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/adeline.stamm/tweets&quot;
     }
 }</code></pre>
                                                                             </div>
@@ -3360,7 +3363,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="users-GETapi-me">
-                    Get the logged in user
+                    Get the authenticated user
                 </h2>
             </div>
         </div>
@@ -3388,6 +3391,7 @@ fetch(url, {
         </div>
 
         <p>Returns the currently logged-in user's data.</p>
+<p>The token does not require any permissions.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -3780,17 +3784,17 @@ fetch(url, {
                                             <pre><code style="max-height: 300px;"
                                                        class="language-json sl-overflow-x-auto sl-overflow-y-auto">{
     &quot;data&quot;: {
-        &quot;id&quot;: &quot;9b71ad8f-127d-4287-97d5-48bd3084673e&quot;,
-        &quot;name&quot;: &quot;Dr. Era O&#039;Hara&quot;,
-        &quot;username&quot;: &quot;berry83&quot;,
-        &quot;email&quot;: &quot;gwendolyn75@example.com&quot;,
-        &quot;email_verified_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
-        &quot;created_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-02-28T13:04:14.000000Z&quot;,
+        &quot;id&quot;: &quot;9b72f855-28e8-47bd-9c17-52cfb993efcf&quot;,
+        &quot;name&quot;: &quot;Eugenia Cummings&quot;,
+        &quot;username&quot;: &quot;terrill35&quot;,
+        &quot;email&quot;: &quot;zula54@example.net&quot;,
+        &quot;email_verified_at&quot;: &quot;2024-02-29T04:29:08.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2024-02-29T04:29:09.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-29T04:29:09.000000Z&quot;,
         &quot;viewer_follows&quot;: false,
         &quot;followers_count&quot;: 0,
         &quot;following_count&quot;: 0,
-        &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/berry83/tweets&quot;
+        &quot;tweets_url&quot;: &quot;http://localhost:8000/api/api/users/terrill35/tweets&quot;
     }
 }</code></pre>
                                                                             </div>
@@ -3806,7 +3810,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="users-PATCHapi-me">
-                    Update user data
+                    Update the authenticated user
                 </h2>
             </div>
         </div>
@@ -3834,6 +3838,7 @@ fetch(url, {
         </div>
 
         <p>Updates the currently logged-in user's data.</p>
+<p>The token must have the following permission: <code>profile:write</code>.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -3925,7 +3930,7 @@ fetch(url, {
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        pgutkowski@example.com
+                        dennis.wolff@example.org
                     </div>
                 </div>
             </div>
@@ -3950,7 +3955,7 @@ fetch(url, {
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        nhvcvpanxvmumre
+                        amlvjvlacuoybbxnavil
                     </div>
                 </div>
             </div>
@@ -3975,7 +3980,7 @@ fetch(url, {
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        womcwmsguujqhuibwjmwtoxd
+                        wjseeoigeqousubzo
                     </div>
                 </div>
             </div>
@@ -4105,9 +4110,9 @@ fetch(url, {
                                      id="json-body-PATCHapi-me"
                                      style="font-family: var(--font-code); font-size: 12px; line-height: var(--lh-code);"
                                 >{
-    "email": "pgutkowski@example.com",
-    "username": "nhvcvpanxvmumre",
-    "name": "womcwmsguujqhuibwjmwtoxd"
+    "email": "dennis.wolff@example.org",
+    "username": "amlvjvlacuoybbxnavil",
+    "name": "wjseeoigeqousubzo"
 }</div>
                             </div>
                                             </div>
@@ -4204,9 +4209,9 @@ You can check the Dev Tools console for debugging information.</p>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"pgutkowski@example.com\",
-    \"username\": \"nhvcvpanxvmumre\",
-    \"name\": \"womcwmsguujqhuibwjmwtoxd\"
+    \"email\": \"dennis.wolff@example.org\",
+    \"username\": \"amlvjvlacuoybbxnavil\",
+    \"name\": \"wjseeoigeqousubzo\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -4226,9 +4231,9 @@ const headers = {
 };
 
 let body = {
-    "email": "pgutkowski@example.com",
-    "username": "nhvcvpanxvmumre",
-    "name": "womcwmsguujqhuibwjmwtoxd"
+    "email": "dennis.wolff@example.org",
+    "username": "amlvjvlacuoybbxnavil",
+    "name": "wjseeoigeqousubzo"
 };
 
 fetch(url, {
@@ -4250,7 +4255,7 @@ fetch(url, {
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="users-DELETEapi-me">
-                    Delete user account
+                    Delete the authenticated user
                 </h2>
             </div>
         </div>
@@ -4278,6 +4283,7 @@ fetch(url, {
         </div>
 
         <p>Delete the currently logged-in user account.</p>
+<p>The token must have the following permission: <code>profile:write</code>.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">

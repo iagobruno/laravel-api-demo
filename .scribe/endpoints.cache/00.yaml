@@ -17,7 +17,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: 'Get a user'
-      description: 'Returns the user data.'
+      description: 'Provides publicly available information about some user.'
       authenticated: false
       custom: []
     headers:
@@ -43,7 +43,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":"9b71ad8d-02c0-4fd4-8757-07f7cf9e9efb","name":"Josie Grant","username":"samantha92","email":"jasper46@example.com","email_verified_at":"2024-02-28T13:04:12.000000Z","created_at":"2024-02-28T13:04:13.000000Z","updated_at":"2024-02-28T13:04:13.000000Z","viewer_follows":false,"followers_count":0,"following_count":0,"tweets_url":"http:\/\/localhost:8000\/api\/api\/users\/samantha92\/tweets"}}'
+        content: '{"data":{"id":"9b72f853-0a88-4958-acf6-51004618b98f","name":"Patience Runte","username":"adeline.stamm","email":"jlang@example.com","email_verified_at":"2024-02-29T04:29:07.000000Z","created_at":"2024-02-29T04:29:07.000000Z","updated_at":"2024-02-29T04:29:07.000000Z","viewer_follows":false,"followers_count":0,"following_count":0,"tweets_url":"http:\/\/localhost:8000\/api\/api\/users\/adeline.stamm\/tweets"}}'
         headers: []
         description: ''
         custom: []
@@ -100,8 +100,11 @@ endpoints:
         APIs for managing users.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get the logged in user'
-      description: "Returns the currently logged-in user's data."
+      title: 'Get the authenticated user'
+      description: |-
+        Returns the currently logged-in user's data.
+
+        The token does not require any permissions.
       authenticated: true
       custom: []
     headers:
@@ -118,7 +121,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":{"id":"9b71ad8f-127d-4287-97d5-48bd3084673e","name":"Dr. Era O''Hara","username":"berry83","email":"gwendolyn75@example.com","email_verified_at":"2024-02-28T13:04:14.000000Z","created_at":"2024-02-28T13:04:14.000000Z","updated_at":"2024-02-28T13:04:14.000000Z","viewer_follows":false,"followers_count":0,"following_count":0,"tweets_url":"http:\/\/localhost:8000\/api\/api\/users\/berry83\/tweets"}}'
+        content: '{"data":{"id":"9b72f855-28e8-47bd-9c17-52cfb993efcf","name":"Eugenia Cummings","username":"terrill35","email":"zula54@example.net","email_verified_at":"2024-02-29T04:29:08.000000Z","created_at":"2024-02-29T04:29:09.000000Z","updated_at":"2024-02-29T04:29:09.000000Z","viewer_follows":false,"followers_count":0,"following_count":0,"tweets_url":"http:\/\/localhost:8000\/api\/api\/users\/terrill35\/tweets"}}'
         headers: []
         description: ''
         custom: []
@@ -162,7 +165,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer b4Z5gV6aaDd1E8cfvhPk63e'
+      - 'Bearer k65fZbd3eD4g6Ea8ac1VvPh'
     controller: null
     method: null
     route: null
@@ -178,8 +181,11 @@ endpoints:
         APIs for managing users.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update user data'
-      description: "Updates the currently logged-in user's data."
+      title: 'Update the authenticated user'
+      description: |-
+        Updates the currently logged-in user's data.
+
+        The token must have the following permission: `profile:write`.
       authenticated: true
       custom: []
     headers:
@@ -195,7 +201,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: false
-        example: pgutkowski@example.com
+        example: dennis.wolff@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -204,7 +210,7 @@ endpoints:
         name: username
         description: 'Must contain only letters, numbers, dashes and underscores. Must be at least 4 characters. Must not be greater than 20 characters.'
         required: false
-        example: nhvcvpanxvmumre
+        example: amlvjvlacuoybbxnavil
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -213,22 +219,22 @@ endpoints:
         name: name
         description: 'Must be at least 1 character. Must not be greater than 50 characters.'
         required: false
-        example: womcwmsguujqhuibwjmwtoxd
+        example: wjseeoigeqousubzo
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: pgutkowski@example.com
-      username: nhvcvpanxvmumre
-      name: womcwmsguujqhuibwjmwtoxd
+      email: dennis.wolff@example.org
+      username: amlvjvlacuoybbxnavil
+      name: wjseeoigeqousubzo
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer ak14dVfce6gEh6P583ZDvab'
+      - 'Bearer 846aVa65c1hvfEkPZg3bDed'
     controller: null
     method: null
     route: null
@@ -244,8 +250,11 @@ endpoints:
         APIs for managing users.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Delete user account'
-      description: 'Delete the currently logged-in user account.'
+      title: 'Delete the authenticated user'
+      description: |-
+        Delete the currently logged-in user account.
+
+        The token must have the following permission: `profile:write`.
       authenticated: true
       custom: []
     headers:
@@ -264,7 +273,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer a8a4dcePDkZEgh5bf6Vv361'
+      - 'Bearer kZDfc8a6EPa31hge6Vvb45d'
     controller: null
     method: null
     route: null

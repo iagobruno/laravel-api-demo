@@ -25,7 +25,7 @@ paths:
             example: 1
         -
           in: query
-          name: limit
+          name: per_page
           description: 'The number of results per page to be returned. Max 50 and the default is 10.'
           example: 10
           required: false
@@ -43,43 +43,43 @@ paths:
                 example:
                   data:
                     -
-                      id: 9b71ad8d-54a8-4d64-bd24-5bb23152b056
-                      user_id: 9b71ad8d-5265-4ba6-91ea-36b659ada10c
-                      content: 'Cupiditate aliquid impedit nam numquam quia architecto laborum aliquam. Recusandae qui provident laborum. Non id repellendus totam.'
-                      created_at: '2024-02-28T13:04:13.000000Z'
-                      updated_at: '2024-02-28T13:04:13.000000Z'
+                      id: 9b72f853-71ae-4a7d-8141-c652e7f479cd
+                      user_id: 9b72f853-6f70-4734-a7ef-c22e42cbe428
+                      content: 'Cupiditate modi nesciunt voluptatum in. Quo odit non ea sit. Sint qui ut eius et consequuntur.'
+                      created_at: '2024-02-29T04:29:07.000000Z'
+                      updated_at: '2024-02-29T04:29:07.000000Z'
                       user:
-                        id: 9b71ad8d-5265-4ba6-91ea-36b659ada10c
-                        name: 'Weldon Swift'
-                        username: xwintheiser
-                        email: mayert.corrine@example.org
-                        email_verified_at: '2024-02-28T13:04:13.000000Z'
-                        created_at: '2024-02-28T13:04:13.000000Z'
-                        updated_at: '2024-02-28T13:04:13.000000Z'
+                        id: 9b72f853-6f70-4734-a7ef-c22e42cbe428
+                        name: 'Ewell Erdman I'
+                        username: horacio.bernhard
+                        email: ward83@example.org
+                        email_verified_at: '2024-02-29T04:29:07.000000Z'
+                        created_at: '2024-02-29T04:29:07.000000Z'
+                        updated_at: '2024-02-29T04:29:07.000000Z'
                         viewer_follows: false
                         followers_count: 0
                         following_count: 0
-                        tweets_url: 'http://localhost:8000/api/api/users/xwintheiser/tweets'
-                      user_url: 'http://localhost:8000/api/api/users/xwintheiser'
+                        tweets_url: 'http://localhost:8000/api/api/users/horacio.bernhard/tweets'
+                      user_url: 'http://localhost:8000/api/api/users/horacio.bernhard'
                     -
-                      id: 9b71ad8d-9fff-4785-b6f9-3a8c427d8290
-                      user_id: 9b71ad8d-948c-4980-b25c-190d61305e97
-                      content: 'Ab officiis voluptatem est deserunt. Libero qui quaerat soluta deserunt consequatur. Deleniti voluptatem voluptas minus qui sed.'
-                      created_at: '2024-02-28T13:04:13.000000Z'
-                      updated_at: '2024-02-28T13:04:13.000000Z'
+                      id: 9b72f853-adee-4903-8e84-125fc58cf605
+                      user_id: 9b72f853-ab96-44b0-b638-e6ceba5aaf00
+                      content: 'Qui est cumque dolorem dolore. Sit aut sint eligendi iusto. Inventore provident velit qui ut corporis porro dolor.'
+                      created_at: '2024-02-29T04:29:08.000000Z'
+                      updated_at: '2024-02-29T04:29:08.000000Z'
                       user:
-                        id: 9b71ad8d-948c-4980-b25c-190d61305e97
-                        name: 'Mrs. Ericka Langworth'
-                        username: akuhlman
-                        email: celia35@example.net
-                        email_verified_at: '2024-02-28T13:04:13.000000Z'
-                        created_at: '2024-02-28T13:04:13.000000Z'
-                        updated_at: '2024-02-28T13:04:13.000000Z'
+                        id: 9b72f853-ab96-44b0-b638-e6ceba5aaf00
+                        name: 'Matteo Dietrich'
+                        username: reta.adams
+                        email: marlene99@example.org
+                        email_verified_at: '2024-02-29T04:29:07.000000Z'
+                        created_at: '2024-02-29T04:29:08.000000Z'
+                        updated_at: '2024-02-29T04:29:08.000000Z'
                         viewer_follows: false
                         followers_count: 0
                         following_count: 0
-                        tweets_url: 'http://localhost:8000/api/api/users/akuhlman/tweets'
-                      user_url: 'http://localhost:8000/api/api/users/akuhlman'
+                        tweets_url: 'http://localhost:8000/api/api/users/reta.adams/tweets'
+                      user_url: 'http://localhost:8000/api/api/users/reta.adams'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -111,85 +111,85 @@ paths:
                     type: array
                     example:
                       -
-                        id: 9b71ad8d-54a8-4d64-bd24-5bb23152b056
-                        user_id: 9b71ad8d-5265-4ba6-91ea-36b659ada10c
-                        content: 'Cupiditate aliquid impedit nam numquam quia architecto laborum aliquam. Recusandae qui provident laborum. Non id repellendus totam.'
-                        created_at: '2024-02-28T13:04:13.000000Z'
-                        updated_at: '2024-02-28T13:04:13.000000Z'
+                        id: 9b72f853-71ae-4a7d-8141-c652e7f479cd
+                        user_id: 9b72f853-6f70-4734-a7ef-c22e42cbe428
+                        content: 'Cupiditate modi nesciunt voluptatum in. Quo odit non ea sit. Sint qui ut eius et consequuntur.'
+                        created_at: '2024-02-29T04:29:07.000000Z'
+                        updated_at: '2024-02-29T04:29:07.000000Z'
                         user:
-                          id: 9b71ad8d-5265-4ba6-91ea-36b659ada10c
-                          name: 'Weldon Swift'
-                          username: xwintheiser
-                          email: mayert.corrine@example.org
-                          email_verified_at: '2024-02-28T13:04:13.000000Z'
-                          created_at: '2024-02-28T13:04:13.000000Z'
-                          updated_at: '2024-02-28T13:04:13.000000Z'
+                          id: 9b72f853-6f70-4734-a7ef-c22e42cbe428
+                          name: 'Ewell Erdman I'
+                          username: horacio.bernhard
+                          email: ward83@example.org
+                          email_verified_at: '2024-02-29T04:29:07.000000Z'
+                          created_at: '2024-02-29T04:29:07.000000Z'
+                          updated_at: '2024-02-29T04:29:07.000000Z'
                           viewer_follows: false
                           followers_count: 0
                           following_count: 0
-                          tweets_url: 'http://localhost:8000/api/api/users/xwintheiser/tweets'
-                        user_url: 'http://localhost:8000/api/api/users/xwintheiser'
+                          tweets_url: 'http://localhost:8000/api/api/users/horacio.bernhard/tweets'
+                        user_url: 'http://localhost:8000/api/api/users/horacio.bernhard'
                       -
-                        id: 9b71ad8d-9fff-4785-b6f9-3a8c427d8290
-                        user_id: 9b71ad8d-948c-4980-b25c-190d61305e97
-                        content: 'Ab officiis voluptatem est deserunt. Libero qui quaerat soluta deserunt consequatur. Deleniti voluptatem voluptas minus qui sed.'
-                        created_at: '2024-02-28T13:04:13.000000Z'
-                        updated_at: '2024-02-28T13:04:13.000000Z'
+                        id: 9b72f853-adee-4903-8e84-125fc58cf605
+                        user_id: 9b72f853-ab96-44b0-b638-e6ceba5aaf00
+                        content: 'Qui est cumque dolorem dolore. Sit aut sint eligendi iusto. Inventore provident velit qui ut corporis porro dolor.'
+                        created_at: '2024-02-29T04:29:08.000000Z'
+                        updated_at: '2024-02-29T04:29:08.000000Z'
                         user:
-                          id: 9b71ad8d-948c-4980-b25c-190d61305e97
-                          name: 'Mrs. Ericka Langworth'
-                          username: akuhlman
-                          email: celia35@example.net
-                          email_verified_at: '2024-02-28T13:04:13.000000Z'
-                          created_at: '2024-02-28T13:04:13.000000Z'
-                          updated_at: '2024-02-28T13:04:13.000000Z'
+                          id: 9b72f853-ab96-44b0-b638-e6ceba5aaf00
+                          name: 'Matteo Dietrich'
+                          username: reta.adams
+                          email: marlene99@example.org
+                          email_verified_at: '2024-02-29T04:29:07.000000Z'
+                          created_at: '2024-02-29T04:29:08.000000Z'
+                          updated_at: '2024-02-29T04:29:08.000000Z'
                           viewer_follows: false
                           followers_count: 0
                           following_count: 0
-                          tweets_url: 'http://localhost:8000/api/api/users/akuhlman/tweets'
-                        user_url: 'http://localhost:8000/api/api/users/akuhlman'
+                          tweets_url: 'http://localhost:8000/api/api/users/reta.adams/tweets'
+                        user_url: 'http://localhost:8000/api/api/users/reta.adams'
                     items:
                       type: object
                       properties:
                         id:
                           type: string
-                          example: 9b71ad8d-54a8-4d64-bd24-5bb23152b056
+                          example: 9b72f853-71ae-4a7d-8141-c652e7f479cd
                         user_id:
                           type: string
-                          example: 9b71ad8d-5265-4ba6-91ea-36b659ada10c
+                          example: 9b72f853-6f70-4734-a7ef-c22e42cbe428
                         content:
                           type: string
-                          example: 'Cupiditate aliquid impedit nam numquam quia architecto laborum aliquam. Recusandae qui provident laborum. Non id repellendus totam.'
+                          example: 'Cupiditate modi nesciunt voluptatum in. Quo odit non ea sit. Sint qui ut eius et consequuntur.'
                         created_at:
                           type: string
-                          example: '2024-02-28T13:04:13.000000Z'
+                          example: '2024-02-29T04:29:07.000000Z'
                         updated_at:
                           type: string
-                          example: '2024-02-28T13:04:13.000000Z'
+                          example: '2024-02-29T04:29:07.000000Z'
                         user:
                           type: object
                           properties:
                             id:
                               type: string
-                              example: 9b71ad8d-5265-4ba6-91ea-36b659ada10c
+                              example: 9b72f853-6f70-4734-a7ef-c22e42cbe428
                             name:
                               type: string
-                              example: 'Weldon Swift'
+                              example: 'Ewell Erdman I'
                             username:
                               type: string
-                              example: xwintheiser
+                              example: horacio.bernhard
                             email:
                               type: string
-                              example: mayert.corrine@example.org
+                              example: ward83@example.org
                             email_verified_at:
                               type: string
-                              example: '2024-02-28T13:04:13.000000Z'
+                              example: '2024-02-29T04:29:07.000000Z'
                             created_at:
                               type: string
-                              example: '2024-02-28T13:04:13.000000Z'
+                              example: '2024-02-29T04:29:07.000000Z'
                             updated_at:
                               type: string
-                              example: '2024-02-28T13:04:13.000000Z'
+                              example: '2024-02-29T04:29:07.000000Z'
                             viewer_follows:
                               type: boolean
                               example: false
@@ -201,10 +201,10 @@ paths:
                               example: 0
                             tweets_url:
                               type: string
-                              example: 'http://localhost:8000/api/api/users/xwintheiser/tweets'
+                              example: 'http://localhost:8000/api/api/users/horacio.bernhard/tweets'
                         user_url:
                           type: string
-                          example: 'http://localhost:8000/api/api/users/xwintheiser'
+                          example: 'http://localhost:8000/api/api/users/horacio.bernhard'
                   links:
                     type: object
                     properties:
@@ -298,67 +298,67 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 9b71ad8e-02de-4c6e-abef-1068b80d8c7a
-                    user_id: 9b71ad8d-fef5-4a54-ae4c-b92e84c713c1
-                    content: 'Est et quam quia beatae. Rem atque modi dolor aut eius cum modi autem. Doloribus architecto veritatis temporibus et non totam rerum.'
-                    created_at: '2024-02-28T13:04:13.000000Z'
-                    updated_at: '2024-02-28T13:04:13.000000Z'
+                    id: 9b72f854-0122-40db-89c9-531ffd6af473
+                    user_id: 9b72f853-fe11-4ee7-95a2-2e81378fda10
+                    content: 'Sunt molestiae mollitia beatae illum. Neque non et non quis iste qui. Maxime quidem sint et sapiente delectus saepe quia.'
+                    created_at: '2024-02-29T04:29:08.000000Z'
+                    updated_at: '2024-02-29T04:29:08.000000Z'
                     user:
-                      id: 9b71ad8d-fef5-4a54-ae4c-b92e84c713c1
-                      name: 'Lela Yost'
-                      username: micaela.gislason
-                      email: ugerlach@example.org
-                      email_verified_at: '2024-02-28T13:04:13.000000Z'
-                      created_at: '2024-02-28T13:04:13.000000Z'
-                      updated_at: '2024-02-28T13:04:13.000000Z'
+                      id: 9b72f853-fe11-4ee7-95a2-2e81378fda10
+                      name: 'Elyssa Legros'
+                      username: brent58
+                      email: murazik.mario@example.com
+                      email_verified_at: '2024-02-29T04:29:08.000000Z'
+                      created_at: '2024-02-29T04:29:08.000000Z'
+                      updated_at: '2024-02-29T04:29:08.000000Z'
                       viewer_follows: false
                       followers_count: 0
                       following_count: 0
-                      tweets_url: 'http://localhost:8000/api/api/users/micaela.gislason/tweets'
-                    user_url: 'http://localhost:8000/api/api/users/micaela.gislason'
+                      tweets_url: 'http://localhost:8000/api/api/users/brent58/tweets'
+                    user_url: 'http://localhost:8000/api/api/users/brent58'
                 properties:
                   data:
                     type: object
                     properties:
                       id:
                         type: string
-                        example: 9b71ad8e-02de-4c6e-abef-1068b80d8c7a
+                        example: 9b72f854-0122-40db-89c9-531ffd6af473
                       user_id:
                         type: string
-                        example: 9b71ad8d-fef5-4a54-ae4c-b92e84c713c1
+                        example: 9b72f853-fe11-4ee7-95a2-2e81378fda10
                       content:
                         type: string
-                        example: 'Est et quam quia beatae. Rem atque modi dolor aut eius cum modi autem. Doloribus architecto veritatis temporibus et non totam rerum.'
+                        example: 'Sunt molestiae mollitia beatae illum. Neque non et non quis iste qui. Maxime quidem sint et sapiente delectus saepe quia.'
                       created_at:
                         type: string
-                        example: '2024-02-28T13:04:13.000000Z'
+                        example: '2024-02-29T04:29:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2024-02-28T13:04:13.000000Z'
+                        example: '2024-02-29T04:29:08.000000Z'
                       user:
                         type: object
                         properties:
                           id:
                             type: string
-                            example: 9b71ad8d-fef5-4a54-ae4c-b92e84c713c1
+                            example: 9b72f853-fe11-4ee7-95a2-2e81378fda10
                           name:
                             type: string
-                            example: 'Lela Yost'
+                            example: 'Elyssa Legros'
                           username:
                             type: string
-                            example: micaela.gislason
+                            example: brent58
                           email:
                             type: string
-                            example: ugerlach@example.org
+                            example: murazik.mario@example.com
                           email_verified_at:
                             type: string
-                            example: '2024-02-28T13:04:13.000000Z'
+                            example: '2024-02-29T04:29:08.000000Z'
                           created_at:
                             type: string
-                            example: '2024-02-28T13:04:13.000000Z'
+                            example: '2024-02-29T04:29:08.000000Z'
                           updated_at:
                             type: string
-                            example: '2024-02-28T13:04:13.000000Z'
+                            example: '2024-02-29T04:29:08.000000Z'
                           viewer_follows:
                             type: boolean
                             example: false
@@ -370,17 +370,17 @@ paths:
                             example: 0
                           tweets_url:
                             type: string
-                            example: 'http://localhost:8000/api/api/users/micaela.gislason/tweets'
+                            example: 'http://localhost:8000/api/api/users/brent58/tweets'
                       user_url:
                         type: string
-                        example: 'http://localhost:8000/api/api/users/micaela.gislason'
+                        example: 'http://localhost:8000/api/api/users/brent58'
       tags:
         - Tweets
       security: []
     delete:
       summary: 'Delete a tweet'
       operationId: deleteATweet
-      description: ''
+      description: 'The token must have the following permission: `tweet:write`.'
       parameters: []
       responses: {  }
       tags:
@@ -398,7 +398,7 @@ paths:
     get:
       summary: 'Get user feed'
       operationId: getUserFeed
-      description: 'Get the latest tweets from profiles the user follows.'
+      description: "Get the latest tweets from profiles the user follows.\n\nReturns a paginated response.\n\nThe token does not require any permissions."
       parameters:
         -
           in: query
@@ -412,7 +412,7 @@ paths:
             example: 1
         -
           in: query
-          name: limit
+          name: per_page
           description: 'The number of results per page to be returned. Max 50 and the default is 10.'
           example: 10
           required: false
@@ -430,43 +430,43 @@ paths:
                 example:
                   data:
                     -
-                      id: 9b71ad8e-4a26-4f7c-8fb2-7eec0db079d3
-                      user_id: 9b71ad8e-47c3-4152-b12f-f41028658def
-                      content: 'Error quaerat debitis quia dicta consequuntur aut provident. Expedita quia voluptatem eum in quisquam praesentium et nobis.'
-                      created_at: '2024-02-28T13:04:13.000000Z'
-                      updated_at: '2024-02-28T13:04:13.000000Z'
+                      id: 9b72f854-5201-4268-8500-0ea035fd725b
+                      user_id: 9b72f854-4d9f-4852-b32e-14163b52e15f
+                      content: 'Quo ut veniam sed facere. Saepe provident sit aut porro perferendis. Possimus corporis ut nihil qui ipsa rerum eveniet perspiciatis.'
+                      created_at: '2024-02-29T04:29:08.000000Z'
+                      updated_at: '2024-02-29T04:29:08.000000Z'
                       user:
-                        id: 9b71ad8e-47c3-4152-b12f-f41028658def
-                        name: 'Sandy Dietrich'
-                        username: maximilian41
-                        email: eortiz@example.com
-                        email_verified_at: '2024-02-28T13:04:13.000000Z'
-                        created_at: '2024-02-28T13:04:13.000000Z'
-                        updated_at: '2024-02-28T13:04:13.000000Z'
+                        id: 9b72f854-4d9f-4852-b32e-14163b52e15f
+                        name: 'Jewel Hackett DDS'
+                        username: gladyce.leannon
+                        email: qbogan@example.com
+                        email_verified_at: '2024-02-29T04:29:08.000000Z'
+                        created_at: '2024-02-29T04:29:08.000000Z'
+                        updated_at: '2024-02-29T04:29:08.000000Z'
                         viewer_follows: false
                         followers_count: 0
                         following_count: 0
-                        tweets_url: 'http://localhost:8000/api/api/users/maximilian41/tweets'
-                      user_url: 'http://localhost:8000/api/api/users/maximilian41'
+                        tweets_url: 'http://localhost:8000/api/api/users/gladyce.leannon/tweets'
+                      user_url: 'http://localhost:8000/api/api/users/gladyce.leannon'
                     -
-                      id: 9b71ad8e-8e52-4fa3-90d0-0ce444cf19d2
-                      user_id: 9b71ad8e-8c20-4496-a4e2-0b4c0db11197
-                      content: 'Sed libero modi dignissimos reiciendis. Repudiandae voluptas necessitatibus aliquam et voluptatem expedita. Nisi et est ut repellat fugiat.'
-                      created_at: '2024-02-28T13:04:14.000000Z'
-                      updated_at: '2024-02-28T13:04:14.000000Z'
+                      id: 9b72f854-8cb1-4d08-82c1-3584b1990f2e
+                      user_id: 9b72f854-8768-419a-8c17-2231fd2c3394
+                      content: 'Totam repudiandae neque dolorem tempore eveniet. Nostrum qui et et ullam cupiditate ut eum. Molestias modi atque enim aliquam autem velit.'
+                      created_at: '2024-02-29T04:29:08.000000Z'
+                      updated_at: '2024-02-29T04:29:08.000000Z'
                       user:
-                        id: 9b71ad8e-8c20-4496-a4e2-0b4c0db11197
-                        name: 'Dorcas Keeling'
-                        username: wunsch.chelsea
-                        email: jordan19@example.org
-                        email_verified_at: '2024-02-28T13:04:13.000000Z'
-                        created_at: '2024-02-28T13:04:14.000000Z'
-                        updated_at: '2024-02-28T13:04:14.000000Z'
+                        id: 9b72f854-8768-419a-8c17-2231fd2c3394
+                        name: 'Arlo Hilpert DVM'
+                        username: xavier.kuvalis
+                        email: nader.devan@example.net
+                        email_verified_at: '2024-02-29T04:29:08.000000Z'
+                        created_at: '2024-02-29T04:29:08.000000Z'
+                        updated_at: '2024-02-29T04:29:08.000000Z'
                         viewer_follows: false
                         followers_count: 0
                         following_count: 0
-                        tweets_url: 'http://localhost:8000/api/api/users/wunsch.chelsea/tweets'
-                      user_url: 'http://localhost:8000/api/api/users/wunsch.chelsea'
+                        tweets_url: 'http://localhost:8000/api/api/users/xavier.kuvalis/tweets'
+                      user_url: 'http://localhost:8000/api/api/users/xavier.kuvalis'
                   links:
                     first: '/?page=1'
                     last: '/?page=1'
@@ -498,85 +498,85 @@ paths:
                     type: array
                     example:
                       -
-                        id: 9b71ad8e-4a26-4f7c-8fb2-7eec0db079d3
-                        user_id: 9b71ad8e-47c3-4152-b12f-f41028658def
-                        content: 'Error quaerat debitis quia dicta consequuntur aut provident. Expedita quia voluptatem eum in quisquam praesentium et nobis.'
-                        created_at: '2024-02-28T13:04:13.000000Z'
-                        updated_at: '2024-02-28T13:04:13.000000Z'
+                        id: 9b72f854-5201-4268-8500-0ea035fd725b
+                        user_id: 9b72f854-4d9f-4852-b32e-14163b52e15f
+                        content: 'Quo ut veniam sed facere. Saepe provident sit aut porro perferendis. Possimus corporis ut nihil qui ipsa rerum eveniet perspiciatis.'
+                        created_at: '2024-02-29T04:29:08.000000Z'
+                        updated_at: '2024-02-29T04:29:08.000000Z'
                         user:
-                          id: 9b71ad8e-47c3-4152-b12f-f41028658def
-                          name: 'Sandy Dietrich'
-                          username: maximilian41
-                          email: eortiz@example.com
-                          email_verified_at: '2024-02-28T13:04:13.000000Z'
-                          created_at: '2024-02-28T13:04:13.000000Z'
-                          updated_at: '2024-02-28T13:04:13.000000Z'
+                          id: 9b72f854-4d9f-4852-b32e-14163b52e15f
+                          name: 'Jewel Hackett DDS'
+                          username: gladyce.leannon
+                          email: qbogan@example.com
+                          email_verified_at: '2024-02-29T04:29:08.000000Z'
+                          created_at: '2024-02-29T04:29:08.000000Z'
+                          updated_at: '2024-02-29T04:29:08.000000Z'
                           viewer_follows: false
                           followers_count: 0
                           following_count: 0
-                          tweets_url: 'http://localhost:8000/api/api/users/maximilian41/tweets'
-                        user_url: 'http://localhost:8000/api/api/users/maximilian41'
+                          tweets_url: 'http://localhost:8000/api/api/users/gladyce.leannon/tweets'
+                        user_url: 'http://localhost:8000/api/api/users/gladyce.leannon'
                       -
-                        id: 9b71ad8e-8e52-4fa3-90d0-0ce444cf19d2
-                        user_id: 9b71ad8e-8c20-4496-a4e2-0b4c0db11197
-                        content: 'Sed libero modi dignissimos reiciendis. Repudiandae voluptas necessitatibus aliquam et voluptatem expedita. Nisi et est ut repellat fugiat.'
-                        created_at: '2024-02-28T13:04:14.000000Z'
-                        updated_at: '2024-02-28T13:04:14.000000Z'
+                        id: 9b72f854-8cb1-4d08-82c1-3584b1990f2e
+                        user_id: 9b72f854-8768-419a-8c17-2231fd2c3394
+                        content: 'Totam repudiandae neque dolorem tempore eveniet. Nostrum qui et et ullam cupiditate ut eum. Molestias modi atque enim aliquam autem velit.'
+                        created_at: '2024-02-29T04:29:08.000000Z'
+                        updated_at: '2024-02-29T04:29:08.000000Z'
                         user:
-                          id: 9b71ad8e-8c20-4496-a4e2-0b4c0db11197
-                          name: 'Dorcas Keeling'
-                          username: wunsch.chelsea
-                          email: jordan19@example.org
-                          email_verified_at: '2024-02-28T13:04:13.000000Z'
-                          created_at: '2024-02-28T13:04:14.000000Z'
-                          updated_at: '2024-02-28T13:04:14.000000Z'
+                          id: 9b72f854-8768-419a-8c17-2231fd2c3394
+                          name: 'Arlo Hilpert DVM'
+                          username: xavier.kuvalis
+                          email: nader.devan@example.net
+                          email_verified_at: '2024-02-29T04:29:08.000000Z'
+                          created_at: '2024-02-29T04:29:08.000000Z'
+                          updated_at: '2024-02-29T04:29:08.000000Z'
                           viewer_follows: false
                           followers_count: 0
                           following_count: 0
-                          tweets_url: 'http://localhost:8000/api/api/users/wunsch.chelsea/tweets'
-                        user_url: 'http://localhost:8000/api/api/users/wunsch.chelsea'
+                          tweets_url: 'http://localhost:8000/api/api/users/xavier.kuvalis/tweets'
+                        user_url: 'http://localhost:8000/api/api/users/xavier.kuvalis'
                     items:
                       type: object
                       properties:
                         id:
                           type: string
-                          example: 9b71ad8e-4a26-4f7c-8fb2-7eec0db079d3
+                          example: 9b72f854-5201-4268-8500-0ea035fd725b
                         user_id:
                           type: string
-                          example: 9b71ad8e-47c3-4152-b12f-f41028658def
+                          example: 9b72f854-4d9f-4852-b32e-14163b52e15f
                         content:
                           type: string
-                          example: 'Error quaerat debitis quia dicta consequuntur aut provident. Expedita quia voluptatem eum in quisquam praesentium et nobis.'
+                          example: 'Quo ut veniam sed facere. Saepe provident sit aut porro perferendis. Possimus corporis ut nihil qui ipsa rerum eveniet perspiciatis.'
                         created_at:
                           type: string
-                          example: '2024-02-28T13:04:13.000000Z'
+                          example: '2024-02-29T04:29:08.000000Z'
                         updated_at:
                           type: string
-                          example: '2024-02-28T13:04:13.000000Z'
+                          example: '2024-02-29T04:29:08.000000Z'
                         user:
                           type: object
                           properties:
                             id:
                               type: string
-                              example: 9b71ad8e-47c3-4152-b12f-f41028658def
+                              example: 9b72f854-4d9f-4852-b32e-14163b52e15f
                             name:
                               type: string
-                              example: 'Sandy Dietrich'
+                              example: 'Jewel Hackett DDS'
                             username:
                               type: string
-                              example: maximilian41
+                              example: gladyce.leannon
                             email:
                               type: string
-                              example: eortiz@example.com
+                              example: qbogan@example.com
                             email_verified_at:
                               type: string
-                              example: '2024-02-28T13:04:13.000000Z'
+                              example: '2024-02-29T04:29:08.000000Z'
                             created_at:
                               type: string
-                              example: '2024-02-28T13:04:13.000000Z'
+                              example: '2024-02-29T04:29:08.000000Z'
                             updated_at:
                               type: string
-                              example: '2024-02-28T13:04:13.000000Z'
+                              example: '2024-02-29T04:29:08.000000Z'
                             viewer_follows:
                               type: boolean
                               example: false
@@ -588,10 +588,10 @@ paths:
                               example: 0
                             tweets_url:
                               type: string
-                              example: 'http://localhost:8000/api/api/users/maximilian41/tweets'
+                              example: 'http://localhost:8000/api/api/users/gladyce.leannon/tweets'
                         user_url:
                           type: string
-                          example: 'http://localhost:8000/api/api/users/maximilian41'
+                          example: 'http://localhost:8000/api/api/users/gladyce.leannon'
                   links:
                     type: object
                     properties:
@@ -664,7 +664,7 @@ paths:
     post:
       summary: 'Create a tweet'
       operationId: createATweet
-      description: "Post a new tweet to the logged in user's account."
+      description: "Post a new tweet to the logged in user's account.\n\nThe token must have the following permission: `tweet:write`."
       parameters: []
       responses:
         200:
@@ -675,67 +675,67 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 9b71ad8e-d6ab-48a5-8310-47fe4d7d3eb3
-                    user_id: 9b71ad8e-d420-47d0-b156-a168113cac3d
-                    content: 'Voluptatem cum quaerat reiciendis ut occaecati. Cum doloremque quia iure iusto quia et rem. Eum commodi omnis iusto sed.'
-                    created_at: '2024-02-28T13:04:14.000000Z'
-                    updated_at: '2024-02-28T13:04:14.000000Z'
+                    id: 9b72f854-d91d-4215-984e-9e2d6aba063a
+                    user_id: 9b72f854-d6ac-47b6-83cc-56155a55cf89
+                    content: 'Consequatur ut cum laboriosam laudantium consequatur alias rem. At delectus non nobis in sint.'
+                    created_at: '2024-02-29T04:29:08.000000Z'
+                    updated_at: '2024-02-29T04:29:08.000000Z'
                     user:
-                      id: 9b71ad8e-d420-47d0-b156-a168113cac3d
-                      name: 'Miss Verlie Hansen'
-                      username: ocrona
-                      email: yasmin.ondricka@example.com
-                      email_verified_at: '2024-02-28T13:04:14.000000Z'
-                      created_at: '2024-02-28T13:04:14.000000Z'
-                      updated_at: '2024-02-28T13:04:14.000000Z'
+                      id: 9b72f854-d6ac-47b6-83cc-56155a55cf89
+                      name: 'Brannon Stamm'
+                      username: wthompson
+                      email: jennyfer.west@example.net
+                      email_verified_at: '2024-02-29T04:29:08.000000Z'
+                      created_at: '2024-02-29T04:29:08.000000Z'
+                      updated_at: '2024-02-29T04:29:08.000000Z'
                       viewer_follows: false
                       followers_count: 0
                       following_count: 0
-                      tweets_url: 'http://localhost:8000/api/api/users/ocrona/tweets'
-                    user_url: 'http://localhost:8000/api/api/users/ocrona'
+                      tweets_url: 'http://localhost:8000/api/api/users/wthompson/tweets'
+                    user_url: 'http://localhost:8000/api/api/users/wthompson'
                 properties:
                   data:
                     type: object
                     properties:
                       id:
                         type: string
-                        example: 9b71ad8e-d6ab-48a5-8310-47fe4d7d3eb3
+                        example: 9b72f854-d91d-4215-984e-9e2d6aba063a
                       user_id:
                         type: string
-                        example: 9b71ad8e-d420-47d0-b156-a168113cac3d
+                        example: 9b72f854-d6ac-47b6-83cc-56155a55cf89
                       content:
                         type: string
-                        example: 'Voluptatem cum quaerat reiciendis ut occaecati. Cum doloremque quia iure iusto quia et rem. Eum commodi omnis iusto sed.'
+                        example: 'Consequatur ut cum laboriosam laudantium consequatur alias rem. At delectus non nobis in sint.'
                       created_at:
                         type: string
-                        example: '2024-02-28T13:04:14.000000Z'
+                        example: '2024-02-29T04:29:08.000000Z'
                       updated_at:
                         type: string
-                        example: '2024-02-28T13:04:14.000000Z'
+                        example: '2024-02-29T04:29:08.000000Z'
                       user:
                         type: object
                         properties:
                           id:
                             type: string
-                            example: 9b71ad8e-d420-47d0-b156-a168113cac3d
+                            example: 9b72f854-d6ac-47b6-83cc-56155a55cf89
                           name:
                             type: string
-                            example: 'Miss Verlie Hansen'
+                            example: 'Brannon Stamm'
                           username:
                             type: string
-                            example: ocrona
+                            example: wthompson
                           email:
                             type: string
-                            example: yasmin.ondricka@example.com
+                            example: jennyfer.west@example.net
                           email_verified_at:
                             type: string
-                            example: '2024-02-28T13:04:14.000000Z'
+                            example: '2024-02-29T04:29:08.000000Z'
                           created_at:
                             type: string
-                            example: '2024-02-28T13:04:14.000000Z'
+                            example: '2024-02-29T04:29:08.000000Z'
                           updated_at:
                             type: string
-                            example: '2024-02-28T13:04:14.000000Z'
+                            example: '2024-02-29T04:29:08.000000Z'
                           viewer_follows:
                             type: boolean
                             example: false
@@ -747,10 +747,10 @@ paths:
                             example: 0
                           tweets_url:
                             type: string
-                            example: 'http://localhost:8000/api/api/users/ocrona/tweets'
+                            example: 'http://localhost:8000/api/api/users/wthompson/tweets'
                       user_url:
                         type: string
-                        example: 'http://localhost:8000/api/api/users/ocrona'
+                        example: 'http://localhost:8000/api/api/users/wthompson'
       tags:
         - Tweets
       requestBody:
@@ -770,7 +770,7 @@ paths:
     get:
       summary: 'Get a user'
       operationId: getAUser
-      description: 'Returns the user data.'
+      description: 'Provides publicly available information about some user.'
       parameters: []
       responses:
         200:
@@ -781,42 +781,42 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 9b71ad8d-02c0-4fd4-8757-07f7cf9e9efb
-                    name: 'Josie Grant'
-                    username: samantha92
-                    email: jasper46@example.com
-                    email_verified_at: '2024-02-28T13:04:12.000000Z'
-                    created_at: '2024-02-28T13:04:13.000000Z'
-                    updated_at: '2024-02-28T13:04:13.000000Z'
+                    id: 9b72f853-0a88-4958-acf6-51004618b98f
+                    name: 'Patience Runte'
+                    username: adeline.stamm
+                    email: jlang@example.com
+                    email_verified_at: '2024-02-29T04:29:07.000000Z'
+                    created_at: '2024-02-29T04:29:07.000000Z'
+                    updated_at: '2024-02-29T04:29:07.000000Z'
                     viewer_follows: false
                     followers_count: 0
                     following_count: 0
-                    tweets_url: 'http://localhost:8000/api/api/users/samantha92/tweets'
+                    tweets_url: 'http://localhost:8000/api/api/users/adeline.stamm/tweets'
                 properties:
                   data:
                     type: object
                     properties:
                       id:
                         type: string
-                        example: 9b71ad8d-02c0-4fd4-8757-07f7cf9e9efb
+                        example: 9b72f853-0a88-4958-acf6-51004618b98f
                       name:
                         type: string
-                        example: 'Josie Grant'
+                        example: 'Patience Runte'
                       username:
                         type: string
-                        example: samantha92
+                        example: adeline.stamm
                       email:
                         type: string
-                        example: jasper46@example.com
+                        example: jlang@example.com
                       email_verified_at:
                         type: string
-                        example: '2024-02-28T13:04:12.000000Z'
+                        example: '2024-02-29T04:29:07.000000Z'
                       created_at:
                         type: string
-                        example: '2024-02-28T13:04:13.000000Z'
+                        example: '2024-02-29T04:29:07.000000Z'
                       updated_at:
                         type: string
-                        example: '2024-02-28T13:04:13.000000Z'
+                        example: '2024-02-29T04:29:07.000000Z'
                       viewer_follows:
                         type: boolean
                         example: false
@@ -828,7 +828,7 @@ paths:
                         example: 0
                       tweets_url:
                         type: string
-                        example: 'http://localhost:8000/api/api/users/samantha92/tweets'
+                        example: 'http://localhost:8000/api/api/users/adeline.stamm/tweets'
       tags:
         - Users
       security: []
@@ -843,9 +843,9 @@ paths:
           type: string
   /api/me:
     get:
-      summary: 'Get the logged in user'
-      operationId: getTheLoggedInUser
-      description: "Returns the currently logged-in user's data."
+      summary: 'Get the authenticated user'
+      operationId: getTheAuthenticatedUser
+      description: "Returns the currently logged-in user's data.\n\nThe token does not require any permissions."
       parameters: []
       responses:
         200:
@@ -856,42 +856,42 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 9b71ad8f-127d-4287-97d5-48bd3084673e
-                    name: "Dr. Era O'Hara"
-                    username: berry83
-                    email: gwendolyn75@example.com
-                    email_verified_at: '2024-02-28T13:04:14.000000Z'
-                    created_at: '2024-02-28T13:04:14.000000Z'
-                    updated_at: '2024-02-28T13:04:14.000000Z'
+                    id: 9b72f855-28e8-47bd-9c17-52cfb993efcf
+                    name: 'Eugenia Cummings'
+                    username: terrill35
+                    email: zula54@example.net
+                    email_verified_at: '2024-02-29T04:29:08.000000Z'
+                    created_at: '2024-02-29T04:29:09.000000Z'
+                    updated_at: '2024-02-29T04:29:09.000000Z'
                     viewer_follows: false
                     followers_count: 0
                     following_count: 0
-                    tweets_url: 'http://localhost:8000/api/api/users/berry83/tweets'
+                    tweets_url: 'http://localhost:8000/api/api/users/terrill35/tweets'
                 properties:
                   data:
                     type: object
                     properties:
                       id:
                         type: string
-                        example: 9b71ad8f-127d-4287-97d5-48bd3084673e
+                        example: 9b72f855-28e8-47bd-9c17-52cfb993efcf
                       name:
                         type: string
-                        example: "Dr. Era O'Hara"
+                        example: 'Eugenia Cummings'
                       username:
                         type: string
-                        example: berry83
+                        example: terrill35
                       email:
                         type: string
-                        example: gwendolyn75@example.com
+                        example: zula54@example.net
                       email_verified_at:
                         type: string
-                        example: '2024-02-28T13:04:14.000000Z'
+                        example: '2024-02-29T04:29:08.000000Z'
                       created_at:
                         type: string
-                        example: '2024-02-28T13:04:14.000000Z'
+                        example: '2024-02-29T04:29:09.000000Z'
                       updated_at:
                         type: string
-                        example: '2024-02-28T13:04:14.000000Z'
+                        example: '2024-02-29T04:29:09.000000Z'
                       viewer_follows:
                         type: boolean
                         example: false
@@ -903,13 +903,13 @@ paths:
                         example: 0
                       tweets_url:
                         type: string
-                        example: 'http://localhost:8000/api/api/users/berry83/tweets'
+                        example: 'http://localhost:8000/api/api/users/terrill35/tweets'
       tags:
         - Users
     patch:
-      summary: 'Update user data'
-      operationId: updateUserData
-      description: "Updates the currently logged-in user's data."
+      summary: 'Update the authenticated user'
+      operationId: updateTheAuthenticatedUser
+      description: "Updates the currently logged-in user's data.\n\nThe token must have the following permission: `profile:write`."
       parameters: []
       responses: {  }
       tags:
@@ -924,19 +924,19 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: pgutkowski@example.com
+                  example: dennis.wolff@example.org
                 username:
                   type: string
                   description: 'Must contain only letters, numbers, dashes and underscores. Must be at least 4 characters. Must not be greater than 20 characters.'
-                  example: nhvcvpanxvmumre
+                  example: amlvjvlacuoybbxnavil
                 name:
                   type: string
                   description: 'Must be at least 1 character. Must not be greater than 50 characters.'
-                  example: womcwmsguujqhuibwjmwtoxd
+                  example: wjseeoigeqousubzo
     delete:
-      summary: 'Delete user account'
-      operationId: deleteUserAccount
-      description: 'Delete the currently logged-in user account.'
+      summary: 'Delete the authenticated user'
+      operationId: deleteTheAuthenticatedUser
+      description: "Delete the currently logged-in user account.\n\nThe token must have the following permission: `profile:write`."
       parameters: []
       responses: {  }
       tags:
@@ -982,7 +982,7 @@ paths:
 tags:
   -
     name: Tweets
-    description: "\nAPIs for managing tweets."
+    description: 'Returns a paginated response.'
   -
     name: Users
     description: "\nAPIs for managing users."

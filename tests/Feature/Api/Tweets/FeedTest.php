@@ -93,7 +93,7 @@ test('Deve permitir fazer paginação', function () {
 
     $page = 1;
     $response1 = actingAs($user, 'sanctum')
-        ->getJson(route('feed', ['page' => $page, 'limit' => 1]))
+        ->getJson(route('feed', ['page' => $page, 'per_page' => 1]))
         ->assertOk()
         ->getData();
 
@@ -103,7 +103,7 @@ test('Deve permitir fazer paginação', function () {
 
     $page = 2;
     $response2 = actingAs($user, 'sanctum')
-        ->getJson(route('feed', ['page' => $page, 'limit' => 1]))
+        ->getJson(route('feed', ['page' => $page, 'per_page' => 1]))
         ->assertOk()
         ->getData();
 
@@ -118,13 +118,13 @@ test('Não deve permitir que o usuário obtenha mais que 50 tweets por paginaç�
     Tweet::factory(60)->fromUser($user)->create();
 
     actingAs($user, 'sanctum')
-        ->getJson(route('feed', ['page' => 1, 'limit' => 50]))
+        ->getJson(route('feed', ['page' => 1, 'per_page' => 50]))
         ->assertOk();
 
     actingAs($user, 'sanctum')
-        ->getJson(route('feed', ['page' => 1, 'limit' => 51]))
+        ->getJson(route('feed', ['page' => 1, 'per_page' => 51]))
         ->assertJsonValidationErrors([
-            'limit' => __('validation.max.numeric', ['max' => 50])
+            'per_page' => __('validation.max.numeric', ['max' => 50])
         ])
         ->assertUnprocessable();
 });

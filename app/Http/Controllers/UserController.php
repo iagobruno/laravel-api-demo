@@ -20,23 +20,9 @@ class UserController extends Controller
     use ApiResponseHelpers;
 
     /**
-     * Get the logged in user
-     *
-     * Returns the currently logged-in user's data.
-     *
-     * @authenticated
-     * @apiResource App\Http\Resources\UserResource
-     * @apiResourceModel App\Models\User
-     */
-    public function me()
-    {
-        return UserResource::make(auth()->user());
-    }
-
-    /**
      * Get a user
      *
-     * Returns the user data.
+     * Provides publicly available information about some user.
      *
      * @urlParam user_username string required The username of the user. Example: thay_26
      *
@@ -49,8 +35,26 @@ class UserController extends Controller
     }
 
     /**
+     * Get the authenticated user
+     *
+     * Returns the currently logged-in user's data.
+     *
+     * The token does not require any permissions.
+     *
+     * @authenticated
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
+     */
+    public function me()
+    {
+        return UserResource::make(auth()->user());
+    }
+
+    /**
      * Get a user's tweets
      * @group Tweets
+     *
+     * Returns a paginated response.
      *
      * @urlParam user_username string required The username of the user. Example: thay_26
      *
@@ -64,16 +68,18 @@ class UserController extends Controller
             ->latest()
             ->paginate(
                 page: $request->input('page', 1),
-                perPage: $request->input('limit', 10)
+                perPage: $request->input('per_page', 10)
             );
 
         return TweetCollection::make($tweets);
     }
 
     /**
-     * Update user data
+     * Update the authenticated user
      *
      * Updates the currently logged-in user's data.
+     *
+     * The token must have the following permission: `profile:write`.
      *
      * @authenticated
      */
@@ -87,9 +93,11 @@ class UserController extends Controller
     }
 
     /**
-     * Delete user account
+     * Delete the authenticated user
      *
      * Delete the currently logged-in user account.
+     *
+     * The token must have the following permission: `profile:write`.
      *
      * @authenticated
      */

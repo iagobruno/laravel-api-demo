@@ -6,6 +6,7 @@ use function Pest\Laravel\{patchJson, actingAs};
 use App\Events\UserUpdated;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
+use Laravel\Sanctum\Sanctum;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     patchJson(route('me.update'))
@@ -161,17 +162,34 @@ test('Deve retornar um erro se tentar usar um email que já está em uso', funct
         ->assertUnprocessable();
 });
 
-test('Deve conseguir atualizar as informações do usuário logado', function () {
+test('O token de acesso deve ter a permissão "profile:write"', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
+    Sanctum::actingAs($user);
     $newData = [
         'username' => 'new_username_123',
         'name' => fake()->name(),
         'email' => fake()->email(),
     ];
 
-    actingAs($user, 'sanctum')
-        ->patchJson(route('me.update'), $newData)
+    patchJson(route('me.update'), $newData)
+        ->assertJson([
+            'message' => 'You don\'t have permission to perform this action.'
+        ])
+        ->assertForbidden();
+});
+
+test('Deve conseguir atualizar as informações do usuário logado', function () {
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    Sanctum::actingAs($user, ['profile:write']);
+    $newData = [
+        'username' => 'new_username_123',
+        'name' => fake()->name(),
+        'email' => fake()->email(),
+    ];
+
+    patchJson(route('me.update'), $newData)
         ->assertOk();
 
     $user->refresh();
@@ -181,16 +199,15 @@ test('Deve conseguir atualizar as informações do usuário logado', function ()
 });
 
 test('Deve disparar um evento', function () {
-    Event::fake(UserUpdated::class);
-
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $newData = [
         'username' => 'new_username_123',
     ];
+    Sanctum::actingAs($user, ['profile:write']);
+    Event::fake(UserUpdated::class);
 
-    actingAs($user, 'sanctum')
-        ->patchJson(route('me.update'), $newData)
+    patchJson(route('me.update'), $newData)
         ->assertOk();
 
     Event::assertDispatched(function (UserUpdated $event) use ($user, $newData) {

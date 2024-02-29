@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function update(User $loggedUser, User $user): bool
     {
-        return $user->is($loggedUser);
+        return $user->is($loggedUser) && $loggedUser->tokenCan('profile:write');
     }
 
     /**
@@ -20,6 +20,6 @@ class UserPolicy
      */
     public function delete(User $loggedUser, User $user): bool
     {
-        return $user->is($loggedUser);
+        return $user->is($loggedUser) && $loggedUser->tokenCan('profile:write');
     }
 }

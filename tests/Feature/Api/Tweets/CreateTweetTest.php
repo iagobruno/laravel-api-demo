@@ -7,6 +7,7 @@ use App\Events\TweetCreated;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
+use Laravel\Sanctum\Sanctum;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
     postJson(route('tweet.store'), [])
@@ -39,13 +40,28 @@ test('O campo "content" não pode ter mais que 140 caracteres', function () {
         ->assertUnprocessable();
 });
 
+test('O token de acesso deve ter a permissão "tweet:write"', function () {
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    $content = fake()->text(140);
+    Sanctum::actingAs($user);
+
+    postJson(route('tweet.store'), [
+        'content' => $content,
+    ])
+        ->assertJson([
+            'message' => 'You don\'t have permission to perform this action.'
+        ])
+        ->assertForbidden();
+});
+
 test('Deve conseguir criar um novo tweet', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $content = fake()->text(140);
+    Sanctum::actingAs($user, ['tweet:write']);
 
-    actingAs($user, 'sanctum')
-        ->postJson(route('tweet.store'), [
+    postJson(route('tweet.store'), [
             'content' => $content,
         ])
         ->assertJson([
@@ -62,9 +78,9 @@ test('Deve associar corretamente ao usuário logado', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $content = fake()->text(140);
+    Sanctum::actingAs($user, ['tweet:write']);
 
-    actingAs($user, 'sanctum')
-        ->postJson(route('tweet.store'), [
+    postJson(route('tweet.store'), [
             'content' => $content,
         ])
         ->assertCreated();
@@ -74,14 +90,13 @@ test('Deve associar corretamente ao usuário logado', function () {
 });
 
 test('Deve disparar um evento', function () {
-    Event::fake(TweetCreated::class);
-
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $content = fake()->text(140);
+    Sanctum::actingAs($user, ['tweet:write']);
+    Event::fake(TweetCreated::class);
 
-    actingAs($user, 'sanctum')
-        ->postJson(route('tweet.store'), [
+    postJson(route('tweet.store'), [
             'content' => $content,
         ])
         ->assertCreated();

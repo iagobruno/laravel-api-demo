@@ -41,6 +41,10 @@ class TweetController extends Controller
      *
      * Get the latest tweets from profiles the user follows.
      *
+     * Returns a paginated response.
+     *
+     * The token does not require any permissions.
+     *
      * @authenticated
      *
      * @apiResourceCollection App\Http\Resources\TweetCollection
@@ -56,7 +60,7 @@ class TweetController extends Controller
             // ->dd() // Debug the final sql query
             ->paginate(
                 page: $request->input('page', 1),
-                perPage: $request->input('limit', 10)
+                perPage: $request->input('per_page', 10)
             );
 
         return TweetCollection::make($tweets);
@@ -66,6 +70,8 @@ class TweetController extends Controller
      * Create a tweet
      *
      * Post a new tweet to the logged in user's account.
+     *
+     * The token must have the following permission: `tweet:write`.
      *
      * @authenticated
      * @bodyParam content string required The tweet content. Max 140 caracteres. Example: Lorem ipsum dolor sit...
@@ -84,6 +90,8 @@ class TweetController extends Controller
 
     /**
      * Delete a tweet
+     *
+     * The token must have the following permission: `tweet:write`.
      *
      * @authenticated
      * @urlParam tweet_id string required The ID of the tweet. No-example
