@@ -24,6 +24,9 @@ Route::post('/signin', SigninController::class)->name('signin');
 
 Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
 Route::get('/users/{user}/tweets', [UserController::class, 'tweets'])->name('user.tweets');
+Route::get('/users/{user}/followers', [FollowController::class, 'followers'])->name('user.followers');
+Route::get('/users/{user}/following', [FollowController::class, 'following'])->name('user.following');
+
 Route::get('/tweets/{tweet}', [TweetController::class, 'show'])->name('tweet.show');
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -38,8 +41,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/me', 'destroy')->name('destroy');
     });
 
-    Route::post('/users/{user}/follow', [FollowController::class, 'follow'])->name('user.follow');
-    Route::post('/users/{user}/unfollow', [FollowController::class, 'unfollow'])->name('user.unfollow');
+    Route::controller(FollowController::class)->name('user.')->group(function () {
+        Route::get('/me/following/{user}', 'follows')->name('follows');
+        Route::put('/me/following/{user}', 'follow')->name('follow');
+        Route::delete('/me/following/{user}', 'unfollow')->name('unfollow');
+    });
 });
 
 /**

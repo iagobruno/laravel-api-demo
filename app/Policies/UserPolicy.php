@@ -22,4 +22,20 @@ class UserPolicy
     {
         return $user->is($loggedUser) && $loggedUser->tokenCan('profile:write');
     }
+
+    /**
+     * Determine whether the user can follow other user.
+     */
+    public function follow(User $loggedUser, User $otherUser): bool
+    {
+        return $loggedUser->tokenCan('followers:write');
+    }
+
+    /**
+     * Determine whether the user can follow other user.
+     */
+    public function read_followers(User $loggedUser, User $otherUser): bool
+    {
+        return $loggedUser->tokenCan('followers:read');
+    }
 }

@@ -13,7 +13,7 @@ test('Deve retornar um erro se a solicitação não houver um token', function (
         ->assertUnauthorized();
 });
 
-test('O token de acesso deve ter a permissão "profile:write"', function () {
+test('O token de acesso deve ter a permissão necessária', function () {
     /** @var \App\Models\User */
     $user = User::factory()->create();
     Sanctum::actingAs($user);

@@ -1,13 +1,14 @@
 <?php
 
-use function Pest\Laravel\{postJson, actingAs};
+use function Pest\Laravel\{deleteJson, actingAs};
 
 use App\Events\UserUnfollowed;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
+use Laravel\Sanctum\Sanctum;
 
 test('Deve retornar um erro se a solicitação não houver um token', function () {
-    postJson(route('user.unfollow', ['fakeusername']))
+    deleteJson(route('user.unfollow', ['fakeusername']))
         ->assertUnauthorized();
 });
 
@@ -16,8 +17,21 @@ test('Deve retornar um erro se não conseguir encontrar o usuário pelo username
     $user = User::factory()->create();
 
     actingAs($user, 'sanctum')
-        ->postJson(route('user.unfollow', ['fakeusername']))
+        ->deleteJson(route('user.unfollow', ['fakeusername']))
         ->assertNotFound();
+});
+
+test('O token de acesso deve ter a permissão necessária', function () {
+    /** @var \App\Models\User */
+    $user = User::factory()->create();
+    $userToFollow = User::factory()->create();
+    Sanctum::actingAs($user);
+
+    deleteJson(route('user.follow', [$userToFollow->username]))
+        ->assertJson([
+            'message' => 'You don\'t have permission to perform this action.'
+        ])
+        ->assertForbidden();
 });
 
 test('Deve conseguir parar de seguir um usuário', function () {
@@ -25,9 +39,9 @@ test('Deve conseguir parar de seguir um usuário', function () {
     $user = User::factory()->create();
     $userToUnfollow = User::factory()->create();
     $user->forceFollow($userToUnfollow);
+    Sanctum::actingAs($user, ['followers:write']);
 
-    actingAs($user, 'sanctum')
-        ->postJson(route('user.unfollow', [$userToUnfollow->username]))
+    deleteJson(route('user.unfollow', [$userToUnfollow->username]))
         ->assertOk();
 
     expect($user->isFollowing($userToUnfollow))->toBeFalse();
@@ -40,15 +54,14 @@ test('Deve conseguir parar de seguir um usuário', function () {
 });
 
 test('Deve disparar um evento', function () {
-    Event::fake(UserUnfollowed::class);
-
     /** @var \App\Models\User */
     $user = User::factory()->create();
     $userToUnfollow = User::factory()->create();
     $user->forceFollow($userToUnfollow);
+    Event::fake(UserUnfollowed::class);
+    Sanctum::actingAs($user, ['followers:write']);
 
-    actingAs($user, 'sanctum')
-        ->postJson(route('user.unfollow', [$userToUnfollow->username]))
+    deleteJson(route('user.unfollow', [$userToUnfollow->username]))
         ->assertOk();
 
     Event::assertDispatched(function (UserUnfollowed $event) use ($user, $userToUnfollow) {

@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "API documentation",
-        "_postman_id": "e9d1cc37-b3d1-4465-9fa3-695232672753",
+        "_postman_id": "d85fd7bf-3287-404b-b1a0-60f431a6a4be",
         "description": "Saiba como come\u00e7ar a usar rapidamente a nossa API REST.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -70,7 +70,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":\"9b72f853-71ae-4a7d-8141-c652e7f479cd\",\"user_id\":\"9b72f853-6f70-4734-a7ef-c22e42cbe428\",\"content\":\"Cupiditate modi nesciunt voluptatum in. Quo odit non ea sit. Sint qui ut eius et consequuntur.\",\"created_at\":\"2024-02-29T04:29:07.000000Z\",\"updated_at\":\"2024-02-29T04:29:07.000000Z\",\"user\":{\"id\":\"9b72f853-6f70-4734-a7ef-c22e42cbe428\",\"name\":\"Ewell Erdman I\",\"username\":\"horacio.bernhard\",\"email\":\"ward83@example.org\",\"email_verified_at\":\"2024-02-29T04:29:07.000000Z\",\"created_at\":\"2024-02-29T04:29:07.000000Z\",\"updated_at\":\"2024-02-29T04:29:07.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/horacio.bernhard\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/horacio.bernhard\"},{\"id\":\"9b72f853-adee-4903-8e84-125fc58cf605\",\"user_id\":\"9b72f853-ab96-44b0-b638-e6ceba5aaf00\",\"content\":\"Qui est cumque dolorem dolore. Sit aut sint eligendi iusto. Inventore provident velit qui ut corporis porro dolor.\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"user\":{\"id\":\"9b72f853-ab96-44b0-b638-e6ceba5aaf00\",\"name\":\"Matteo Dietrich\",\"username\":\"reta.adams\",\"email\":\"marlene99@example.org\",\"email_verified_at\":\"2024-02-29T04:29:07.000000Z\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/reta.adams\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/reta.adams\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"\\\/\",\"per_page\":2,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":\"9b73234c-47c0-411f-9a56-f88c15412cff\",\"user_id\":\"9b73234c-40d8-4658-9253-473565510df0\",\"content\":\"Rem est accusantium earum praesentium. Nam ipsa dolor nihil quia cumque nisi neque. Odio quasi eius in.\",\"created_at\":\"2024-02-29T06:29:17.000000Z\",\"updated_at\":\"2024-02-29T06:29:17.000000Z\",\"user\":{\"id\":\"9b73234c-40d8-4658-9253-473565510df0\",\"name\":\"Mr. Arden Wiza\",\"username\":\"jhammes\",\"email\":\"qhowell@example.net\",\"email_verified_at\":\"2024-02-29T06:29:17.000000Z\",\"created_at\":\"2024-02-29T06:29:17.000000Z\",\"updated_at\":\"2024-02-29T06:29:17.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/jhammes\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/jhammes\"},{\"id\":\"9b73234c-8c24-4729-a658-dc44d617902d\",\"user_id\":\"9b73234c-89ca-420e-9135-b72ca46cd92c\",\"content\":\"Eos minima suscipit dolores animi. Mollitia libero in aperiam velit. Tenetur eligendi esse et esse necessitatibus eligendi assumenda.\",\"created_at\":\"2024-02-29T06:29:17.000000Z\",\"updated_at\":\"2024-02-29T06:29:17.000000Z\",\"user\":{\"id\":\"9b73234c-89ca-420e-9135-b72ca46cd92c\",\"name\":\"Virgil Haag\",\"username\":\"ramon.mraz\",\"email\":\"agustin.luettgen@example.net\",\"email_verified_at\":\"2024-02-29T06:29:17.000000Z\",\"created_at\":\"2024-02-29T06:29:17.000000Z\",\"updated_at\":\"2024-02-29T06:29:17.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/ramon.mraz\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/ramon.mraz\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"\\\/\",\"per_page\":2,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -113,7 +113,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":\"9b72f854-0122-40db-89c9-531ffd6af473\",\"user_id\":\"9b72f853-fe11-4ee7-95a2-2e81378fda10\",\"content\":\"Sunt molestiae mollitia beatae illum. Neque non et non quis iste qui. Maxime quidem sint et sapiente delectus saepe quia.\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"user\":{\"id\":\"9b72f853-fe11-4ee7-95a2-2e81378fda10\",\"name\":\"Elyssa Legros\",\"username\":\"brent58\",\"email\":\"murazik.mario@example.com\",\"email_verified_at\":\"2024-02-29T04:29:08.000000Z\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/brent58\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/brent58\"}}",
+                            "body": "{\"data\":{\"id\":\"9b73234e-a1cd-44ec-926b-4a0ae0bdfbe7\",\"user_id\":\"9b73234e-9fbf-46a1-b2b1-fc47d29dc87d\",\"content\":\"Aut blanditiis molestiae unde. Perspiciatis et tempore deleniti. Qui illum odio ipsa aut quis et in.\",\"created_at\":\"2024-02-29T06:29:19.000000Z\",\"updated_at\":\"2024-02-29T06:29:19.000000Z\",\"user\":{\"id\":\"9b73234e-9fbf-46a1-b2b1-fc47d29dc87d\",\"name\":\"Irwin Pfannerstill V\",\"username\":\"darryl29\",\"email\":\"jbartoletti@example.org\",\"email_verified_at\":\"2024-02-29T06:29:18.000000Z\",\"created_at\":\"2024-02-29T06:29:18.000000Z\",\"updated_at\":\"2024-02-29T06:29:18.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/darryl29\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/darryl29\"}}",
                             "name": ""
                         }
                     ]
@@ -158,7 +158,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":\"9b72f854-5201-4268-8500-0ea035fd725b\",\"user_id\":\"9b72f854-4d9f-4852-b32e-14163b52e15f\",\"content\":\"Quo ut veniam sed facere. Saepe provident sit aut porro perferendis. Possimus corporis ut nihil qui ipsa rerum eveniet perspiciatis.\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"user\":{\"id\":\"9b72f854-4d9f-4852-b32e-14163b52e15f\",\"name\":\"Jewel Hackett DDS\",\"username\":\"gladyce.leannon\",\"email\":\"qbogan@example.com\",\"email_verified_at\":\"2024-02-29T04:29:08.000000Z\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/gladyce.leannon\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/gladyce.leannon\"},{\"id\":\"9b72f854-8cb1-4d08-82c1-3584b1990f2e\",\"user_id\":\"9b72f854-8768-419a-8c17-2231fd2c3394\",\"content\":\"Totam repudiandae neque dolorem tempore eveniet. Nostrum qui et et ullam cupiditate ut eum. Molestias modi atque enim aliquam autem velit.\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"user\":{\"id\":\"9b72f854-8768-419a-8c17-2231fd2c3394\",\"name\":\"Arlo Hilpert DVM\",\"username\":\"xavier.kuvalis\",\"email\":\"nader.devan@example.net\",\"email_verified_at\":\"2024-02-29T04:29:08.000000Z\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/xavier.kuvalis\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/xavier.kuvalis\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"\\\/\",\"per_page\":2,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":\"9b73234f-2366-459f-a1b6-a3886f829038\",\"user_id\":\"9b73234f-1cb1-43aa-a6b4-b2a98d179bfb\",\"content\":\"Rerum porro vero cupiditate natus. Sit consequuntur voluptatem quo. Sunt debitis vitae quidem similique in tempore quia.\",\"created_at\":\"2024-02-29T06:29:19.000000Z\",\"updated_at\":\"2024-02-29T06:29:19.000000Z\",\"user\":{\"id\":\"9b73234f-1cb1-43aa-a6b4-b2a98d179bfb\",\"name\":\"Ms. Novella Kub\",\"username\":\"adrain.reichel\",\"email\":\"langworth.antonietta@example.org\",\"email_verified_at\":\"2024-02-29T06:29:19.000000Z\",\"created_at\":\"2024-02-29T06:29:19.000000Z\",\"updated_at\":\"2024-02-29T06:29:19.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/adrain.reichel\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/adrain.reichel\"},{\"id\":\"9b73234f-a851-4a9b-a603-67f3acf1015a\",\"user_id\":\"9b73234f-a321-4e77-b0b0-d90c6fc51dfe\",\"content\":\"Rerum non sit quos voluptatem ex. Vero minima molestias id iste alias. Nobis quas ipsum aliquam magni et nisi.\",\"created_at\":\"2024-02-29T06:29:19.000000Z\",\"updated_at\":\"2024-02-29T06:29:19.000000Z\",\"user\":{\"id\":\"9b73234f-a321-4e77-b0b0-d90c6fc51dfe\",\"name\":\"Shanie Kuphal\",\"username\":\"balistreri.verda\",\"email\":\"heaney.ethan@example.net\",\"email_verified_at\":\"2024-02-29T06:29:19.000000Z\",\"created_at\":\"2024-02-29T06:29:19.000000Z\",\"updated_at\":\"2024-02-29T06:29:19.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/balistreri.verda\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/balistreri.verda\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"\\\/\",\"per_page\":2,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -193,7 +193,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":\"9b72f854-d91d-4215-984e-9e2d6aba063a\",\"user_id\":\"9b72f854-d6ac-47b6-83cc-56155a55cf89\",\"content\":\"Consequatur ut cum laboriosam laudantium consequatur alias rem. At delectus non nobis in sint.\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"user\":{\"id\":\"9b72f854-d6ac-47b6-83cc-56155a55cf89\",\"name\":\"Brannon Stamm\",\"username\":\"wthompson\",\"email\":\"jennyfer.west@example.net\",\"email_verified_at\":\"2024-02-29T04:29:08.000000Z\",\"created_at\":\"2024-02-29T04:29:08.000000Z\",\"updated_at\":\"2024-02-29T04:29:08.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/wthompson\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/wthompson\"}}",
+                            "body": "{\"data\":{\"id\":\"9b732350-5279-4c86-8dec-008d91932f25\",\"user_id\":\"9b732350-4be1-4adb-8f96-bd5f786a4fcc\",\"content\":\"Quam ut sunt laudantium sint vero non est eos. Delectus molestiae qui autem dolorem quam.\",\"created_at\":\"2024-02-29T06:29:20.000000Z\",\"updated_at\":\"2024-02-29T06:29:20.000000Z\",\"user\":{\"id\":\"9b732350-4be1-4adb-8f96-bd5f786a4fcc\",\"name\":\"Isabella Smith\",\"username\":\"ctremblay\",\"email\":\"lkoelpin@example.org\",\"email_verified_at\":\"2024-02-29T06:29:19.000000Z\",\"created_at\":\"2024-02-29T06:29:20.000000Z\",\"updated_at\":\"2024-02-29T06:29:20.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/ctremblay\\\/tweets\"},\"user_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/ctremblay\"}}",
                             "name": ""
                         }
                     ]
@@ -275,8 +275,238 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":\"9b72f853-0a88-4958-acf6-51004618b98f\",\"name\":\"Patience Runte\",\"username\":\"adeline.stamm\",\"email\":\"jlang@example.com\",\"email_verified_at\":\"2024-02-29T04:29:07.000000Z\",\"created_at\":\"2024-02-29T04:29:07.000000Z\",\"updated_at\":\"2024-02-29T04:29:07.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/adeline.stamm\\\/tweets\"}}",
+                            "body": "{\"data\":{\"id\":\"9b73234b-bd23-4aea-8954-bd51152f4e6b\",\"name\":\"Leonora Reilly V\",\"username\":\"leland91\",\"email\":\"rudolph02@example.com\",\"email_verified_at\":\"2024-02-29T06:29:16.000000Z\",\"created_at\":\"2024-02-29T06:29:17.000000Z\",\"updated_at\":\"2024-02-29T06:29:17.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/leland91\\\/tweets\"}}",
                             "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Followers",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "List followers of a user",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/users\/:user_username\/followers",
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": "1",
+                                            "description": "The page number of the results to fetch.",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "per_page",
+                                            "value": "10",
+                                            "description": "The number of results per page to be returned. Max 50 and the default is 10.",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "raw": "{{baseUrl}}\/api\/users\/:user_username\/followers?page=1&per_page=10",
+                                    "variable": [
+                                        {
+                                            "id": "user_username",
+                                            "key": "user_username",
+                                            "value": "thay_26",
+                                            "description": "The username of the user."
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "Lists the people following the specified user.\n\nReturns a paginated response.",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "{\"data\":[{\"id\":\"9b73234d-1f87-4fb5-a3e3-e3fa185eea0b\",\"name\":\"Lempi Feil\",\"username\":\"dooley.patricia\",\"email\":\"bella.okuneva@example.org\",\"email_verified_at\":\"2024-02-29T06:29:17.000000Z\",\"created_at\":\"2024-02-29T06:29:18.000000Z\",\"updated_at\":\"2024-02-29T06:29:18.000000Z\"},{\"id\":\"9b73234d-5ee8-4143-8090-be3bca41d5ba\",\"name\":\"Mr. Abraham Bogan\",\"username\":\"melvina95\",\"email\":\"rspencer@example.com\",\"email_verified_at\":\"2024-02-29T06:29:18.000000Z\",\"created_at\":\"2024-02-29T06:29:18.000000Z\",\"updated_at\":\"2024-02-29T06:29:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"\\\/\",\"per_page\":2,\"to\":2,\"total\":2}}",
+                                    "name": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "List the people a user follows",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/users\/:user_username\/following",
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": "1",
+                                            "description": "The page number of the results to fetch.",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "per_page",
+                                            "value": "10",
+                                            "description": "The number of results per page to be returned. Max 50 and the default is 10.",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "raw": "{{baseUrl}}\/api\/users\/:user_username\/following?page=1&per_page=10",
+                                    "variable": [
+                                        {
+                                            "id": "user_username",
+                                            "key": "user_username",
+                                            "value": "thay_26",
+                                            "description": "The username of the user."
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "Lists the people who the specified user follows.\n\nReturns a paginated response.",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "{\"data\":[{\"id\":\"9b73234e-016c-4978-a25e-bbebf9894326\",\"name\":\"Eryn Morissette\",\"username\":\"tfeest\",\"email\":\"kiehn.issac@example.com\",\"email_verified_at\":\"2024-02-29T06:29:18.000000Z\",\"created_at\":\"2024-02-29T06:29:18.000000Z\",\"updated_at\":\"2024-02-29T06:29:18.000000Z\"},{\"id\":\"9b73234e-591e-45c8-a710-a295005bfe21\",\"name\":\"Prof. Prudence Hegmann\",\"username\":\"sbartell\",\"email\":\"wilson61@example.org\",\"email_verified_at\":\"2024-02-29T06:29:18.000000Z\",\"created_at\":\"2024-02-29T06:29:18.000000Z\",\"updated_at\":\"2024-02-29T06:29:18.000000Z\"}],\"links\":{\"first\":\"\\\/?page=1\",\"last\":\"\\\/?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"\\\/?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"\\\/\",\"per_page\":2,\"to\":2,\"total\":2}}",
+                                    "name": ""
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Check if the authenticated user follows a user",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/me\/following\/:user_username",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/me\/following\/:user_username",
+                                    "variable": [
+                                        {
+                                            "id": "user_username",
+                                            "key": "user_username",
+                                            "value": "thay_26",
+                                            "description": "The username of the user."
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "Responds with 200 status code if the authenticated user follows the specified user and 404 if not.\n\nThe token must have the following permission: `followers:read`."
+                            },
+                            "response": [
+                                {
+                                    "header": [],
+                                    "code": 200,
+                                    "body": "true",
+                                    "name": "if the person is followed by the authenticated user"
+                                },
+                                {
+                                    "header": [],
+                                    "code": 404,
+                                    "body": "false",
+                                    "name": "if the person is not followed by the authenticated user"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Follow another user",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/me\/following\/:user_username",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/me\/following\/:user_username",
+                                    "variable": [
+                                        {
+                                            "id": "user_username",
+                                            "key": "user_username",
+                                            "value": "thay_26",
+                                            "description": "The username of the user to follow."
+                                        }
+                                    ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "Makes the logged in user follow another user.\n\nThe token must have the following permission: `followers:write`."
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Unfollow a user",
+                            "request": {
+                                "url": {
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/me\/following\/:user_username",
+                                    "query": [],
+                                    "raw": "{{baseUrl}}\/api\/me\/following\/:user_username",
+                                    "variable": [
+                                        {
+                                            "id": "user_username",
+                                            "key": "user_username",
+                                            "value": "thay_26",
+                                            "description": "The username of the user to unfollow."
+                                        }
+                                    ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": "Makes the logged in user unfollow a user.\n\nThe token must have the following permission: `followers:write`."
+                            },
+                            "response": []
                         }
                     ]
                 },
@@ -307,7 +537,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":\"9b72f855-28e8-47bd-9c17-52cfb993efcf\",\"name\":\"Eugenia Cummings\",\"username\":\"terrill35\",\"email\":\"zula54@example.net\",\"email_verified_at\":\"2024-02-29T04:29:08.000000Z\",\"created_at\":\"2024-02-29T04:29:09.000000Z\",\"updated_at\":\"2024-02-29T04:29:09.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/terrill35\\\/tweets\"}}",
+                            "body": "{\"data\":{\"id\":\"9b732351-1e60-45b8-aa71-b88f10bf295f\",\"name\":\"Prof. Alana Fahey III\",\"username\":\"edison.ortiz\",\"email\":\"yasmeen.friesen@example.org\",\"email_verified_at\":\"2024-02-29T06:29:20.000000Z\",\"created_at\":\"2024-02-29T06:29:20.000000Z\",\"updated_at\":\"2024-02-29T06:29:20.000000Z\",\"viewer_follows\":false,\"followers_count\":0,\"following_count\":0,\"tweets_url\":\"http:\\\/\\\/localhost:8000\\\/api\\\/api\\\/users\\\/edison.ortiz\\\/tweets\"}}",
                             "name": ""
                         }
                     ]
@@ -334,7 +564,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"dennis.wolff@example.org\",\"username\":\"amlvjvlacuoybbxnavil\",\"name\":\"wjseeoigeqousubzo\"}"
+                            "raw": "{\"email\":\"jamaal37@example.net\",\"username\":\"rxohjamet\",\"name\":\"vijjaktdsxspsaafkqniyx\"}"
                         },
                         "description": "Updates the currently logged-in user's data.\n\nThe token must have the following permission: `profile:write`."
                     },
@@ -362,78 +592,6 @@
                         ],
                         "body": null,
                         "description": "Delete the currently logged-in user account.\n\nThe token must have the following permission: `profile:write`."
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Follow another user",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/users\/:user_username\/follow",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:user_username\/follow",
-                            "variable": [
-                                {
-                                    "id": "user_username",
-                                    "key": "user_username",
-                                    "value": "thay_26",
-                                    "description": "The username of the user to follow."
-                                }
-                            ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Makes the logged in user follow another user.",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Unfollow a user",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/users\/:user_username\/unfollow",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/users\/:user_username\/unfollow",
-                            "variable": [
-                                {
-                                    "id": "user_username",
-                                    "key": "user_username",
-                                    "value": "thay_26",
-                                    "description": "The username of the user to unfollow."
-                                }
-                            ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Makes the logged in user unfollow a user.",
-                        "auth": {
-                            "type": "noauth"
-                        }
                     },
                     "response": []
                 }
