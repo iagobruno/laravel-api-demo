@@ -192,9 +192,6 @@ test('Deve conseguir atualizar as informações do usuário logado', function ()
     patchJson(route('me.update'), $newData)
         ->assertOk();
 
-    $user->refresh();
-    expect($user->toArray())->toMatchArray($newData);
-
     $this->assertDatabaseHas('users', $newData);
 });
 

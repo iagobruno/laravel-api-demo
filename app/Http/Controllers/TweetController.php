@@ -25,7 +25,7 @@ class TweetController extends Controller
      *
      * Get a specific tweet by id.
      *
-     * @urlParam tweet_id string required The ID of the tweet. No-example
+     * @urlParam tweet_id string required The ID of the tweet. Example: 01hqvyv4xakkdn5wb41hzknsg9
      * @responseField user object Contains the infos of the tweet author.
      *
      * @apiResource App\Http\Resources\TweetResource
@@ -94,7 +94,7 @@ class TweetController extends Controller
      * The token must have the following permission: `tweet:write`.
      *
      * @authenticated
-     * @urlParam tweet_id string required The ID of the tweet. No-example
+     * @urlParam tweet_id string required The ID of the tweet. Example: 01hqvyv4xakkdn5wb41hzknsg9
     */
     public function destroy(Tweet $tweet)
     {

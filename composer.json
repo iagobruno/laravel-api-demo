@@ -27,7 +27,7 @@
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-faker": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "pestphp/pest-plugin-watch": "^2.0",
+        "pestphp/pest-plugin-watch": "^2.1",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
     },
