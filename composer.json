@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.2",
         "f9webltd/laravel-api-response-helpers": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^11.0",
